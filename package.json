@@ -1,0 +1,20 @@
+{
+  "name": "bandungbuildmaterial",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Bandung Base L2 DeFi Staking Workshop — monorepo containing Foundry contracts, Next.js frontend, and 8-session curriculum.",
+  "workspaces": [
+    "frontend"
+  ],
+  "scripts": {
+    "dev": "pnpm --filter ./frontend dev",
+    "build:frontend": "pnpm --filter ./frontend build",
+    "build:contracts": "cd contracts && forge build",
+    "test:contracts": "cd contracts && forge test -vvv",
+    "deploy:sepolia": "cd contracts && forge script script/Deploy.s.sol:Deploy --rpc-url $BASE_SEPOLIA_RPC_URL --broadcast --verify --etherscan-api-key $BASESCAN_API_KEY -vvvv"
+  },
+  "packageManager": "pnpm@9.0.0",
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

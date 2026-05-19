@@ -1,0 +1,51 @@
+# --- OS / Editor ---
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# --- Secrets / Env ---
+.env
+.env.local
+.env.*.local
+!.env.example
+!frontend/.env.local.example
+
+# --- Node / Frontend ---
+node_modules/
+.pnpm-store/
+.next/
+out/
+dist/
+build/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.eslintcache
+.turbo/
+
+# --- Foundry / Contracts ---
+contracts/lib/
+contracts/out/
+contracts/cache/
+contracts/broadcast/*/dry-run/
+contracts/broadcast/**/run-latest.json
+# Keep broadcast metadata for grading? Track manually. Default: ignore.
+contracts/broadcast/
+contracts/.gas-snapshot.tmp
+
+# --- Frontend generated ---
+frontend/.next/
+frontend/next-env.d.ts
+frontend/public/abi-generated/
+
+# --- Coverage ---
+coverage/
+lcov.info
+
+# --- Misc ---
+*.tsbuildinfo
