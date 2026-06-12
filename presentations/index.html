@@ -3,268 +3,97 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Bandung Base Builders — Workshop Materials</title>
-  <meta name="description" content="1-month, 8-session intensive workshop building a DeFi staking protocol on Base Sepolia." />
+  <title>Bandung Builders — Choose Your L2 Track</title>
+  <meta name="description" content="Pick Base Sepolia, OP Sepolia, or Arbitrum Sepolia for the DeFi staking workshop." />
   <link rel="stylesheet" href="assets/styles.css" />
 </head>
 <body>
-  <!-- ============================================================ TOPBAR -->
   <header class="topbar">
     <div class="topbar-inner">
       <a href="index.html" class="topbar-brand">
         <span class="topbar-brand-mark">B³</span>
-        <span>Bandung Base Builders</span>
+        <span>Bandung Builders</span>
       </a>
       <nav>
+        <a href="../README.md" class="btn btn-ghost btn-sm">Monorepo</a>
         <a href="https://github.com/Fatihmaull/bandung-builders" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">GitHub</a>
       </nav>
     </div>
   </header>
 
-  <main class="page-shell" style="grid-template-columns: 1fr;">
-    <!-- ============================================================ HERO -->
-    <section class="hero" style="border: none; padding: 5rem 0 2rem;">
+  <main class="page-shell" style="grid-template-columns: 1fr; max-width: 1100px;">
+    <section class="hero" style="border: none; padding: 4rem 0 1rem;">
       <span class="badge dot">Cohort 01 · Bandung, Indonesia</span>
-      <h1>Ship a DeFi staking protocol on Base in 4 weeks.</h1>
+      <h1>Choose your L2 track.</h1>
       <p class="lead">
-        8 sessions. 10–15 builders. One monorepo. By Demo Day you will have deployed and
-        verified a Synthetix-style staking contract on <strong>Base Sepolia</strong>, wired
-        a Next.js dApp to it with Wagmi + Viem + RainbowKit, and pitched it like you mean it.
+        Same workshop. Same staking protocol. Same 8 sessions. Three testnets —
+        pick the chain you'll deploy on for the next 4 weeks. You can switch tracks
+        anytime, but <strong>stick to one during the cohort</strong> so your deploy
+        addresses and docs stay consistent.
       </p>
-
-      <div class="kpi-grid" style="margin-top: 2rem;">
-        <div class="kpi">
-          <div class="kpi-label">Duration</div>
-          <div class="kpi-value">4 weeks</div>
-        </div>
-        <div class="kpi">
-          <div class="kpi-label">Sessions</div>
-          <div class="kpi-value">8 × 2.5 hr</div>
-        </div>
-        <div class="kpi">
-          <div class="kpi-label">L2 target</div>
-          <div class="kpi-value accent">Base Sepolia</div>
-        </div>
-        <div class="kpi">
-          <div class="kpi-label">Cohort size</div>
-          <div class="kpi-value">10–15</div>
-        </div>
-      </div>
-
-      <!-- Cohort progress -->
-      <div class="panel" style="margin-top: 2rem;">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
-          <div class="panel-title" style="margin: 0;">Your progress</div>
-          <div class="muted tiny mono" data-cohort-progress-label>0 / 8</div>
-        </div>
-        <div class="progress" data-cohort-progress><span style="width:0%"></span></div>
-        <p class="muted tiny" style="margin-top: 0.6rem;">
-          Click "Mark complete" at the bottom of any session page to track your progress here.
-        </p>
-      </div>
     </section>
 
-    <!-- ============================================================ SESSIONS GRID -->
-    <section style="padding: 2rem 0 1rem;">
-      <h2 style="font-size: 1.6rem; font-weight: 600; letter-spacing: -0.01em; margin-bottom: 1.5rem;">
-        The 8 sessions
-      </h2>
-
-      <div style="display: grid; grid-template-columns: 1fr; gap: 1rem;" class="grid-2">
-        <a href="meet-1.html" class="session-card" data-session-card="1">
-          <span class="done-mark" aria-hidden="true">✓</span>
-          <div>
-            <div class="session-num">WEEK 1 · MEET 1</div>
-            <div class="session-title">Kick-Off & EVM Blockchain Mechanism</div>
-          </div>
-          <div class="session-meta">
-            <span class="badge nontech">Non-Technical</span>
-            <span class="badge">2.5 hr</span>
-            <span class="badge">Speaker-led</span>
-          </div>
-          <p class="session-summary">
-            The EVM as a deterministic state machine, why L2 rollups exist, what Base is
-            specifically, and why Bandung is the right city for this cohort. Sign the
-            Rules of the Game.
-          </p>
-        </a>
-
-        <a href="meet-2.html" class="session-card" data-session-card="2">
-          <span class="done-mark" aria-hidden="true">✓</span>
-          <div>
-            <div class="session-num">WEEK 1 · MEET 2</div>
-            <div class="session-title">Fundamental EVM & Foundry Setup</div>
-          </div>
-          <div class="session-meta">
-            <span class="badge tech">Technical</span>
-            <span class="badge">2.5 hr</span>
-            <span class="badge">Hands-on</span>
-          </div>
-          <p class="session-summary">
-            Install Foundry. Decode <code>foundry.toml</code>. Use <code>cast</code> against
-            live Base Sepolia. Tour the monorepo. Verify your AI agent is loaded with
-            <code>.cursorrules</code>.
-          </p>
-        </a>
-
-        <a href="meet-3.html" class="session-card" data-session-card="3">
-          <span class="done-mark" aria-hidden="true">✓</span>
-          <div>
-            <div class="session-num">WEEK 2 · MEET 3</div>
-            <div class="session-title">Ideasi Proyek & Design Thinking</div>
-          </div>
-          <div class="session-meta">
-            <span class="badge nontech">Non-Technical</span>
-            <span class="badge">2.5 hr</span>
-            <span class="badge">Workshop</span>
-          </div>
-          <p class="session-summary">
-            EDIPT for Web3. Pick a Bandung problem worth solving on Base. Write a problem
-            statement with a real trust insight — not a "we'll add a token" hand-wave.
-          </p>
-        </a>
-
-        <a href="meet-4.html" class="session-card" data-session-card="4">
-          <span class="done-mark" aria-hidden="true">✓</span>
-          <div>
-            <div class="session-num">WEEK 2 · MEET 4</div>
-            <div class="session-title">Smart Contract Development (Solidity + Forge)</div>
-          </div>
-          <div class="session-meta">
-            <span class="badge tech">Technical</span>
-            <span class="badge">2.5 hr</span>
-            <span class="badge">Live-coding</span>
-          </div>
-          <p class="session-summary">
-            Live-code a Synthetix-style staking accumulator. Implement <code>updateReward</code>,
-            <code>stake</code>, <code>withdraw</code>, <code>getReward</code>. Cover with
-            <code>vm.prank</code> + <code>vm.warp</code> tests.
-          </p>
-        </a>
-
-        <a href="meet-5.html" class="session-card" data-session-card="5">
-          <span class="done-mark" aria-hidden="true">✓</span>
-          <div>
-            <div class="session-num">WEEK 3 · MEET 5</div>
-            <div class="session-title">DeFi Economics & Tokenomics Canvas</div>
-          </div>
-          <div class="session-meta">
-            <span class="badge nontech">Non-Technical</span>
-            <span class="badge">2.5 hr</span>
-            <span class="badge">Calculators</span>
-          </div>
-          <p class="session-summary">
-            Derive <code>earned()</code> from first principles. Calculate APR, runway,
-            sustainability. Fill the four-pillar Tokenomics Canvas live — Supply, Vesting,
-            Utility, Yield.
-          </p>
-        </a>
-
-        <a href="meet-6.html" class="session-card" data-session-card="6">
-          <span class="done-mark" aria-hidden="true">✓</span>
-          <div>
-            <div class="session-num">WEEK 3 · MEET 6</div>
-            <div class="session-title">Frontend Connection (Viem, Wagmi, RainbowKit)</div>
-          </div>
-          <div class="session-meta">
-            <span class="badge tech">Technical</span>
-            <span class="badge">2.5 hr</span>
-            <span class="badge">Live-coding</span>
-          </div>
-          <p class="session-summary">
-            Configure providers in the correct order. Write read hooks and write hooks.
-            Handle the full tx lifecycle in the UI. Author the missing
-            <code>useApproveStake</code> hook.
-          </p>
-        </a>
-
-        <a href="meet-7.html" class="session-card" data-session-card="7">
-          <span class="done-mark" aria-hidden="true">✓</span>
-          <div>
-            <div class="session-num">WEEK 4 · MEET 7</div>
-            <div class="session-title">Pitching & Base Go-To-Market</div>
-          </div>
-          <div class="session-meta">
-            <span class="badge nontech">Non-Technical</span>
-            <span class="badge">2.5 hr</span>
-            <span class="badge">Rehearsal</span>
-          </div>
-          <p class="session-summary">
-            The 7-slide, 5-minute pitch. The 90-second live demo. The Base-specific GTM
-            stack. Rehearse twice in pairs. Drill the judge questions.
-          </p>
-        </a>
-
-        <a href="meet-8.html" class="session-card" data-session-card="8">
-          <span class="done-mark" aria-hidden="true">✓</span>
-          <div>
-            <div class="session-num">WEEK 4 · MEET 8</div>
-            <div class="session-title">Demo Day & Infrastructure</div>
-          </div>
-          <div class="session-meta">
-            <span class="badge tech">Technical</span>
-            <span class="badge">2.5 hr</span>
-            <span class="badge">Ship</span>
-          </div>
-          <p class="session-summary">
-            Deploy to Base Sepolia. Verify on Basescan. Deploy the frontend on Vercel.
-            End-to-end smoke test. Record the demo backup. Walk through the judge's rubric.
-          </p>
-        </a>
-      </div>
-    </section>
-
-    <!-- ============================================================ STACK -->
-    <section style="padding: 3rem 0;">
-      <h2 style="font-size: 1.3rem; font-weight: 600; margin-bottom: 1rem;">Tech stack (pinned)</h2>
-      <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
-        <span class="badge">Solidity 0.8.24</span>
-        <span class="badge">Foundry · forge · cast · anvil</span>
-        <span class="badge">OpenZeppelin v5</span>
-        <span class="badge">Next.js 15 · App Router</span>
-        <span class="badge">Wagmi v2</span>
-        <span class="badge">Viem v2</span>
-        <span class="badge">RainbowKit v2</span>
-        <span class="badge">Tailwind CSS</span>
-        <span class="badge">TanStack Query v5</span>
-        <span class="badge">pnpm 9</span>
-        <span class="badge">Node 20+</span>
-      </div>
-    </section>
-
-    <!-- ============================================================ LINKS -->
     <section style="padding: 1rem 0 4rem;">
-      <h2 style="font-size: 1.3rem; font-weight: 600; margin-bottom: 1rem;">Repo & references</h2>
-      <div style="display: grid; grid-template-columns: 1fr; gap: 1rem;" class="grid-3">
-        <a href="../README.md" class="panel" style="text-decoration:none; color: inherit;">
-          <div class="panel-title">Monorepo README</div>
-          <p class="muted tiny" style="margin:0;">Workshop overview + 5-minute quickstart.</p>
+      <div class="track-grid">
+        <a href="base/index.html" class="track-card" data-track="base">
+          <div class="track-mark">Base</div>
+          <h3>Base Sepolia</h3>
+          <div class="track-meta">
+            <span class="badge">chainId 84532</span>
+            <span class="badge">OP Stack</span>
+          </div>
+          <p class="track-faucet">
+            Faucet: <strong>ethfaucet.com</strong> — no mainnet activity required.
+            Original cohort branding; Coinbase ecosystem path.
+          </p>
+          <span class="btn btn-primary btn-sm" style="align-self: flex-start;">Start Base track →</span>
         </a>
-        <a href="../docs/README.md" class="panel" style="text-decoration:none; color: inherit;">
-          <div class="panel-title">Full curriculum index</div>
-          <p class="muted tiny" style="margin:0;">Source markdown for every session.</p>
+
+        <a href="optimism/index.html" class="track-card" data-track="optimism">
+          <div class="track-mark">OP</div>
+          <h3>OP Sepolia</h3>
+          <div class="track-meta">
+            <span class="badge">chainId 11155420</span>
+            <span class="badge">Superchain</span>
+          </div>
+          <p class="track-faucet">
+            Faucet: <strong>Superchain Faucet</strong> (GitHub login) —
+            recommended for beginners without mainnet ETH.
+          </p>
+          <span class="btn btn-primary btn-sm" style="align-self: flex-start;">Start Optimism track →</span>
         </a>
-        <a href="../.cursorrules" class="panel" style="text-decoration:none; color: inherit;">
-          <div class="panel-title">AI agent contract</div>
-          <p class="muted tiny" style="margin:0;">Load this into Cursor / Copilot / Cline.</p>
+
+        <a href="arbitrum/index.html" class="track-card" data-track="arbitrum">
+          <div class="track-mark">Arb</div>
+          <h3>Arbitrum Sepolia</h3>
+          <div class="track-meta">
+            <span class="badge">chainId 421614</span>
+            <span class="badge">Nitro rollup</span>
+          </div>
+          <p class="track-faucet">
+            Faucet: <strong>ethfaucet.com</strong> — richest L2 docs and
+            community tutorials when you get stuck.
+          </p>
+          <span class="btn btn-primary btn-sm" style="align-self: flex-start;">Start Arbitrum track →</span>
         </a>
+      </div>
+
+      <div class="panel" style="margin-top: 2.5rem;">
+        <div class="panel-title">What's the same across all tracks?</div>
+        <ul class="prose" style="margin: 0.5rem 0 0;">
+          <li>Identical <code>StakingProtocol.sol</code> and Foundry tests</li>
+          <li>Same Next.js + Wagmi + RainbowKit frontend boilerplate</li>
+          <li>Same 8-session curriculum structure (network references differ per track)</li>
+          <li>Repo code lives in <code>tracks/base/</code>, <code>tracks/optimism/</code>, or <code>tracks/arbitrum/</code></li>
+        </ul>
       </div>
     </section>
   </main>
 
   <footer style="border-top: 1px solid var(--border); padding: 2rem 1.5rem; text-align: center;">
     <p class="muted tiny" style="margin:0;">
-      Bandung Base Builders · Cohort 01 · Materials are MIT (code) / CC-BY-4.0 (docs).
+      Bandung Builders · Cohort 01 · Materials MIT (code) / CC-BY-4.0 (docs)
     </p>
   </footer>
-
-  <style>
-    @media (min-width: 768px) {
-      .grid-2 { grid-template-columns: repeat(2, 1fr) !important; }
-      .grid-3 { grid-template-columns: repeat(3, 1fr) !important; }
-    }
-  </style>
-
-  <script src="assets/main.js"></script>
 </body>
 </html>

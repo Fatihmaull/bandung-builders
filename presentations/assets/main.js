@@ -14,21 +14,39 @@
   window.BBB = BBB;
 
   // ---------------------------------------------------------------------------
-  // 1. localStorage helpers
+  // Track context (base | optimism | arbitrum)
+  // ---------------------------------------------------------------------------
+  BBB.getTrack = function () {
+    return document.documentElement.dataset.track || "base";
+  };
+
+  BBB.trackRpc = {
+    base: "https://sepolia.base.org",
+    optimism: "https://sepolia.optimism.io",
+    arbitrum: "https://sepolia-rollup.arbitrum.io/rpc",
+  };
+
+  function scopedKey(key) {
+    const track = BBB.getTrack();
+    return track === "base" ? key : `${track}.${key}`;
+  }
+
+  // ---------------------------------------------------------------------------
+  // 1. localStorage helpers (namespaced per track)
   // ---------------------------------------------------------------------------
   const NS = "bbb.v1.";
 
   BBB.storage = {
     get(key, fallback = null) {
       try {
-        const raw = localStorage.getItem(NS + key);
+        const raw = localStorage.getItem(NS + scopedKey(key));
         return raw == null ? fallback : JSON.parse(raw);
       } catch (_) { return fallback; }
     },
     set(key, value) {
-      try { localStorage.setItem(NS + key, JSON.stringify(value)); } catch (_) { /* quota */ }
+      try { localStorage.setItem(NS + scopedKey(key), JSON.stringify(value)); } catch (_) { /* quota */ }
     },
-    del(key) { try { localStorage.removeItem(NS + key); } catch (_) {} }
+    del(key) { try { localStorage.removeItem(NS + scopedKey(key)); } catch (_) {} }
   };
 
   BBB.completion = {
@@ -204,8 +222,9 @@
   // ---------------------------------------------------------------------------
   // 8. Live block-number fetcher (used by Meet 1)
   // ---------------------------------------------------------------------------
-  BBB.fetchBlockNumber = async function (rpcUrl = "https://sepolia.base.org") {
-    const res = await fetch(rpcUrl, {
+  BBB.fetchBlockNumber = async function (rpcUrl) {
+    const url = rpcUrl || BBB.trackRpc[BBB.getTrack()] || BBB.trackRpc.base;
+    const res = await fetch(url, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ jsonrpc: "2.0", id: 1, method: "eth_blockNumber", params: [] }),

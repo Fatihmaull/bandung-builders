@@ -1,0 +1,570 @@
+<!doctype html>
+<html lang="en" data-track="base">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Meet 5 — DeFi Economics &amp; Tokenomics · Bandung Base Builders</title>
+  <link rel="stylesheet" href="../assets/styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a href="index.html" class="topbar-brand"><span class="topbar-brand-mark">B³</span><span>Bandung Base Builders</span></a>
+      <nav>
+        <button class="nav-toggle">☰</button>
+        <a href="meet-4.html" class="btn btn-ghost btn-sm">← Meet 4</a>
+        <a href="../index.html" class="btn btn-ghost btn-sm">Tracks</a>
+        <a href="index.html" class="btn btn-ghost btn-sm">Home</a>
+        <a href="meet-6.html" class="btn btn-primary btn-sm">Next: Meet 6 →</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="mobile-nav">
+    <a href="#hero">Overview</a>
+    <a href="#agenda">Agenda</a>
+    <a href="#block-a">Block A — math flow</a>
+    <a href="#apr" class="depth-1">APR calculator</a>
+    <a href="#block-b">Block B — emissions schedules</a>
+    <a href="#emissions-chart" class="depth-1">Emissions chart</a>
+    <a href="#runway" class="depth-1">Runway calculator</a>
+    <a href="#block-c">Block C — Tokenomics Canvas</a>
+    <a href="#canvas-form" class="depth-1">Canvas form</a>
+    <a href="#takehome">Take-home</a>
+  </div>
+
+  <div class="page-shell">
+    <aside class="sidenav">
+      <div class="sidenav-title">Meet 5 · Sections</div>
+      <a href="#hero">Overview</a>
+      <a href="#agenda">Agenda</a>
+      <a href="#block-a">Block A — Math flow</a>
+      <a href="#apr" class="depth-1">APR calc</a>
+      <a href="#rpt-chart" class="depth-1">rewardPerToken chart</a>
+      <a href="#block-b">Block B — Emissions</a>
+      <a href="#emissions-chart" class="depth-1">Emissions chart</a>
+      <a href="#runway" class="depth-1">Runway calc</a>
+      <a href="#block-c">Block C — Canvas</a>
+      <a href="#canvas-form" class="depth-1">Canvas form</a>
+      <a href="#takehome">Take-home</a>
+    </aside>
+
+    <main>
+      <section class="hero" id="hero">
+        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+          <span class="badge nontech">Non-Technical</span>
+          <span class="badge">Week 3 · Meet 5</span>
+          <span class="badge">Duration 2.5 hr</span>
+        </div>
+        <h1>DeFi Economics &amp; Tokenomics Canvas</h1>
+        <p class="lead">
+          We just shipped the engine. Today we ask: <em>does the economy attached to it
+          actually make sense?</em> Calculators are our friend.
+        </p>
+
+        <div style="display: grid; grid-template-columns: 1fr; gap: 1rem; margin-top: 2.5rem;" class="grid-2-md">
+          <div class="panel">
+            <div class="panel-title">Learning objectives</div>
+            <ol class="prose" style="margin: 0;">
+              <li>Derive APR from <code>rewardRate</code> + token prices + <code>totalStaked</code>.</li>
+              <li>Compute protocol runway given a treasury and emission rate.</li>
+              <li>Choose between flat, linear-decay, and halving emission curves with reasoning.</li>
+              <li>Fill the four-pillar Tokenomics Canvas for your project.</li>
+            </ol>
+          </div>
+          <div class="panel">
+            <div class="panel-title">Companion docs</div>
+            <ul class="prose" style="margin: 0;">
+              <li><a href="../../tracks/base/docs/week-3/meet-5-defi-tokenomics.md">meet-5-defi-tokenomics.md</a></li>
+              <li><a href="../../tracks/base/docs/week-3/meet-5-tokenomics-canvas.md">meet-5-tokenomics-canvas.md</a></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- AGENDA -->
+      <section class="block" id="agenda">
+        <div class="eyebrow">Agenda</div>
+        <h2>How the 2.5 hours unfold</h2>
+        <div class="prose">
+          <table>
+            <thead><tr><th>Time</th><th>Block</th></tr></thead>
+            <tbody>
+              <tr><td class="mono">00:00–00:10</td><td>Recap Meet 4 — re-derive the math out loud</td></tr>
+              <tr><td class="mono">00:10–00:50</td><td>Block A — the math flow, end to end</td></tr>
+              <tr><td class="mono">00:50–01:00</td><td>Break</td></tr>
+              <tr><td class="mono">01:00–01:40</td><td>Block B — emission schedules &amp; runway</td></tr>
+              <tr><td class="mono">01:40–02:20</td><td>Block C — fill the Tokenomics Canvas (live)</td></tr>
+              <tr><td class="mono">02:20–02:30</td><td>Export canvas + cohort poll</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- BLOCK A -->
+      <section class="block" id="block-a">
+        <div class="eyebrow">Block A · 40 min</div>
+        <h2>The math flow — from <code>rewardRate</code> to a user's APR</h2>
+
+        <div class="prose">
+          <p>
+            <strong>Pop quiz:</strong> if <code>rewardRate = 1e16</code> (i.e. 0.01 reward tokens
+            per second) and <code>totalStaked = 1,000</code> tokens, what is a user's APR
+            <em>assuming the reward token and the staking token have the same dollar price</em>?
+          </p>
+          <p>Work it out:</p>
+          <ul>
+            <li>Per second: each staked token earns <code>0.01 / 1,000 = 1e-5</code> reward tokens.</li>
+            <li>Per year (31,536,000 s): each staked token earns <code>315.36</code> reward tokens.</li>
+            <li>APR = 315.36 / 1 = <strong>31,536%</strong>.</li>
+          </ul>
+          <p>That's clearly nonsense for a real protocol — emissions of that scale would dilute holders into oblivion. <strong>This is exactly the calculation founders skip and then their token launches at $1 and trades at $0.01 by week 2.</strong></p>
+          <p>The general formula:</p>
+        </div>
+
+        <div class="callout">
+          <div class="callout-label">APR formula</div>
+<pre style="background: transparent; border: none; padding: 0; color: inherit;">APR = (rewardRate × secondsPerYear × P_reward)
+    / (totalStaked × P_staking)</pre>
+        </div>
+
+        <!-- APR CALCULATOR -->
+        <h3 id="apr">Interactive · APR calculator</h3>
+        <div class="panel panel-lg">
+          <div style="display: grid; grid-template-columns: 1fr; gap: 1rem;" class="grid-2-md">
+            <label class="field">
+              <span class="label-text">rewardRate (tokens / sec)</span>
+              <input type="number" id="aprRate" value="0.01" step="0.001" min="0" />
+            </label>
+            <label class="field">
+              <span class="label-text">Reward token price (USD)</span>
+              <input type="number" id="aprPriceR" value="1" step="0.01" min="0" />
+            </label>
+            <label class="field">
+              <span class="label-text">totalStaked (tokens)</span>
+              <input type="number" id="aprStaked" value="1000000" step="1000" min="0" />
+            </label>
+            <label class="field">
+              <span class="label-text">Staking token price (USD)</span>
+              <input type="number" id="aprPriceS" value="1" step="0.01" min="0" />
+            </label>
+          </div>
+
+          <div class="kpi-grid" style="margin-top: 1rem; grid-template-columns: repeat(3, 1fr);">
+            <div class="kpi">
+              <div class="kpi-label">APR</div>
+              <div class="kpi-value accent" id="aprOut">0.00%</div>
+            </div>
+            <div class="kpi">
+              <div class="kpi-label">APY (daily compounding)</div>
+              <div class="kpi-value mono" id="apyOut">0.00%</div>
+            </div>
+            <div class="kpi">
+              <div class="kpi-label">Verdict</div>
+              <div class="kpi-value tiny" id="aprVerdict">—</div>
+            </div>
+          </div>
+          <p class="muted tiny" style="margin-top: 0.7rem;">
+            Healthy ranges (consumer DeFi, 2026): single-asset stables 3–8% APR, governance-token
+            farms 10–40%, mercenary "high-yield" pools 100%+ (usually a death-spiral signal).
+          </p>
+        </div>
+
+        <h3 id="rpt-chart">rewardPerToken(t) at different stake levels</h3>
+        <div class="panel">
+          <div style="display: grid; grid-template-columns: 1fr; gap: 0.7rem;" class="grid-3-md">
+            <label class="field">
+              <span class="label-text">rewardRate</span>
+              <input type="number" id="rptRate" value="0.01" step="0.001" min="0" />
+            </label>
+            <label class="field">
+              <span class="label-text">low stake</span>
+              <input type="number" id="rptLow" value="500" step="100" min="1" />
+            </label>
+            <label class="field">
+              <span class="label-text">mid stake</span>
+              <input type="number" id="rptMid" value="2000" step="100" min="1" />
+            </label>
+          </div>
+          <canvas id="rptChart" height="240"></canvas>
+          <p class="muted tiny" style="margin-top: 0.5rem;">
+            More stake → reward dilutes per token. The same protocol pays a totally
+            different APR at TVL=$10k vs TVL=$10M.
+          </p>
+        </div>
+      </section>
+
+      <!-- BLOCK B -->
+      <section class="block" id="block-b">
+        <div class="eyebrow">Block B · 40 min</div>
+        <h2>Emission schedules &amp; runway</h2>
+
+        <div class="prose">
+          <p>
+            Constant <code>rewardRate</code> looks neat in code; it is rarely the right
+            economic shape. Three common families:
+          </p>
+          <ul>
+            <li><strong>Flat</strong> — same emission per second forever. Easy to model. Cheap to game.</li>
+            <li><strong>Linear-decay</strong> — emission decreases linearly to 0 over <code>T</code>. Bootstraps early stakers, fades politely.</li>
+            <li><strong>Halving</strong> — like Bitcoin. Drops by 50% every <code>T</code>. Hard cap, strong "scarcity" narrative.</li>
+          </ul>
+          <p>The MVP uses flat. You should be able to articulate when you'd switch.</p>
+        </div>
+
+        <h3 id="emissions-chart">Interactive · Emission curves over 24 months</h3>
+        <div class="panel">
+          <div style="display: grid; grid-template-columns: 1fr; gap: 0.7rem;" class="grid-3-md">
+            <label class="field">
+              <span class="label-text">Starting rewards / month</span>
+              <input type="number" id="emStart" value="100000" step="1000" min="0" />
+            </label>
+            <label class="field">
+              <span class="label-text">Schedule length (months)</span>
+              <input type="number" id="emMonths" value="24" step="1" min="1" max="60" />
+            </label>
+            <label class="field">
+              <span class="label-text">Halving period (months)</span>
+              <input type="number" id="emHalfP" value="6" step="1" min="1" />
+            </label>
+          </div>
+          <canvas id="emChart" height="240"></canvas>
+          <div class="kpi-grid" style="margin-top: 1rem; grid-template-columns: repeat(3, 1fr);">
+            <div class="kpi">
+              <div class="kpi-label">Total flat</div>
+              <div class="kpi-value mono" id="emTotFlat">—</div>
+            </div>
+            <div class="kpi">
+              <div class="kpi-label">Total decay</div>
+              <div class="kpi-value mono" id="emTotDecay">—</div>
+            </div>
+            <div class="kpi">
+              <div class="kpi-label">Total halving</div>
+              <div class="kpi-value mono" id="emTotHalf">—</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RUNWAY -->
+        <h3 id="runway">Interactive · Runway calculator</h3>
+        <div class="panel">
+          <div style="display: grid; grid-template-columns: 1fr; gap: 1rem;" class="grid-2-md">
+            <label class="field">
+              <span class="label-text">Reward treasury (tokens)</span>
+              <input type="number" id="rwTreasury" value="10000000" step="100000" min="0" />
+            </label>
+            <label class="field">
+              <span class="label-text">rewardRate (tokens / sec)</span>
+              <input type="number" id="rwRate" value="0.1" step="0.01" min="0" />
+            </label>
+          </div>
+          <div class="kpi-grid" style="margin-top: 0.5rem; grid-template-columns: repeat(3, 1fr);">
+            <div class="kpi">
+              <div class="kpi-label">Runway</div>
+              <div class="kpi-value accent" id="rwOut">— days</div>
+            </div>
+            <div class="kpi">
+              <div class="kpi-label">In months</div>
+              <div class="kpi-value mono" id="rwMonths">—</div>
+            </div>
+            <div class="kpi">
+              <div class="kpi-label">Sustainable?</div>
+              <div class="kpi-value tiny" id="rwVerdict">—</div>
+            </div>
+          </div>
+          <p class="muted tiny" style="margin-top: 0.6rem;">
+            Workshop rule: <strong>minimum 6-month runway</strong> on the rate you launch with.
+            If shorter, your protocol fails before it has a chance to grow into its own fees.
+          </p>
+        </div>
+      </section>
+
+      <!-- BLOCK C -->
+      <section class="block" id="block-c">
+        <div class="eyebrow">Block C · 40 min</div>
+        <h2>The Tokenomics Canvas</h2>
+
+        <div class="prose">
+          <p>Four pillars. Twenty minutes per attendee. Save to localStorage. Export as JSON for your pitch repo.</p>
+        </div>
+
+        <div id="canvas-form" class="panel panel-lg">
+          <div style="display: grid; grid-template-columns: 1fr; gap: 1.5rem;" class="grid-2-md">
+            <div>
+              <h3 style="margin-top: 0;">1. Supply</h3>
+              <label class="field"><span class="label-text">Total supply (number, with units)</span><input type="text" data-canvas="supply.total" placeholder="100,000,000 BANDUNG" /></label>
+              <label class="field"><span class="label-text">Mintable? Cap?</span><input type="text" data-canvas="supply.mint" placeholder="Hard-capped at total. No mint() after deploy." /></label>
+              <label class="field"><span class="label-text">Initial circulating</span><input type="text" data-canvas="supply.circ" placeholder="10% — public pool + liquidity" /></label>
+            </div>
+            <div>
+              <h3 style="margin-top: 0;">2. Vesting / Distribution</h3>
+              <label class="field"><span class="label-text">Team allocation &amp; cliff</span><input type="text" data-canvas="vest.team" placeholder="15% · 1-yr cliff · 3-yr linear" /></label>
+              <label class="field"><span class="label-text">Treasury / DAO</span><input type="text" data-canvas="vest.treasury" placeholder="25% · multi-sig" /></label>
+              <label class="field"><span class="label-text">Public sale / Airdrop</span><input type="text" data-canvas="vest.public" placeholder="10% public · 5% airdrop" /></label>
+              <label class="field"><span class="label-text">Liquidity mining</span><input type="text" data-canvas="vest.lm" placeholder="40% · drip via StakingProtocol" /></label>
+            </div>
+            <div>
+              <h3 style="margin-top: 0;">3. Utility</h3>
+              <label class="field"><span class="label-text">What does the token DO?</span><textarea data-canvas="util.do" rows="3" placeholder="Governance over reward rate · fee discount · staked-only feature unlocks"></textarea></label>
+              <label class="field"><span class="label-text">Why hold instead of immediately farm-and-dump?</span><textarea data-canvas="util.hold" rows="2" placeholder="..."></textarea></label>
+            </div>
+            <div>
+              <h3 style="margin-top: 0;">4. Yield / Sustainability</h3>
+              <label class="field"><span class="label-text">Yield formula (paste from APR calc)</span><textarea data-canvas="yield.formula" rows="2" placeholder="rewardRate × secsPerYear × P_reward / (totalStaked × P_stake)"></textarea></label>
+              <label class="field"><span class="label-text">Source of real yield (post-emissions)</span><textarea data-canvas="yield.real" rows="2" placeholder="Protocol fees from X..."></textarea></label>
+              <label class="field"><span class="label-text">Treasury runway (months)</span><input type="text" data-canvas="yield.runway" placeholder="paste from runway calc" /></label>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 0.6rem; margin-top: 1rem; flex-wrap: wrap;">
+            <button class="btn btn-primary" id="canvasSave">Save to localStorage</button>
+            <button class="btn btn-ghost" id="canvasExport">Export JSON</button>
+            <button class="btn btn-ghost" id="canvasClear">Clear</button>
+            <span class="muted tiny" id="canvasStatus" style="margin-left: auto; align-self: center;"></span>
+          </div>
+
+          <pre id="canvasJson" hidden style="margin-top: 1rem;"></pre>
+        </div>
+      </section>
+
+      <!-- TAKE-HOME -->
+      <section class="block" id="takehome">
+        <div class="eyebrow">Take-home</div>
+        <h2>Before Meet 6</h2>
+
+        <div style="display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 0.5rem;">
+          <div class="muted tiny">Your progress</div>
+          <div class="mono tiny progress-label">0 / 4</div>
+        </div>
+        <div class="progress" data-checklist-progress="meet-5-take-home" style="margin-bottom: 1rem;"><span style="width:0%"></span></div>
+
+        <div class="panel">
+          <label class="check">
+            <input type="checkbox" data-checklist="meet-5-take-home" data-key="canvas" />
+            <span class="check-text">Tokenomics Canvas exported as JSON and committed under <code>docs/tokenomics/&lt;your-project&gt;.json</code>.</span>
+          </label>
+          <label class="check">
+            <input type="checkbox" data-checklist="meet-5-take-home" data-key="apr-screenshot" />
+            <span class="check-text">Screenshot of your APR calculator settings included in the PR.</span>
+          </label>
+          <label class="check">
+            <input type="checkbox" data-checklist="meet-5-take-home" data-key="defend" />
+            <span class="check-text">Can defend your emission curve choice (flat / decay / halving) in 60 seconds.</span>
+          </label>
+          <label class="check">
+            <input type="checkbox" data-checklist="meet-5-take-home" data-key="frontend-skim" />
+            <span class="check-text">Skim <a href="../../tracks/base/docs/week-3/meet-6-frontend-integration.md">meet-6-frontend-integration.md</a> before next session.</span>
+          </label>
+        </div>
+      </section>
+
+      <footer class="session-footer">
+        <a href="meet-4.html" class="btn btn-ghost">← Meet 4</a>
+        <button class="btn btn-primary" data-mark-complete="5">Mark this session complete</button>
+        <a href="meet-6.html" class="btn btn-primary">Next: Meet 6 — Frontend →</a>
+      </footer>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+  <script src="../assets/main.js"></script>
+  <script>
+    // ----- APR / APY -----
+    (function () {
+      const $ = (id) => document.getElementById(id);
+      const SECS = 31_536_000;
+      function recalc() {
+        const r = +$("aprRate").value || 0;
+        const pr = +$("aprPriceR").value || 0;
+        const s = +$("aprStaked").value || 0;
+        const ps = +$("aprPriceS").value || 0;
+        if (s <= 0 || ps <= 0) {
+          $("aprOut").textContent = "—";
+          $("apyOut").textContent = "—";
+          $("aprVerdict").textContent = "no stake";
+          return;
+        }
+        const apr = (r * SECS * pr) / (s * ps);
+        const apy = Math.pow(1 + apr / 365, 365) - 1;
+        $("aprOut").textContent = (apr * 100).toFixed(2) + "%";
+        $("apyOut").textContent = (apy * 100).toFixed(2) + "%";
+        let v = "Healthy";
+        if (apr * 100 < 1) v = "Too low to attract stake";
+        else if (apr * 100 > 200) v = "Mercenary / death-spiral";
+        else if (apr * 100 > 50) v = "Risky, justify it";
+        $("aprVerdict").textContent = v;
+      }
+      ["aprRate", "aprPriceR", "aprStaked", "aprPriceS"].forEach((id) =>
+        $(id).addEventListener("input", recalc)
+      );
+      recalc();
+    })();
+
+    // ----- rewardPerToken chart -----
+    (function () {
+      const ctx = document.getElementById("rptChart").getContext("2d");
+      const labels = Array.from({ length: 25 }, (_, i) => `${i}h`);
+      function series(rate, stake) {
+        return labels.map((_, i) => (i * 3600 * rate) / stake);
+      }
+      function getInputs() {
+        const r = +document.getElementById("rptRate").value || 0;
+        const lo = Math.max(1, +document.getElementById("rptLow").value || 1);
+        const mi = Math.max(1, +document.getElementById("rptMid").value || 1);
+        return { r, lo, mi };
+      }
+      const { r, lo, mi } = getInputs();
+      const chart = new Chart(ctx, {
+        type: "line",
+        data: {
+          labels,
+          datasets: [
+            { label: `low stake = ${lo}`,  data: series(r, lo),  borderColor: "#6e9bff", backgroundColor: "transparent", tension: 0.25 },
+            { label: `mid stake = ${mi}`,  data: series(r, mi),  borderColor: "#34d399", backgroundColor: "transparent", tension: 0.25 },
+            { label: "high stake = 10000", data: series(r, 10000), borderColor: "#fbbf24", backgroundColor: "transparent", tension: 0.25 },
+          ],
+        },
+        options: chartOpts("rewardPerToken (cumulative)", "hours"),
+      });
+      function update() {
+        const { r, lo, mi } = getInputs();
+        chart.data.datasets[0].data = series(r, lo);
+        chart.data.datasets[1].data = series(r, mi);
+        chart.data.datasets[2].data = series(r, 10000);
+        chart.data.datasets[0].label = `low stake = ${lo}`;
+        chart.data.datasets[1].label = `mid stake = ${mi}`;
+        chart.update();
+      }
+      ["rptRate", "rptLow", "rptMid"].forEach((id) =>
+        document.getElementById(id).addEventListener("input", update)
+      );
+    })();
+
+    // ----- Emissions chart -----
+    (function () {
+      const ctx = document.getElementById("emChart").getContext("2d");
+      function inputs() {
+        return {
+          start: +document.getElementById("emStart").value || 0,
+          months: Math.max(1, +document.getElementById("emMonths").value || 1),
+          half: Math.max(1, +document.getElementById("emHalfP").value || 1),
+        };
+      }
+      function build() {
+        const { start, months, half } = inputs();
+        const labels = Array.from({ length: months }, (_, i) => `M${i + 1}`);
+        const flat = labels.map(() => start);
+        const decay = labels.map((_, i) => start * (1 - i / (months - 1)));
+        const halving = labels.map((_, i) => start * Math.pow(0.5, Math.floor(i / half)));
+        const total = (arr) => arr.reduce((s, x) => s + x, 0);
+        document.getElementById("emTotFlat").textContent = BBB.fmt(total(flat));
+        document.getElementById("emTotDecay").textContent = BBB.fmt(total(decay));
+        document.getElementById("emTotHalf").textContent = BBB.fmt(total(halving));
+        return { labels, flat, decay, halving };
+      }
+      const { labels, flat, decay, halving } = build();
+      const chart = new Chart(ctx, {
+        type: "line",
+        data: {
+          labels,
+          datasets: [
+            { label: "Flat", data: flat, borderColor: "#6e9bff", backgroundColor: "transparent", tension: 0 },
+            { label: "Linear decay", data: decay, borderColor: "#34d399", backgroundColor: "transparent", tension: 0 },
+            { label: "Halving", data: halving, borderColor: "#fbbf24", backgroundColor: "transparent", tension: 0, stepped: true },
+          ],
+        },
+        options: chartOpts("Tokens emitted / month", "month"),
+      });
+      function update() {
+        const data = build();
+        chart.data.labels = data.labels;
+        chart.data.datasets[0].data = data.flat;
+        chart.data.datasets[1].data = data.decay;
+        chart.data.datasets[2].data = data.halving;
+        chart.update();
+      }
+      ["emStart", "emMonths", "emHalfP"].forEach((id) =>
+        document.getElementById(id).addEventListener("input", update)
+      );
+    })();
+
+    // ----- Runway -----
+    (function () {
+      const $ = (id) => document.getElementById(id);
+      function recalc() {
+        const t = +$("rwTreasury").value || 0;
+        const r = +$("rwRate").value || 0;
+        if (r <= 0) {
+          $("rwOut").textContent = "—";
+          $("rwMonths").textContent = "—";
+          $("rwVerdict").textContent = "set a rate";
+          return;
+        }
+        const secs = t / r;
+        const days = secs / 86400;
+        const months = days / 30;
+        $("rwOut").textContent = BBB.fmt(days, { decimals: 0 }) + " days";
+        $("rwMonths").textContent = months.toFixed(1) + " mo";
+        $("rwVerdict").textContent = months < 6 ? "⚠ short — extend before launch" : "✓ ≥ 6 months";
+      }
+      ["rwTreasury", "rwRate"].forEach((id) => $(id).addEventListener("input", recalc));
+      recalc();
+    })();
+
+    // ----- Tokenomics Canvas localStorage -----
+    (function () {
+      const KEY = "tokenomics-canvas";
+      const fields = document.querySelectorAll("[data-canvas]");
+      const load = () => {
+        const v = BBB.storage.get(KEY, {}) || {};
+        fields.forEach((f) => { f.value = v[f.dataset.canvas] || ""; });
+      };
+      const collect = () => {
+        const out = {};
+        fields.forEach((f) => { out[f.dataset.canvas] = f.value; });
+        return out;
+      };
+      document.getElementById("canvasSave").addEventListener("click", () => {
+        BBB.storage.set(KEY, collect());
+        document.getElementById("canvasStatus").textContent = "Saved · " + new Date().toLocaleTimeString();
+      });
+      document.getElementById("canvasExport").addEventListener("click", () => {
+        const out = document.getElementById("canvasJson");
+        out.hidden = false;
+        out.textContent = JSON.stringify(collect(), null, 2);
+      });
+      document.getElementById("canvasClear").addEventListener("click", () => {
+        if (!confirm("Clear all fields?")) return;
+        BBB.storage.del(KEY);
+        fields.forEach((f) => (f.value = ""));
+        document.getElementById("canvasStatus").textContent = "Cleared.";
+      });
+      load();
+    })();
+
+    // ----- Chart.js shared options -----
+    function chartOpts(yLabel, xLabel) {
+      return {
+        responsive: true,
+        maintainAspectRatio: false,
+        interaction: { mode: "index", intersect: false },
+        plugins: {
+          legend: { labels: { color: "#c7cbd4" } },
+          tooltip: { mode: "index", intersect: false },
+        },
+        scales: {
+          x: { ticks: { color: "#8a90a1" }, grid: { color: "#1c2230" }, title: { display: true, text: xLabel, color: "#8a90a1" } },
+          y: { ticks: { color: "#8a90a1" }, grid: { color: "#1c2230" }, title: { display: true, text: yLabel, color: "#8a90a1" } },
+        },
+      };
+    }
+  </script>
+
+  <style>
+    @media (min-width: 768px) {
+      .grid-2-md { grid-template-columns: repeat(2, 1fr) !important; }
+      .grid-3-md { grid-template-columns: repeat(3, 1fr) !important; }
+    }
+  </style>
+</body>
+</html>

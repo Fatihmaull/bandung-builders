@@ -1,0 +1,530 @@
+<!doctype html>
+<html lang="en" data-track="optimism">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Meet 3 — Ideasi Proyek &amp; Design Thinking · Bandung OP Builders</title>
+  <link rel="stylesheet" href="../assets/styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a href="index.html" class="topbar-brand"><span class="topbar-brand-mark">B³</span><span>Bandung OP Builders</span></a>
+      <nav>
+        <button class="nav-toggle">☰</button>
+        <a href="meet-2.html" class="btn btn-ghost btn-sm">← Meet 2</a>
+        <a href="../index.html" class="btn btn-ghost btn-sm">Tracks</a>
+        <a href="index.html" class="btn btn-ghost btn-sm">Home</a>
+        <a href="meet-4.html" class="btn btn-primary btn-sm">Next: Meet 4 →</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="mobile-nav">
+    <a href="#hero">Overview</a>
+    <a href="#agenda">Agenda</a>
+    <a href="#why">Why this session exists</a>
+    <a href="#block-a">Block A — EDIPT (Web3 dialect)</a>
+    <a href="#block-b">Block B — Empathize</a>
+    <a href="#block-c">Block C — Define + Ideate</a>
+    <a href="#problems" class="depth-1">5 Bandung problems</a>
+    <a href="#trust-builder" class="depth-1">Trust-insight builder</a>
+    <a href="#block-d">Block D — Prototype + Test</a>
+    <a href="#commit">Commit</a>
+    <a href="#takehome">Take-home</a>
+  </div>
+
+  <div class="page-shell">
+    <aside class="sidenav">
+      <div class="sidenav-title">Meet 3 · Sections</div>
+      <a href="#hero">Overview</a>
+      <a href="#agenda">Agenda</a>
+      <a href="#why">Why now</a>
+      <a href="#block-a">Block A — EDIPT</a>
+      <a href="#block-b">Block B — Empathize</a>
+      <a href="#block-c">Block C — Define + Ideate</a>
+      <a href="#problems" class="depth-1">5 Bandung problems</a>
+      <a href="#trust-builder" class="depth-1">Trust builder</a>
+      <a href="#block-d">Block D — Prototype + Test</a>
+      <a href="#commit">Commit</a>
+      <a href="#takehome">Take-home</a>
+    </aside>
+
+    <main>
+      <section class="hero" id="hero">
+        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+          <span class="badge nontech">Non-Technical</span>
+          <span class="badge">Week 2 · Meet 3</span>
+          <span class="badge">Duration 2.5 hr</span>
+        </div>
+        <h1>Ideasi Proyek &amp; Design Thinking</h1>
+        <p class="lead">
+          Solidity is the easy part. The product is the hard part. Today we slow down and
+          answer: <em>what should this dApp actually do?</em>
+        </p>
+
+        <div style="display: grid; grid-template-columns: 1fr; gap: 1rem; margin-top: 2.5rem;" class="grid-2-md">
+          <div class="panel">
+            <div class="panel-title">Learning objectives</div>
+            <ol class="prose" style="margin: 0;">
+              <li>Walk through the five EDIPT phases in plain language.</li>
+              <li>Apply EDIPT specifically to a <em>Web3</em> product.</li>
+              <li>Pick a Bandung-flavored problem and write a one-paragraph problem statement.</li>
+              <li>Articulate why staking is a <em>primitive</em>, not a product.</li>
+            </ol>
+          </div>
+          <div class="panel">
+            <div class="panel-title">Companion docs</div>
+            <ul class="prose" style="margin: 0;">
+              <li><a href="../../tracks/optimism/docs/week-2/meet-3-design-thinking.md">Full speaker script</a></li>
+              <li><a href="../../tracks/optimism/docs/week-2/meet-3-bandung-problems.md">5 Bandung problem briefs</a></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- AGENDA -->
+      <section class="block" id="agenda">
+        <div class="eyebrow">Agenda · 150 minutes</div>
+        <h2>How the 2.5 hours unfold</h2>
+        <div class="prose">
+          <table>
+            <thead><tr><th>Time</th><th>Block</th></tr></thead>
+            <tbody>
+              <tr><td class="mono">00:00–00:10</td><td>Recap Meet 2; open the question</td></tr>
+              <tr><td class="mono">00:10–00:40</td><td>Block A — EDIPT, the Web3 dialect</td></tr>
+              <tr><td class="mono">00:40–01:10</td><td>Block B — Empathize: identifying a real Bandung user</td></tr>
+              <tr><td class="mono">01:10–01:20</td><td>Stretch break</td></tr>
+              <tr><td class="mono">01:20–01:50</td><td>Block C — Define + Ideate: 5 problems, 5 directions</td></tr>
+              <tr><td class="mono">01:50–02:20</td><td>Block D — Prototype + Test (paper, then wallet)</td></tr>
+              <tr><td class="mono">02:20–02:30</td><td>Each attendee commits to ONE problem statement</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- WHY -->
+      <section class="block" id="why">
+        <div class="eyebrow">Read aloud</div>
+        <h2>Why this session exists</h2>
+        <div class="callout">
+          <p class="prose" style="margin: 0;">
+            "We are halfway to Week 2. By Meet 4 you will write Solidity. But Solidity is a
+            means to an end. If your answer to 'what does it do' is 'it's a staking protocol,'
+            you have built nothing. Staking is a <strong>primitive</strong>. It is the verb.
+            What is the noun?"
+          </p>
+        </div>
+      </section>
+
+      <!-- BLOCK A: EDIPT carousel -->
+      <section class="block" id="block-a">
+        <div class="eyebrow">Block A · 30 min</div>
+        <h2>EDIPT, the Web3 dialect</h2>
+
+        <div class="prose">
+          <p>For each phase: the <strong>standard definition</strong>, then the <strong>Web3 twist</strong>.</p>
+        </div>
+
+        <div data-tabs="edipt" class="panel panel-lg">
+          <div class="edipt-tabs">
+            <button class="edipt-tab" data-tab="empathize" data-tabs-group="edipt">1. Empathize</button>
+            <button class="edipt-tab" data-tab="define" data-tabs-group="edipt">2. Define</button>
+            <button class="edipt-tab" data-tab="ideate" data-tabs-group="edipt">3. Ideate</button>
+            <button class="edipt-tab" data-tab="prototype" data-tabs-group="edipt">4. Prototype</button>
+            <button class="edipt-tab" data-tab="test" data-tabs-group="edipt">5. Test</button>
+          </div>
+
+          <div data-tabpanel="empathize" data-tabs-group="edipt" class="prose">
+            <h3>Empathize</h3>
+            <p><strong>Standard:</strong> observe a real user; understand their context, frustrations, workarounds.</p>
+            <p><strong>Web3 twist:</strong> your user has <em>additional</em> friction layers — wallet creation, seed phrases, gas, RPC errors, mental models of "approval" vs "transfer".</p>
+            <p><strong>Bandung specifics:</strong> candidate users typically already own a wallet (Coinbase Wallet or MetaMask) via the e-commerce/crypto wave, but may have zero DeFi experience. Optimize for their <em>first dApp interaction</em> being yours.</p>
+          </div>
+
+          <div data-tabpanel="define" data-tabs-group="edipt" class="prose">
+            <h3>Define</h3>
+            <p><strong>Standard:</strong> synthesize empathy data into a problem statement of the form:</p>
+            <blockquote><em>"&lt;user&gt; needs &lt;need&gt; because &lt;insight&gt;."</em></blockquote>
+            <p><strong>Web3 twist:</strong> add an explicit clause:</p>
+            <blockquote><em>"…and the trust assumption that makes a smart-contract solution materially better than a centralized one is &lt;X&gt;."</em></blockquote>
+            <p>If you can't fill in <code>&lt;X&gt;</code>, you don't have a Web3 problem; you have a regular SaaS problem with extra steps.</p>
+          </div>
+
+          <div data-tabpanel="ideate" data-tabs-group="edipt" class="prose">
+            <h3>Ideate</h3>
+            <p><strong>Standard:</strong> divergent thinking. Sketch lots of solutions, judge later.</p>
+            <p><strong>Web3 twist:</strong> every idea must answer four questions before it's even considered:</p>
+            <ol>
+              <li><strong>Who pays gas?</strong> (Sponsored? Subsidized? User?)</li>
+              <li><strong>Who custodies value?</strong> (Self-custody? Smart-wallet abstraction? Treasury?)</li>
+              <li><strong>What's on-chain vs off-chain?</strong> (Don't try to put everything on-chain.)</li>
+              <li><strong>Failure mode if the front-end disappears?</strong> (Can users still recover funds?)</li>
+            </ol>
+          </div>
+
+          <div data-tabpanel="prototype" data-tabs-group="edipt" class="prose">
+            <h3>Prototype</h3>
+            <p><strong>Standard:</strong> lowest fidelity that lets you test the riskiest assumption.</p>
+            <p><strong>Web3 twist:</strong> the riskiest assumption is almost always <em>user behavior</em>, not the smart contract. Prototype the user journey on paper or in Figma <em>before</em> you write Solidity.</p>
+            <p><em>Counter-intuitive:</em> the contract is easier than the UX. We have the staking primitive done by Meet 4. The hard work is figuring out who wants to use it.</p>
+          </div>
+
+          <div data-tabpanel="test" data-tabs-group="edipt" class="prose">
+            <h3>Test</h3>
+            <p><strong>Standard:</strong> put the prototype in front of real users; observe.</p>
+            <p><strong>Web3 twist:</strong> <em>test on testnet</em>. Get 3–5 humans through your dApp on OP Sepolia before Demo Day. Watch them. Note where they get stuck.</p>
+            <p>More valuable than any code review.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- BLOCK B -->
+      <section class="block" id="block-b">
+        <div class="eyebrow">Block B · 30 min</div>
+        <h2>Empathize: identifying a real Bandung user</h2>
+
+        <div class="prose">
+          <p>Small groups of 3. Brainstorm user archetypes specifically grounded in Bandung life. Examples to <em>seed</em> the conversation (don't give as answers):</p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr; gap: 0.7rem;" class="grid-2-md">
+          <div class="panel"><strong>The Tokopedia/Shopee small-seller</strong> who already accepts QRIS.</div>
+          <div class="panel"><strong>The Gojek/Grab driver</strong> who sends remittance home weekly.</div>
+          <div class="panel"><strong>The ITB campus organizer</strong> running a 200-person student event budget.</div>
+          <div class="panel"><strong>The freelance designer</strong> occasionally taking USDC on Twitter from foreign clients.</div>
+          <div class="panel" style="grid-column: 1/-1;"><strong>The boba-shop owner</strong> running a paper loyalty stamp card.</div>
+        </div>
+
+        <div class="callout warn" style="margin-top: 1.5rem;">
+          <div class="callout-label">Push back when</div>
+          <p class="prose" style="margin: 0;">
+            A paragraph reads like "they want to earn passive income from crypto" — that's not
+            Web3-empathy, that's wishful thinking. What does <em>Tuesday afternoon</em> look like for this person?
+          </p>
+        </div>
+      </section>
+
+      <!-- BLOCK C: PROBLEMS -->
+      <section class="block" id="block-c">
+        <div class="eyebrow">Block C · 30 min</div>
+        <h2>Define + Ideate: 5 problems, 5 directions</h2>
+
+        <div class="prose">
+          <p>Five concrete problem briefs. Each leaves design room — a "naive" framing fits a vanilla staking contract; an "ambitious" framing wraps the primitive in something users want.</p>
+          <p><strong>Click any card to flip it.</strong> Front shows the user + workaround; back shows naive/ambitious framings + the trust insight.</p>
+        </div>
+
+        <div id="problems" style="display: grid; grid-template-columns: 1fr; gap: 1rem;" class="grid-2-md">
+          <!-- Card 1 -->
+          <div class="flip-card">
+            <div class="flip-inner">
+              <div class="flip-front">
+                <div class="muted tiny">BRIEF 1</div>
+                <h3 style="margin: 0.2rem 0 0.6rem;">Pasar Vendor Loyalty Pool</h3>
+                <p class="prose" style="margin: 0; font-size: 0.92rem;">
+                  <strong>User:</strong> A wet-market vendor in Pasar Baru/Kosambi who accepts QRIS and has a Coinbase Wallet via their nephew.
+                </p>
+                <p class="prose" style="margin: 0.4rem 0 0; font-size: 0.92rem;">
+                  <strong>Workaround:</strong> Paper loyalty cards. Hand-stamped. Lost in the rain.
+                </p>
+                <p class="muted tiny" style="margin-top: auto;">click to flip →</p>
+              </div>
+              <div class="flip-back">
+                <div class="muted tiny">BACK · Brief 1</div>
+                <p class="prose" style="margin: 0.2rem 0; font-size: 0.88rem;">
+                  <strong>Naive:</strong> Customers stake loyalty points; longer hold = higher discount.
+                </p>
+                <p class="prose" style="margin: 0.4rem 0; font-size: 0.88rem;">
+                  <strong>Ambitious:</strong> Multi-vendor pool; stamps from any participating vendor fund shared marketing.
+                </p>
+                <p class="prose" style="margin: 0.4rem 0; font-size: 0.85rem; color: #93b6ff;">
+                  <strong>Trust:</strong> Vendors burned by Tokopedia fee changes; an open accumulator no central party can rewrite is materially better.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="flip-card">
+            <div class="flip-inner">
+              <div class="flip-front">
+                <div class="muted tiny">BRIEF 2</div>
+                <h3 style="margin: 0.2rem 0 0.6rem;">ITB Student Org Treasury</h3>
+                <p class="prose" style="margin: 0; font-size: 0.92rem;">
+                  <strong>User:</strong> Treasurer of a 200-member ITB student org. Manages dues, event budgets, yearly handover.
+                </p>
+                <p class="prose" style="margin: 0.4rem 0 0; font-size: 0.92rem;">
+                  <strong>Workaround:</strong> Shared GoPay/BCA account in <em>one</em> student's name, screenshotted balances.
+                </p>
+                <p class="muted tiny" style="margin-top: auto;">click to flip →</p>
+              </div>
+              <div class="flip-back">
+                <div class="muted tiny">BACK · Brief 2</div>
+                <p class="prose" style="margin: 0.2rem 0; font-size: 0.88rem;">
+                  <strong>Naive:</strong> Members stake annual USDC dues; earn org governance token; spending requires multi-sig.
+                </p>
+                <p class="prose" style="margin: 0.4rem 0; font-size: 0.88rem;">
+                  <strong>Ambitious:</strong> The contract IS the org ledger. Handover becomes adding a signer — zero re-key work.
+                </p>
+                <p class="prose" style="margin: 0.4rem 0; font-size: 0.85rem; color: #93b6ff;">
+                  <strong>Trust:</strong> "One student holds the account" breaks at graduation; multi-sig removes the SPOF.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="flip-card">
+            <div class="flip-inner">
+              <div class="flip-front">
+                <div class="muted tiny">BRIEF 3</div>
+                <h3 style="margin: 0.2rem 0 0.6rem;">Coffee Roastery Co-op</h3>
+                <p class="prose" style="margin: 0; font-size: 0.92rem;">
+                  <strong>User:</strong> Owner of a small-batch roastery near Dago, co-buying green beans with 4 other roasters.
+                </p>
+                <p class="prose" style="margin: 0.4rem 0 0; font-size: 0.92rem;">
+                  <strong>Workaround:</strong> WhatsApp group, screenshot transfers, one "treasurer roaster" books imports.
+                </p>
+                <p class="muted tiny" style="margin-top: auto;">click to flip →</p>
+              </div>
+              <div class="flip-back">
+                <div class="muted tiny">BACK · Brief 3</div>
+                <p class="prose" style="margin: 0.2rem 0; font-size: 0.88rem;">
+                  <strong>Naive:</strong> Roasters stake rupiah-pegged tokens per batch; contract releases on milestones.
+                </p>
+                <p class="prose" style="margin: 0.4rem 0; font-size: 0.88rem;">
+                  <strong>Ambitious:</strong> Reusable small-business escrow module; batch cost history accrues as public negotiation leverage.
+                </p>
+                <p class="prose" style="margin: 0.4rem 0; font-size: 0.85rem; color: #93b6ff;">
+                  <strong>Trust:</strong> Treasurer's personal account creates tax exposure + disputes; on-chain co-op removes both.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="flip-card">
+            <div class="flip-inner">
+              <div class="flip-front">
+                <div class="muted tiny">BRIEF 4</div>
+                <h3 style="margin: 0.2rem 0 0.6rem;">Gig-Worker Rainy-Day Pool</h3>
+                <p class="prose" style="margin: 0; font-size: 0.92rem;">
+                  <strong>User:</strong> Bandung Gojek/Grab driver. Variable daily income, worries about Ramadan slowdowns and motorbike repairs.
+                </p>
+                <p class="prose" style="margin: 0.4rem 0 0; font-size: 0.92rem;">
+                  <strong>Workaround:</strong> Arisan — informal rotating savings with neighbors. Sometimes the pot-holder absconds.
+                </p>
+                <p class="muted tiny" style="margin-top: auto;">click to flip →</p>
+              </div>
+              <div class="flip-back">
+                <div class="muted tiny">BACK · Brief 4</div>
+                <p class="prose" style="margin: 0.2rem 0; font-size: 0.88rem;">
+                  <strong>Naive:</strong> N drivers stake equal USDC monthly; contract distributes pooled monthly amount on rotation.
+                </p>
+                <p class="prose" style="margin: 0.4rem 0; font-size: 0.88rem;">
+                  <strong>Ambitious:</strong> Priority claim unlocks for emergencies; vote-based by 2 other members.
+                </p>
+                <p class="prose" style="margin: 0.4rem 0; font-size: 0.85rem; color: #93b6ff;">
+                  <strong>Trust:</strong> Arisan exists; the missing piece is settlement reliability. smart contract removes the human pot-holder.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 5 -->
+          <div class="flip-card" style="grid-column: 1/-1;">
+            <div class="flip-inner">
+              <div class="flip-front">
+                <div class="muted tiny">BRIEF 5</div>
+                <h3 style="margin: 0.2rem 0 0.6rem;">Local Creator Patronage with Vesting</h3>
+                <p class="prose" style="margin: 0; font-size: 0.92rem;">
+                  <strong>User:</strong> Bandung indie musician / illustrator / podcaster with 500–2,000 super-fans.
+                </p>
+                <p class="prose" style="margin: 0.4rem 0 0; font-size: 0.92rem;">
+                  <strong>Workaround:</strong> Trakteer/Saweria/Patreon-equivalents that take 5–20% and can deplatform.
+                </p>
+                <p class="muted tiny" style="margin-top: auto;">click to flip →</p>
+              </div>
+              <div class="flip-back">
+                <div class="muted tiny">BACK · Brief 5</div>
+                <p class="prose" style="margin: 0.2rem 0; font-size: 0.88rem;">
+                  <strong>Naive:</strong> Fans stake USDC; creator earns a continuous stream. Fans can unsubscribe; already-streamed rewards are non-refundable.
+                </p>
+                <p class="prose" style="margin: 0.4rem 0; font-size: 0.88rem;">
+                  <strong>Ambitious:</strong> Milestone stakes; funds unlock only on creator-minted milestone NFT.
+                </p>
+                <p class="prose" style="margin: 0.4rem 0; font-size: 0.85rem; color: #93b6ff;">
+                  <strong>Trust:</strong> Patreon's existence rests on "fans can't directly pay creators" — false at sub-cent gas. Platform fee is rent that no longer needs to exist.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TRUST-INSIGHT BUILDER -->
+        <h3 id="trust-builder" style="margin-top: 3rem;">Interactive · Trust-insight statement builder</h3>
+        <div class="panel panel-lg">
+          <p class="muted tiny" style="margin: 0 0 0.8rem;">
+            Fill in the four fields. Your problem statement is generated live below. Submit it
+            in the cohort chat as your commitment for Meet 4.
+          </p>
+          <div style="display: grid; grid-template-columns: 1fr; gap: 0.7rem;" class="grid-2-md">
+            <label class="field">
+              <span class="label-text">User (specific persona)</span>
+              <input type="text" id="trustUser" placeholder="e.g. Bu Tati, a Pasar Baru vendor" />
+            </label>
+            <label class="field">
+              <span class="label-text">Need</span>
+              <input type="text" id="trustNeed" placeholder="e.g. a loyalty system that survives rain" />
+            </label>
+            <label class="field">
+              <span class="label-text">Insight</span>
+              <input type="text" id="trustInsight" placeholder="e.g. her customers want tiered rewards" />
+            </label>
+            <label class="field">
+              <span class="label-text">Trust assumption (the Web3 clause)</span>
+              <input type="text" id="trustClause" placeholder="e.g. no central party can change the discount tiers" />
+            </label>
+          </div>
+
+          <div class="callout" style="margin-top: 1rem;">
+            <div class="callout-label">Your draft problem statement</div>
+            <p class="prose" id="trustOut" style="margin: 0.4rem 0 0; font-size: 1.05rem;">
+              <em class="muted">(fill in the fields above)</em>
+            </p>
+          </div>
+          <button class="btn btn-ghost btn-sm" id="trustCopy" style="margin-top: 0.6rem;">Copy statement</button>
+        </div>
+      </section>
+
+      <!-- BLOCK D -->
+      <section class="block" id="block-d">
+        <div class="eyebrow">Block D · 30 min</div>
+        <h2>Prototype + Test (paper, then wallet)</h2>
+
+        <h3>D.1. Paper prototype · 15 min</h3>
+        <div class="prose">
+          <ul>
+            <li>Draw 3 screens on paper: landing, primary action, success.</li>
+            <li>Annotate: where does the wallet connect? Where does gas appear? What error states are you designing for?</li>
+            <li>Show your neighbor. Without explaining, see if they guess what your dApp does in 10 seconds.</li>
+          </ul>
+        </div>
+
+        <h3>D.2. Wallet walk-through · 15 min</h3>
+        <div class="prose">
+          <p>Groups of 3. One plays "user", walks through their imagined flow using only their actual wallet. The other two watch silently. 5-minute debrief: where did the imaginary user get confused?</p>
+        </div>
+
+        <div class="callout ok">
+          <div class="callout-label">Insight</div>
+          <p class="prose" style="margin: 0;">
+            We just did a usability test with zero code. Notice the value-to-effort ratio.
+            Do this with five real users in Week 4 — that's the bar before Demo Day.
+          </p>
+        </div>
+      </section>
+
+      <!-- COMMIT -->
+      <section class="block" id="commit">
+        <div class="eyebrow">Closing · 10 min</div>
+        <h2>Commit your problem statement</h2>
+        <div class="prose">
+          <p>
+            Each attendee writes — on a sticky note or in the cohort chat — their committed
+            problem statement for Meet 4. These are <em>not</em> permanent, but they have to
+            exist by end of today, because Meet 4's contract is the engine underneath this
+            product.
+          </p>
+        </div>
+
+        <div class="callout warn">
+          <div class="callout-label">Ground rules for picking</div>
+          <ul class="prose" style="margin: 0.4rem 0 0;">
+            <li>You may pick from the 5 briefs OR propose your own.</li>
+            <li>You may <strong>not</strong> pick "vanilla staking pool with no consumer wrapper." That is not a product.</li>
+            <li>You must commit to <em>one</em> problem before Meet 4 starts.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- TAKE-HOME -->
+      <section class="block" id="takehome">
+        <div class="eyebrow">Take-home</div>
+        <h2>Before Meet 4</h2>
+
+        <div style="display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 0.5rem;">
+          <div class="muted tiny">Your progress</div>
+          <div class="mono tiny progress-label">0 / 4</div>
+        </div>
+        <div class="progress" data-checklist-progress="meet-3-take-home" style="margin-bottom: 1rem;"><span style="width:0%"></span></div>
+
+        <div class="panel">
+          <label class="check">
+            <input type="checkbox" data-checklist="meet-3-take-home" data-key="statement" />
+            <span class="check-text">Submitted a one-paragraph problem statement.</span>
+          </label>
+          <label class="check">
+            <input type="checkbox" data-checklist="meet-3-take-home" data-key="briefs" />
+            <span class="check-text">Read <a href="../../tracks/optimism/docs/week-2/meet-3-bandung-problems.md">meet-3-bandung-problems.md</a> cover to cover.</span>
+          </label>
+          <label class="check">
+            <input type="checkbox" data-checklist="meet-3-take-home" data-key="skim" />
+            <span class="check-text">Skimmed <a href="../contracts/src/StakingProtocol.sol">StakingProtocol.sol</a> once (don't try to understand yet).</span>
+          </label>
+          <label class="check">
+            <input type="checkbox" data-checklist="meet-3-take-home" data-key="oz" />
+            <span class="check-text">Read OpenZeppelin docs on <code>ReentrancyGuard</code> and <code>Ownable</code> (v5) — 15 minutes.</span>
+          </label>
+        </div>
+      </section>
+
+      <footer class="session-footer">
+        <a href="meet-2.html" class="btn btn-ghost">← Meet 2</a>
+        <button class="btn btn-primary" data-mark-complete="3">Mark this session complete</button>
+        <a href="meet-4.html" class="btn btn-primary">Next: Meet 4 — Solidity Staking →</a>
+      </footer>
+    </main>
+  </div>
+
+  <script src="../assets/main.js"></script>
+  <script>
+    // ----- Trust-insight builder -----
+    (function () {
+      const $ = (id) => document.getElementById(id);
+      function render() {
+        const u = $("trustUser").value.trim();
+        const n = $("trustNeed").value.trim();
+        const i = $("trustInsight").value.trim();
+        const c = $("trustClause").value.trim();
+        const has = u || n || i || c;
+        if (!has) {
+          $("trustOut").innerHTML = '<em class="muted">(fill in the fields above)</em>';
+          return;
+        }
+        const html = `<strong>${u || "&lt;user&gt;"}</strong> needs <strong>${n || "&lt;need&gt;"}</strong> because <strong>${i || "&lt;insight&gt;"}</strong>. The trust assumption that makes a smart-contract solution materially better is that <strong>${c || "&lt;trust assumption&gt;"}</strong>.`;
+        $("trustOut").innerHTML = html;
+      }
+      ["trustUser", "trustNeed", "trustInsight", "trustClause"].forEach((id) =>
+        $(id).addEventListener("input", render)
+      );
+      $("trustCopy").addEventListener("click", async () => {
+        const text = $("trustOut").innerText;
+        try {
+          await navigator.clipboard.writeText(text);
+          $("trustCopy").textContent = "Copied ✓";
+          setTimeout(() => ($("trustCopy").textContent = "Copy statement"), 1500);
+        } catch (_) {}
+      });
+      render();
+    })();
+  </script>
+
+  <style>
+    @media (min-width: 768px) {
+      .grid-2-md { grid-template-columns: repeat(2, 1fr) !important; }
+    }
+  </style>
+</body>
+</html>

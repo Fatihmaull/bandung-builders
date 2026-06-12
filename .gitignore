@@ -11,7 +11,8 @@ Thumbs.db
 .env.local
 .env.*.local
 !.env.example
-!frontend/.env.local.example
+!tracks/*/.env.example
+!tracks/*/frontend/.env.local.example
 
 # --- Node / Frontend ---
 node_modules/
@@ -28,20 +29,19 @@ pnpm-debug.log*
 .eslintcache
 .turbo/
 
-# --- Foundry / Contracts ---
-contracts/lib/
-contracts/out/
-contracts/cache/
-contracts/broadcast/*/dry-run/
-contracts/broadcast/**/run-latest.json
-# Keep broadcast metadata for grading? Track manually. Default: ignore.
-contracts/broadcast/
-contracts/.gas-snapshot.tmp
+# --- Foundry / Contracts (all tracks) ---
+tracks/*/contracts/lib/
+tracks/*/contracts/out/
+tracks/*/contracts/cache/
+tracks/*/contracts/broadcast/*/dry-run/
+tracks/*/contracts/broadcast/**/run-latest.json
+tracks/*/contracts/broadcast/
+tracks/*/contracts/.gas-snapshot.tmp
 
-# --- Frontend generated ---
-frontend/.next/
-frontend/next-env.d.ts
-frontend/public/abi-generated/
+# --- Frontend generated (all tracks) ---
+tracks/*/frontend/.next/
+tracks/*/frontend/next-env.d.ts
+tracks/*/frontend/public/abi-generated/
 
 # --- Coverage ---
 coverage/

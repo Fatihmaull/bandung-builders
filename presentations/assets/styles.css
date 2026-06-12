@@ -1,5 +1,5 @@
 /* =========================================================================
-   Bandung Base Builders — Workshop Presentations
+   Bandung Builders — Workshop Presentations
    Shared stylesheet. Loaded alongside Tailwind Play CDN.
    ========================================================================= */
 
@@ -7,6 +7,8 @@
 
 :root {
   --base-blue: #0052ff;
+  --op-red: #ff0420;
+  --arb-blue: #28a0f0;
   --base-blue-700: #0040c9;
   --base-blue-900: #001a52;
   --bg-0: #07080b;
@@ -880,6 +882,81 @@ label.check.done .check-text { color: var(--fg-2); text-decoration: line-through
   to { transform: rotate(360deg); }
 }
 .spin { display: inline-block; animation: spin 0.9s linear infinite; }
+
+/* ---------- Track selector (home page) ---------- */
+
+.track-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+  margin-top: 2rem;
+}
+
+@media (min-width: 768px) {
+  .track-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+.track-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  padding: 1.5rem;
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  background: linear-gradient(180deg, var(--bg-2) 0%, var(--bg-1) 100%);
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.15s, transform 0.15s;
+}
+
+.track-card:hover {
+  border-color: var(--border-strong);
+  transform: translateY(-2px);
+}
+
+.track-card[data-track="base"] { --track-accent: var(--base-blue); }
+.track-card[data-track="optimism"] { --track-accent: var(--op-red); }
+.track-card[data-track="arbitrum"] { --track-accent: var(--arb-blue); }
+
+.track-card .track-mark {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 0.65rem;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  font-size: 0.85rem;
+  background: color-mix(in srgb, var(--track-accent) 18%, transparent);
+  color: var(--track-accent);
+  border: 1px solid color-mix(in srgb, var(--track-accent) 35%, transparent);
+}
+
+.track-card h3 {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+.track-card .track-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.track-card .track-faucet {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--fg-2);
+}
+
+html[data-track="base"] { --accent: var(--base-blue); }
+html[data-track="optimism"] { --accent: var(--op-red); }
+html[data-track="arbitrum"] { --accent: var(--arb-blue); }
+
+.topbar-track-switch {
+  font-size: 0.8rem;
+  color: var(--fg-2);
+}
 
 /* Print */
 @media print {

@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+  body {
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer components {
+  .panel {
+    @apply rounded-2xl border border-white/10 bg-white/[0.03] p-6 shadow-lg shadow-black/20;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2 font-medium transition;
+    @apply bg-base text-white hover:bg-base-700 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+}

@@ -1,0 +1,481 @@
+<!doctype html>
+<html lang="en" data-track="base">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Meet 8 — Demo Day &amp; Infrastructure · Bandung Base Builders</title>
+  <link rel="stylesheet" href="../assets/styles.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a href="index.html" class="topbar-brand"><span class="topbar-brand-mark">B³</span><span>Bandung Base Builders</span></a>
+      <nav>
+        <button class="nav-toggle">☰</button>
+        <a href="meet-7.html" class="btn btn-ghost btn-sm">← Meet 7</a>
+        <a href="../index.html" class="btn btn-ghost btn-sm">Tracks</a>
+        <a href="index.html" class="btn btn-ghost btn-sm">Home</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="mobile-nav">
+    <a href="#hero">Overview</a>
+    <a href="#agenda">Agenda</a>
+    <a href="#preflight">Pre-flight</a>
+    <a href="#contract">Contract deploy &amp; verify</a>
+    <a href="#frontend">Frontend deploy</a>
+    <a href="#smoke">Smoke test</a>
+    <a href="#disaster">Disaster recovery</a>
+    <a href="#rubric">Judge rubric &amp; calculator</a>
+    <a href="#after">After Demo Day</a>
+  </div>
+
+  <div class="page-shell">
+    <aside class="sidenav">
+      <div class="sidenav-title">Meet 8 · Sections</div>
+      <a href="#hero">Overview</a>
+      <a href="#agenda">Agenda</a>
+      <a href="#preflight">Pre-flight</a>
+      <a href="#contract">Contract deploy</a>
+      <a href="#frontend">Frontend deploy</a>
+      <a href="#smoke">Smoke test</a>
+      <a href="#disaster">Disaster recovery</a>
+      <a href="#rubric">Judge rubric</a>
+      <a href="#after">After Demo Day</a>
+    </aside>
+
+    <main>
+      <section class="hero" id="hero">
+        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+          <span class="badge tech">Technical / Execution</span>
+          <span class="badge">Week 4 · Meet 8</span>
+          <span class="badge">Duration 2.5 hr</span>
+        </div>
+        <h1>Demo Day &amp; Infrastructure</h1>
+        <p class="lead">
+          Last working session before judging. Every attendee leaves with a verified contract
+          on Basescan and a live Vercel URL.
+        </p>
+
+        <div style="display: grid; grid-template-columns: 1fr; gap: 1rem; margin-top: 2.5rem;" class="grid-2-md">
+          <div class="panel">
+            <div class="panel-title">Outcomes</div>
+            <ol class="prose" style="margin: 0;">
+              <li>Contracts deployed and verified on Basescan (Sepolia).</li>
+              <li>Frontend deployed on Vercel with the production env vars.</li>
+              <li>End-to-end smoke test signed off by a peer.</li>
+              <li>Pitch-deck PDF + demo video uploaded to the cohort drive.</li>
+            </ol>
+          </div>
+          <div class="panel">
+            <div class="panel-title">Companion docs</div>
+            <ul class="prose" style="margin: 0;">
+              <li><a href="../../tracks/base/docs/week-4/meet-8-deployment-checklist.md">meet-8-deployment-checklist.md</a></li>
+              <li><a href="../../tracks/base/docs/week-4/meet-8-judging-rubric.md">meet-8-judging-rubric.md</a></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="block" id="agenda">
+        <div class="eyebrow">Agenda</div>
+        <h2>How the 2.5 hours unfold</h2>
+        <div class="prose">
+          <table>
+            <thead><tr><th>Time</th><th>Block</th></tr></thead>
+            <tbody>
+              <tr><td class="mono">00:00–00:10</td><td>Pre-flight: everyone on the latest <code>main</code></td></tr>
+              <tr><td class="mono">00:10–00:50</td><td>Contract deploy + Basescan verification</td></tr>
+              <tr><td class="mono">00:50–01:20</td><td>Frontend deploy to Vercel</td></tr>
+              <tr><td class="mono">01:20–01:30</td><td>Break</td></tr>
+              <tr><td class="mono">01:30–02:00</td><td>End-to-end smoke test in pairs</td></tr>
+              <tr><td class="mono">02:00–02:15</td><td>Walk the judge rubric — calibrate self-scoring</td></tr>
+              <tr><td class="mono">02:15–02:30</td><td>Final Q&amp;A · pitch sign-off · close</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- PRE-FLIGHT -->
+      <section class="block" id="preflight">
+        <div class="eyebrow">Pre-flight · 10 min</div>
+        <h2>Sync &amp; sanity check</h2>
+
+        <div class="panel">
+          <label class="check"><input type="checkbox" data-checklist="meet-8-preflight" data-key="pull" /><span class="check-text"><code>git pull origin main</code> on a clean working tree.</span></label>
+          <label class="check"><input type="checkbox" data-checklist="meet-8-preflight" data-key="forge-test" /><span class="check-text"><code>forge test -vvv</code> passes locally.</span></label>
+          <label class="check"><input type="checkbox" data-checklist="meet-8-preflight" data-key="frontend-build" /><span class="check-text"><code>pnpm --filter frontend build</code> passes locally.</span></label>
+          <label class="check"><input type="checkbox" data-checklist="meet-8-preflight" data-key="faucet" /><span class="check-text">Wallet has ≥ 0.05 Base Sepolia ETH (deploy + 5 user txs of demo headroom).</span></label>
+          <label class="check"><input type="checkbox" data-checklist="meet-8-preflight" data-key="basescan-key" /><span class="check-text"><code>BASESCAN_API_KEY</code> obtained from basescan.org and exported.</span></label>
+          <label class="check"><input type="checkbox" data-checklist="meet-8-preflight" data-key="env" /><span class="check-text">Track <code>.env</code> (in <code>tracks/base/</code>) populated (RPC URL, private key, Basescan key) — never committed.</span></label>
+        </div>
+      </section>
+
+      <!-- CONTRACT -->
+      <section class="block" id="contract">
+        <div class="eyebrow">Block · 40 min</div>
+        <h2>Contract deploy + Basescan verification</h2>
+
+        <h3>1. Deploy</h3>
+<pre><code class="language-bash">cd contracts
+source ../.env  # bash / WSL; on PowerShell: $env:PRIVATE_KEY="..."; ...
+
+forge script script/Deploy.s.sol:Deploy \
+  --rpc-url base_sepolia \
+  --broadcast \
+  --verify \
+  --etherscan-api-key $BASESCAN_API_KEY</code></pre>
+
+        <div class="callout">
+          <div class="callout-label">What just happened?</div>
+          <ol class="prose" style="margin: 0.3rem 0 0;">
+            <li><code>forge script</code> ran <code>Deploy.s.sol</code> as a script — vm.startBroadcast → on-chain.</li>
+            <li><code>--broadcast</code> said: actually send the txs (without it, dry-run only).</li>
+            <li><code>--verify</code> handed source code + constructor args to Basescan in the same workflow.</li>
+            <li>Output prints the deployed addresses. Copy them now.</li>
+          </ol>
+        </div>
+
+        <h3>2. Capture the addresses</h3>
+        <div class="prose">
+          <p>You will see three addresses: <code>stakingToken</code>, <code>rewardToken</code>, <code>StakingProtocol</code>. Note them all — the frontend needs the staking-token + protocol addresses.</p>
+        </div>
+
+        <h3>3. Verify (if --verify didn't auto-complete)</h3>
+<pre><code class="language-bash">forge verify-contract \
+  --chain-id 84532 \
+  --watch \
+  --etherscan-api-key $BASESCAN_API_KEY \
+  &lt;DEPLOYED_ADDRESS&gt; \
+  src/StakingProtocol.sol:StakingProtocol \
+  --constructor-args $(cast abi-encode \
+    "constructor(address,address,address)" \
+    &lt;STAKING_TOKEN&gt; &lt;REWARD_TOKEN&gt; &lt;OWNER&gt;)</code></pre>
+
+        <h3>4. Sanity check via cast</h3>
+<pre><code class="language-bash">cast call &lt;STAKING_PROTOCOL&gt; "rewardRate()(uint256)" \
+  --rpc-url https://sepolia.base.org
+
+cast call &lt;STAKING_PROTOCOL&gt; "owner()(address)" \
+  --rpc-url https://sepolia.base.org</code></pre>
+
+        <div class="callout warn">
+          <div class="callout-label">Verification stuck on PENDING?</div>
+          <p class="prose" style="margin: 0;">
+            Basescan can take 30–120s. Re-run with <code>--watch</code> and wait.
+            If <code>solc_version</code> doesn't match what was on-chain, verification fails
+            silently — confirm <code>foundry.toml</code> pins to 0.8.24.
+          </p>
+        </div>
+      </section>
+
+      <!-- FRONTEND -->
+      <section class="block" id="frontend">
+        <div class="eyebrow">Block · 30 min</div>
+        <h2>Frontend deploy to Vercel</h2>
+
+        <ol class="prose">
+          <li>From repo root, <code>vercel link</code> (one-time). Choose the frontend workspace as the project root.</li>
+          <li>Set environment variables in the Vercel dashboard (Production scope):
+            <ul>
+              <li><code>NEXT_PUBLIC_WC_PROJECT_ID</code></li>
+              <li><code>NEXT_PUBLIC_STAKING_CONTRACT_ADDRESS</code></li>
+              <li><code>NEXT_PUBLIC_STAKING_TOKEN_ADDRESS</code></li>
+              <li><code>NEXT_PUBLIC_REWARD_TOKEN_ADDRESS</code></li>
+            </ul>
+          </li>
+          <li>Set Build Command: <code>pnpm install --frozen-lockfile &amp;&amp; pnpm --filter frontend build</code></li>
+          <li>Set Output Directory: <code>frontend/.next</code></li>
+          <li>Trigger deploy: <code>vercel --prod</code> or push to <code>main</code>.</li>
+          <li>Note the live URL.</li>
+        </ol>
+
+        <div class="callout">
+          <div class="callout-label">A safer pattern: ABI snapshot</div>
+          <p class="prose" style="margin: 0;">
+            We already committed a snapshot of <code>contracts/out/StakingProtocol.sol/StakingProtocol.json</code>
+            into <code>frontend/src/abi/</code>. That way Vercel doesn't need to compile
+            Solidity at build time, and the frontend has a deterministic ABI checked into git.
+          </p>
+        </div>
+      </section>
+
+      <!-- SMOKE TEST -->
+      <section class="block" id="smoke">
+        <div class="eyebrow">Block · 30 min</div>
+        <h2>End-to-end smoke test (paired)</h2>
+
+        <div class="prose">
+          <p>Pair up. Person A does the actions; Person B watches and ticks the boxes. Swap.</p>
+        </div>
+
+        <div style="display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 0.5rem;">
+          <div class="muted tiny">Smoke-test progress</div>
+          <div class="mono tiny progress-label">0 / 7</div>
+        </div>
+        <div class="progress" data-checklist-progress="meet-8-smoke" style="margin-bottom: 1rem;"><span style="width:0%"></span></div>
+
+        <div class="panel">
+          <label class="check"><input type="checkbox" data-checklist="meet-8-smoke" data-key="open" /><span class="check-text">Open the Vercel URL in a fresh incognito tab.</span></label>
+          <label class="check"><input type="checkbox" data-checklist="meet-8-smoke" data-key="connect" /><span class="check-text">Connect wallet — RainbowKit modal opens, completes successfully.</span></label>
+          <label class="check"><input type="checkbox" data-checklist="meet-8-smoke" data-key="faucet" /><span class="check-text">Use the MockERC20 <code>faucet()</code> to mint test staking tokens.</span></label>
+          <label class="check"><input type="checkbox" data-checklist="meet-8-smoke" data-key="approve" /><span class="check-text"><code>useApproveStake</code> hook approves; allowance reads update.</span></label>
+          <label class="check"><input type="checkbox" data-checklist="meet-8-smoke" data-key="stake" /><span class="check-text"><code>stake()</code> transaction succeeds; balanceOf increases.</span></label>
+          <label class="check"><input type="checkbox" data-checklist="meet-8-smoke" data-key="earned" /><span class="check-text"><code>earned()</code> counter ticks up live (within ~6 s of staking).</span></label>
+          <label class="check"><input type="checkbox" data-checklist="meet-8-smoke" data-key="claim" /><span class="check-text"><code>getReward()</code> transaction succeeds; reward token balance increases.</span></label>
+        </div>
+
+        <div class="callout warn" style="margin-top: 1.5rem;">
+          <div class="callout-label">If anything fails</div>
+          <p class="prose" style="margin: 0;">
+            Capture the failing tx hash. Open it on basescan.org/sepolia. Read the revert
+            reason. Most failures at this stage are env vars (wrong address) or allowance
+            (forgot approve). Don't panic — you have an hour before judging.
+          </p>
+        </div>
+      </section>
+
+      <!-- DISASTER RECOVERY -->
+      <section class="block" id="disaster">
+        <div class="eyebrow">Resilience</div>
+        <h2>Disaster-recovery playbook</h2>
+
+        <div class="panel panel-lg">
+          <p class="muted tiny" style="margin: 0 0 1rem;">
+            Click any disaster to expand its recovery procedure. Have these top-of-mind for the
+            10-minute window before judging.
+          </p>
+          <div id="disasterList">
+            <div class="panel" data-disaster="rpc">
+              <div class="panel-title" style="cursor:pointer;">▶ Base Sepolia RPC is down or slow</div>
+              <div class="disaster-body" hidden>
+                <p class="prose" style="margin: 0.5rem 0 0;">
+                  <strong>Switch RPC.</strong> Free alternatives:
+                  <code>https://base-sepolia.publicnode.com</code>,
+                  <code>https://base-sepolia-rpc.publicnode.com</code>,
+                  Alchemy / Infura free-tier. Update Wagmi config &amp; redeploy. If too late
+                  to redeploy: switch to your <strong>recorded demo</strong>.
+                </p>
+              </div>
+            </div>
+            <div class="panel" data-disaster="vercel">
+              <div class="panel-title" style="cursor:pointer;">▶ Vercel build fails minutes before pitch</div>
+              <div class="disaster-body" hidden>
+                <p class="prose" style="margin: 0.5rem 0 0;">
+                  <strong>Roll back via Vercel UI.</strong> Each push has a previous Production
+                  deployment one click away. Don't try to fix the build on stage. Roll back,
+                  pitch the older but working version.
+                </p>
+              </div>
+            </div>
+            <div class="panel" data-disaster="wallet">
+              <div class="panel-title" style="cursor:pointer;">▶ Wallet connect modal fails (WalletConnect rate limit)</div>
+              <div class="disaster-body" hidden>
+                <p class="prose" style="margin: 0.5rem 0 0;">
+                  <strong>Use Coinbase Wallet browser extension.</strong> Doesn't go through WC
+                  relay — direct injection. Have it pre-installed in your demo browser.
+                </p>
+              </div>
+            </div>
+            <div class="panel" data-disaster="revert">
+              <div class="panel-title" style="cursor:pointer;">▶ Stake tx reverts unexpectedly</div>
+              <div class="disaster-body" hidden>
+                <p class="prose" style="margin: 0.5rem 0 0;">
+                  Open the failed tx on Basescan/Sepolia. 90% of the time:
+                  <code>ERC20InsufficientAllowance</code> (forgot approve) or
+                  <code>ZeroAmount</code> (input field empty). Both are user-side; reset the
+                  form. If on-chain: switch to the demo recording.
+                </p>
+              </div>
+            </div>
+            <div class="panel" data-disaster="contract">
+              <div class="panel-title" style="cursor:pointer;">▶ Contract has a critical bug discovered post-deploy</div>
+              <div class="disaster-body" hidden>
+                <p class="prose" style="margin: 0.5rem 0 0;">
+                  Don't pretend it's not there. <strong>Pause new stakes</strong> (no pause in MVP;
+                  set rewardRate to 0 + drain reward pool via owner). Redeploy from a fresh
+                  contract address. Update <code>.env</code>, redeploy frontend. Have this
+                  procedure pinned in your project README.
+                </p>
+              </div>
+            </div>
+            <div class="panel" data-disaster="laptop">
+              <div class="panel-title" style="cursor:pointer;">▶ Laptop dies / WiFi dies / projector dies</div>
+              <div class="disaster-body" hidden>
+                <p class="prose" style="margin: 0.5rem 0 0;">
+                  <strong>Have your phone hotspot ready.</strong> Have your deck on your phone
+                  (Google Slides). Have your demo video on your phone. The pitch goes on. The
+                  worst hackathon pitches are the ones where the laptop dies and the founder
+                  freezes; the best are the ones where the founder smiles, picks up the phone,
+                  and keeps talking.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- RUBRIC -->
+      <section class="block" id="rubric">
+        <div class="eyebrow">Self-evaluation</div>
+        <h2>Judge rubric · interactive scoring calculator</h2>
+
+        <div class="prose">
+          <p>Four dimensions, weighted. Score yourself honestly. If you can't justify a 7+ in any column, that's where to spend the next hour.</p>
+        </div>
+
+        <div class="panel panel-lg">
+          <div style="display: grid; grid-template-columns: 1fr; gap: 1.2rem;" class="grid-2-md">
+            <div>
+              <h3 style="margin-top: 0;">Technical execution (35%)</h3>
+              <p class="muted tiny">Tests pass, contract verified, no obvious vulns, clean code.</p>
+              <input type="range" id="scoreTech" min="0" max="10" step="0.5" value="7" />
+              <div class="mono" style="display: flex; justify-content: space-between; font-size: 0.8rem; margin-top: 0.3rem;"><span>0</span><span id="scoreTechLabel" style="color: var(--accent); font-weight: 600;">7.0</span><span>10</span></div>
+            </div>
+            <div>
+              <h3 style="margin-top: 0;">Originality (20%)</h3>
+              <p class="muted tiny">Is the use-case real and non-trivial? Or staking-by-numbers?</p>
+              <input type="range" id="scoreOrig" min="0" max="10" step="0.5" value="7" />
+              <div class="mono" style="display: flex; justify-content: space-between; font-size: 0.8rem; margin-top: 0.3rem;"><span>0</span><span id="scoreOrigLabel" style="color: var(--accent); font-weight: 600;">7.0</span><span>10</span></div>
+            </div>
+            <div>
+              <h3 style="margin-top: 0;">UI / UX (20%)</h3>
+              <p class="muted tiny">Wallet flow, tx lifecycle UX, error handling, mobile.</p>
+              <input type="range" id="scoreUx" min="0" max="10" step="0.5" value="6" />
+              <div class="mono" style="display: flex; justify-content: space-between; font-size: 0.8rem; margin-top: 0.3rem;"><span>0</span><span id="scoreUxLabel" style="color: var(--accent); font-weight: 600;">6.0</span><span>10</span></div>
+            </div>
+            <div>
+              <h3 style="margin-top: 0;">Business viability (25%)</h3>
+              <p class="muted tiny">Tokenomics, GTM, clear ask, defensible moat.</p>
+              <input type="range" id="scoreBiz" min="0" max="10" step="0.5" value="6" />
+              <div class="mono" style="display: flex; justify-content: space-between; font-size: 0.8rem; margin-top: 0.3rem;"><span>0</span><span id="scoreBizLabel" style="color: var(--accent); font-weight: 600;">6.0</span><span>10</span></div>
+            </div>
+          </div>
+
+          <hr class="divider"/>
+
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap;">
+            <div>
+              <div class="muted tiny">Weighted total</div>
+              <div class="mono" id="scoreTotal" style="font-size: 3rem; font-weight: 700; letter-spacing: -0.02em;">6.40</div>
+            </div>
+            <div>
+              <div class="muted tiny" style="text-align: right;">Verdict</div>
+              <div id="scoreVerdict" style="font-size: 1.1rem; font-weight: 600;">Good — sharpen the weakest column.</div>
+            </div>
+          </div>
+
+          <div class="progress" style="margin-top: 1rem; height: 14px;"><span id="scoreBar" style="width: 64%"></span></div>
+        </div>
+
+        <div class="callout">
+          <div class="callout-label">Reference bands</div>
+          <ul class="prose" style="margin: 0.4rem 0 0;">
+            <li><strong>0–4</strong> — not yet shippable.</li>
+            <li><strong>4–6</strong> — works on testnet; pitch needs tightening.</li>
+            <li><strong>6–8</strong> — competitive at most regional hackathons.</li>
+            <li><strong>8–10</strong> — globally competitive. Submit to ETHGlobal Online next.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- AFTER -->
+      <section class="block" id="after">
+        <div class="eyebrow">After Demo Day</div>
+        <h2>What happens next</h2>
+
+        <div style="display: grid; grid-template-columns: 1fr; gap: 1rem;" class="grid-3-md">
+          <div class="panel">
+            <div class="panel-title">Apply to a real hackathon</div>
+            <p class="prose" style="margin: 0;">ETHGlobal Online, Base Around the World, Onchain Summer. Use your existing project. Most-active builders compound into ecosystem-grant pipeline.</p>
+          </div>
+          <div class="panel">
+            <div class="panel-title">Push for mainnet</div>
+            <p class="prose" style="margin: 0;">If your protocol passed peer review + you can articulate a security model, the leap to Base mainnet is config-level — same code, real users.</p>
+          </div>
+          <div class="panel">
+            <div class="panel-title">Stay in the cohort</div>
+            <p class="prose" style="margin: 0;">Bandung Base Builders Cohort 02 starts next quarter. Alumni become reviewers and mentors. The flywheel begins.</p>
+          </div>
+        </div>
+
+        <div class="callout ok" style="margin-top: 1.5rem;">
+          <div class="callout-label">Final word</div>
+          <p class="prose" style="margin: 0;">
+            "You shipped something real. On a real L2. To real users. In four weeks. The number of
+            humans on Earth who have done that today is not large. Tomorrow there are fifteen more
+            of you. Go build."
+          </p>
+        </div>
+      </section>
+
+      <footer class="session-footer">
+        <a href="meet-7.html" class="btn btn-ghost">← Meet 7</a>
+        <button class="btn btn-primary" data-mark-complete="8">Mark this session complete</button>
+        <a href="index.html" class="btn btn-primary">Back to home →</a>
+      </footer>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-core.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+  <script src="../assets/main.js"></script>
+  <script>
+    // ----- Disaster recovery expand/collapse -----
+    (function () {
+      document.querySelectorAll("[data-disaster]").forEach((card) => {
+        const title = card.querySelector(".panel-title");
+        const body = card.querySelector(".disaster-body");
+        title.addEventListener("click", () => {
+          const open = !body.hidden;
+          body.hidden = open;
+          title.textContent = (open ? "▶" : "▼") + title.textContent.slice(1);
+        });
+      });
+    })();
+
+    // ----- Judge scoring calculator -----
+    (function () {
+      const $ = (id) => document.getElementById(id);
+      const dims = [
+        { id: "scoreTech", w: 0.35 },
+        { id: "scoreOrig", w: 0.20 },
+        { id: "scoreUx",   w: 0.20 },
+        { id: "scoreBiz",  w: 0.25 },
+      ];
+      function verdict(t) {
+        if (t < 4) return "Not yet shippable — focus on the smallest 'works end-to-end' loop.";
+        if (t < 6) return "Working on testnet — tighten the pitch + tokenomics.";
+        if (t < 8) return "Competitive — sharpen the weakest column.";
+        return "Globally competitive. Submit to ETHGlobal Online.";
+      }
+      function recalc() {
+        let total = 0;
+        dims.forEach((d) => {
+          const v = +$(d.id).value;
+          $(d.id + "Label").textContent = v.toFixed(1);
+          total += v * d.w;
+        });
+        $("scoreTotal").textContent = total.toFixed(2);
+        $("scoreVerdict").textContent = verdict(total);
+        $("scoreBar").style.width = (total * 10).toFixed(1) + "%";
+        if (total < 4)      $("scoreBar").style.background = "linear-gradient(90deg, #ef4444, #fca5a5)";
+        else if (total < 6) $("scoreBar").style.background = "linear-gradient(90deg, #f59e0b, #fbbf24)";
+        else if (total < 8) $("scoreBar").style.background = "linear-gradient(90deg, #0052ff, #6e9bff)";
+        else                $("scoreBar").style.background = "linear-gradient(90deg, #10b981, #6ee7b7)";
+      }
+      dims.forEach((d) => $(d.id).addEventListener("input", recalc));
+      recalc();
+    })();
+  </script>
+
+  <style>
+    @media (min-width: 768px) {
+      .grid-2-md { grid-template-columns: repeat(2, 1fr) !important; }
+      .grid-3-md { grid-template-columns: repeat(3, 1fr) !important; }
+    }
+  </style>
+</body>
+</html>

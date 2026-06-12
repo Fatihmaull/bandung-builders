@@ -1,0 +1,440 @@
+<!doctype html>
+<html lang="en" data-track="base">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Meet 7 — Pitching &amp; Base Go-To-Market · Bandung Base Builders</title>
+  <link rel="stylesheet" href="../assets/styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a href="index.html" class="topbar-brand"><span class="topbar-brand-mark">B³</span><span>Bandung Base Builders</span></a>
+      <nav>
+        <button class="nav-toggle">☰</button>
+        <a href="meet-6.html" class="btn btn-ghost btn-sm">← Meet 6</a>
+        <a href="../index.html" class="btn btn-ghost btn-sm">Tracks</a>
+        <a href="index.html" class="btn btn-ghost btn-sm">Home</a>
+        <a href="meet-8.html" class="btn btn-primary btn-sm">Next: Meet 8 →</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="mobile-nav">
+    <a href="#hero">Overview</a>
+    <a href="#agenda">Agenda</a>
+    <a href="#deck">The 7-slide deck</a>
+    <a href="#timer" class="depth-1">Pitch timer</a>
+    <a href="#demo">90-second demo script</a>
+    <a href="#gtm">GTM on Base</a>
+    <a href="#judges">Judge-question drill</a>
+    <a href="#takehome">Take-home</a>
+  </div>
+
+  <div class="page-shell">
+    <aside class="sidenav">
+      <div class="sidenav-title">Meet 7 · Sections</div>
+      <a href="#hero">Overview</a>
+      <a href="#agenda">Agenda</a>
+      <a href="#deck">7-slide deck</a>
+      <a href="#timer" class="depth-1">Pitch timer</a>
+      <a href="#demo">Demo script</a>
+      <a href="#gtm">GTM</a>
+      <a href="#judges">Judge drill</a>
+      <a href="#takehome">Take-home</a>
+    </aside>
+
+    <main>
+      <section class="hero" id="hero">
+        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+          <span class="badge nontech">Non-Technical</span>
+          <span class="badge">Week 4 · Meet 7</span>
+          <span class="badge">Duration 2.5 hr</span>
+        </div>
+        <h1>Pitching &amp; Base Go-To-Market</h1>
+        <p class="lead">
+          Two days from Demo Day. Today: the 7-slide deck, the 90-second live demo, the 5-minute
+          delivery. Then drill judge questions until they're boring.
+        </p>
+
+        <div style="display: grid; grid-template-columns: 1fr; gap: 1rem; margin-top: 2.5rem;" class="grid-2-md">
+          <div class="panel">
+            <div class="panel-title">Learning objectives</div>
+            <ol class="prose" style="margin: 0;">
+              <li>Tell the 7-slide story in 5 minutes flat (no over-run).</li>
+              <li>Demo the dApp in 90 seconds with zero dead air.</li>
+              <li>Frame a Base-specific GTM stack.</li>
+              <li>Field hostile judge questions without getting defensive.</li>
+            </ol>
+          </div>
+          <div class="panel">
+            <div class="panel-title">Companion docs</div>
+            <ul class="prose" style="margin: 0;">
+              <li><a href="../../tracks/base/docs/week-4/meet-7-pitch-deck.md">meet-7-pitch-deck.md</a></li>
+              <li><a href="../../tracks/base/docs/week-4/meet-7-gtm-base.md">meet-7-gtm-base.md</a></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="block" id="agenda">
+        <div class="eyebrow">Agenda</div>
+        <h2>How the 2.5 hours unfold</h2>
+        <div class="prose">
+          <table>
+            <thead><tr><th>Time</th><th>Block</th></tr></thead>
+            <tbody>
+              <tr><td class="mono">00:00–00:10</td><td>Frame: storytelling vs feature-listing</td></tr>
+              <tr><td class="mono">00:10–00:40</td><td>Walk the 7-slide structure</td></tr>
+              <tr><td class="mono">00:40–01:10</td><td>Build the 90-second demo script</td></tr>
+              <tr><td class="mono">01:10–01:20</td><td>Break</td></tr>
+              <tr><td class="mono">01:20–01:50</td><td>Base-specific GTM</td></tr>
+              <tr><td class="mono">01:50–02:20</td><td>Rehearse in pairs (×2 rounds)</td></tr>
+              <tr><td class="mono">02:20–02:30</td><td>Judge-question drill + close</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- DECK -->
+      <section class="block" id="deck">
+        <div class="eyebrow">The structure</div>
+        <h2>The 7-slide hackathon deck</h2>
+
+        <div style="display: grid; grid-template-columns: 1fr; gap: 0.85rem; margin-top: 1rem;" class="grid-2-md">
+          <div class="panel"><div class="muted tiny">SLIDE 1 · ~30 s</div><h3 style="margin:0.2rem 0 0.4rem;">Hook</h3><p class="prose" style="margin:0; font-size:0.92rem;">One sentence. The Bandung-specific problem and who feels it. Open with a number, image, or visceral story — not a logo.</p></div>
+          <div class="panel"><div class="muted tiny">SLIDE 2 · ~45 s</div><h3 style="margin:0.2rem 0 0.4rem;">Problem</h3><p class="prose" style="margin:0; font-size:0.92rem;">The workaround your user resorts to today. The Web2 status quo and why it fails on trust. <strong>Use real names, real places.</strong></p></div>
+          <div class="panel"><div class="muted tiny">SLIDE 3 · ~45 s</div><h3 style="margin:0.2rem 0 0.4rem;">Solution</h3><p class="prose" style="margin:0; font-size:0.92rem;">What you built. <em>Why it's only possible because of an on-chain primitive on Base.</em> Be specific about the trust assumption you removed.</p></div>
+          <div class="panel"><div class="muted tiny">SLIDE 4 · ~90 s (LIVE)</div><h3 style="margin:0.2rem 0 0.4rem;">Demo</h3><p class="prose" style="margin:0; font-size:0.92rem;">Switch to the browser. Connect wallet, approve, stake, see rewards accrue. <strong>No backup video</strong> — bullet-proof your live demo or rehearse a flawless screen recording.</p></div>
+          <div class="panel"><div class="muted tiny">SLIDE 5 · ~45 s</div><h3 style="margin:0.2rem 0 0.4rem;">Tech &amp; Tokenomics</h3><p class="prose" style="margin:0; font-size:0.92rem;">One-screen architecture diagram + one-screen tokenomics summary (from Meet 5 canvas). Don't read it. Let the audience scan.</p></div>
+          <div class="panel"><div class="muted tiny">SLIDE 6 · ~45 s</div><h3 style="margin:0.2rem 0 0.4rem;">GTM &amp; Why Base</h3><p class="prose" style="margin:0; font-size:0.92rem;">First 100 users, then 1,000. Why Base specifically (the Coinbase moat, the fee economics). What about Bandung gives you unfair distribution?</p></div>
+          <div class="panel" style="grid-column: 1/-1;"><div class="muted tiny">SLIDE 7 · ~30 s</div><h3 style="margin:0.2rem 0 0.4rem;">The Ask</h3><p class="prose" style="margin:0; font-size:0.92rem;">Be precise. Are you looking for mentors? Pre-seed angels? Ecosystem grant? Co-founders? <strong>Specific asks get specific answers.</strong></p></div>
+        </div>
+
+        <!-- TIMER -->
+        <h3 id="timer">Interactive · 5-minute pitch countdown</h3>
+        <div class="panel panel-lg">
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap;">
+            <div class="mono" id="timerOut" style="font-size: 3rem; font-weight: 700; letter-spacing: -0.02em;">05:00</div>
+            <div style="display: flex; gap: 0.6rem; flex-wrap: wrap;">
+              <button class="btn btn-primary" id="timerStart">Start</button>
+              <button class="btn btn-ghost" id="timerPause">Pause</button>
+              <button class="btn btn-ghost" id="timerReset">Reset</button>
+              <button class="btn btn-ghost" id="timerMute">🔔 Sound: ON</button>
+            </div>
+          </div>
+
+          <div class="progress" style="margin-top: 1rem; height: 12px;"><span id="timerBar" style="width:0%"></span></div>
+
+          <div id="timerMarkers" style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 0.3rem; margin-top: 1rem; font-size: 0.7rem;">
+            <div class="badge" style="text-align:center;">1·Hook</div>
+            <div class="badge" style="text-align:center;">2·Problem</div>
+            <div class="badge" style="text-align:center;">3·Solution</div>
+            <div class="badge" style="text-align:center;">4·Demo</div>
+            <div class="badge" style="text-align:center;">5·Tech</div>
+            <div class="badge" style="text-align:center;">6·GTM</div>
+            <div class="badge" style="text-align:center;">7·Ask</div>
+          </div>
+
+          <div class="callout" id="timerHint" style="margin-top: 1rem;">
+            <div class="callout-label">Current slide</div>
+            <p class="prose" style="margin: 0;">Press Start. The bar shows your remaining 5 minutes. A chime plays at the 30s mark.</p>
+          </div>
+          <p class="muted tiny" style="margin-top: 0.5rem;">
+            <strong>Hard rule</strong> at Demo Day: judge cuts you off at 5:00. Practice
+            <em>finishing</em> 10 seconds early.
+          </p>
+        </div>
+      </section>
+
+      <!-- DEMO SCRIPT -->
+      <section class="block" id="demo">
+        <div class="eyebrow">Live demo · 90 s</div>
+        <h2>The 90-second demo script</h2>
+
+        <div class="prose">
+          <p>Pre-stake nothing. The "from zero" walk demonstrates that the protocol works end-to-end. Type your script in the box and rehearse against the timer.</p>
+        </div>
+
+        <div class="panel panel-lg">
+          <ol style="display: grid; grid-template-columns: 1fr; gap: 0.65rem; margin: 0; padding-left: 0; list-style: none;">
+            <li class="panel" id="demoStep1" data-demo-from="0" data-demo-to="10"><span class="muted tiny">00:00–00:10</span><br/><strong>"Here's the live dApp on Base Sepolia."</strong> Already on the landing page, wallet disconnected.</li>
+            <li class="panel" id="demoStep2" data-demo-from="10" data-demo-to="25"><span class="muted tiny">00:10–00:25</span><br/><strong>Connect wallet via RainbowKit.</strong> Show the modal. <em>"All major wallets, one button."</em></li>
+            <li class="panel" id="demoStep3" data-demo-from="25" data-demo-to="40"><span class="muted tiny">00:25–00:40</span><br/><strong>Approve.</strong> Mention it's free on Base, ~cents. Pre-funded faucet wallet recommended.</li>
+            <li class="panel" id="demoStep4" data-demo-from="40" data-demo-to="60"><span class="muted tiny">00:40–01:00</span><br/><strong>Stake 100 tokens.</strong> Confirm. Watch the "earned" counter start ticking up in real time.</li>
+            <li class="panel" id="demoStep5" data-demo-from="60" data-demo-to="75"><span class="muted tiny">01:00–01:15</span><br/><strong>"Notice the counter increments."</strong> That's <code>rewardPerToken</code> doing its thing on Base. Block time ~2 s.</li>
+            <li class="panel" id="demoStep6" data-demo-from="75" data-demo-to="90"><span class="muted tiny">01:15–01:30</span><br/><strong>Claim.</strong> Tx submits, confirms. Show the new wallet balance increment.</li>
+          </ol>
+
+          <div style="display: flex; gap: 0.6rem; align-items: center; margin-top: 1rem; flex-wrap: wrap;">
+            <button class="btn btn-primary" id="demoStart">Run 90-second walkthrough</button>
+            <button class="btn btn-ghost" id="demoReset">Reset</button>
+            <div class="mono" id="demoElapsed" style="margin-left: auto; font-size: 0.95rem;">00:00</div>
+          </div>
+          <div class="progress" style="margin-top: 0.6rem; height: 6px;"><span id="demoBar" style="width:0%"></span></div>
+        </div>
+
+        <div class="callout warn">
+          <div class="callout-label">Have a backup recording</div>
+          <p class="prose" style="margin: 0;">
+            Workshop policy: in addition to live, you record a flawless 90-second demo
+            screencast and have it ready in OBS / a browser tab. If the projector flickers or
+            wifi drops, you say <em>"In the interest of time, here's the recording"</em> and
+            never break stride.
+          </p>
+        </div>
+      </section>
+
+      <!-- GTM -->
+      <section class="block" id="gtm">
+        <div class="eyebrow">Block · 30 min</div>
+        <h2>Go-To-Market — specifically for Base</h2>
+
+        <div class="prose">
+          <p>Base is not just an L2 — it is a <strong>distribution platform</strong>. A GTM that ignores this is leaving 100× of growth on the table.</p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr; gap: 1rem;" class="grid-2-md">
+          <div class="panel">
+            <div class="panel-title">1. Coinbase Wallet integration</div>
+            <p class="prose" style="margin: 0;">Smart-wallet creation in-app means zero seed-phrase onboarding. Use the Onchain Kit. ~110M Coinbase users == one tap.</p>
+          </div>
+          <div class="panel">
+            <div class="panel-title">2. Base Builds &amp; ecosystem grants</div>
+            <p class="prose" style="margin: 0;">Quarterly programs. Apply. Even a $5–25k grant funds your first 6 months of treasury runway.</p>
+          </div>
+          <div class="panel">
+            <div class="panel-title">3. Farcaster + Frames</div>
+            <p class="prose" style="margin: 0;">Native Base distribution channel. Embed your dApp as a Frame in casts. ~500k DAU concentrated in Web3-native users — your beachhead.</p>
+          </div>
+          <div class="panel">
+            <div class="panel-title">4. Cents-level gas = consumer pricing</div>
+            <p class="prose" style="margin: 0;">Subsidize first 10 user txs with a paymaster. $0.10 customer-acquisition cost for someone who took an on-chain action is unbeatable.</p>
+          </div>
+        </div>
+
+        <h3>The Bandung edge</h3>
+        <div class="prose">
+          <ul>
+            <li><strong>Local communities</strong> are tightly-knit. Pasar / kampus / co-working group of 30 = your first cohort.</li>
+            <li><strong>Mobile-first.</strong> Don't ship desktop-only — every wallet click must work on Android.</li>
+            <li><strong>Rupiah price formatting.</strong> Show IDR alongside USD. Builds trust 10×.</li>
+            <li><strong>Bahasa</strong> on the landing page. English in the docs is fine; the homepage greets in Bahasa.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- JUDGE DRILL -->
+      <section class="block" id="judges">
+        <div class="eyebrow">Drill · 10 min</div>
+        <h2>Judge-question drill</h2>
+
+        <div class="panel panel-lg">
+          <p class="muted tiny" style="margin: 0 0 0.8rem;">
+            Click "Next question". You have 30 seconds to answer aloud. If you stumble, the answer
+            isn't ready yet. Repeat until smooth.
+          </p>
+          <div id="judgeQuestion" style="font-size: 1.2rem; line-height: 1.45; min-height: 4rem; padding: 1rem; background: var(--bg-2); border-radius: 8px; border: 1px solid var(--border);">
+            Click "Next question" to begin.
+          </div>
+          <div style="display: flex; gap: 0.6rem; align-items: center; margin-top: 1rem; flex-wrap: wrap;">
+            <button class="btn btn-primary" id="judgeNext">Next question →</button>
+            <button class="btn btn-ghost" id="judgeReset">Reset shuffle</button>
+            <div class="mono tiny muted" id="judgeCount" style="margin-left: auto;">0 of 12</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAKE-HOME -->
+      <section class="block" id="takehome">
+        <div class="eyebrow">Take-home</div>
+        <h2>Before Meet 8 / Demo Day</h2>
+
+        <div style="display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 0.5rem;">
+          <div class="muted tiny">Your progress</div>
+          <div class="mono tiny progress-label">0 / 5</div>
+        </div>
+        <div class="progress" data-checklist-progress="meet-7-take-home" style="margin-bottom: 1rem;"><span style="width:0%"></span></div>
+
+        <div class="panel">
+          <label class="check">
+            <input type="checkbox" data-checklist="meet-7-take-home" data-key="deck" />
+            <span class="check-text">7-slide deck finished and exported to PDF.</span>
+          </label>
+          <label class="check">
+            <input type="checkbox" data-checklist="meet-7-take-home" data-key="demo" />
+            <span class="check-text">90-second demo screencast recorded, in OBS / Google Drive backup.</span>
+          </label>
+          <label class="check">
+            <input type="checkbox" data-checklist="meet-7-take-home" data-key="rehearsed" />
+            <span class="check-text">Rehearsed the full pitch ≥ 3 times against the 5-minute timer.</span>
+          </label>
+          <label class="check">
+            <input type="checkbox" data-checklist="meet-7-take-home" data-key="qa" />
+            <span class="check-text">Drilled all 12 judge questions to fluency.</span>
+          </label>
+          <label class="check">
+            <input type="checkbox" data-checklist="meet-7-take-home" data-key="deploy-prep" />
+            <span class="check-text">Read <a href="../../tracks/base/docs/week-4/meet-8-deployment-checklist.md">meet-8-deployment-checklist.md</a>.</span>
+          </label>
+        </div>
+      </section>
+
+      <footer class="session-footer">
+        <a href="meet-6.html" class="btn btn-ghost">← Meet 6</a>
+        <button class="btn btn-primary" data-mark-complete="7">Mark this session complete</button>
+        <a href="meet-8.html" class="btn btn-primary">Next: Meet 8 — Demo Day →</a>
+      </footer>
+    </main>
+  </div>
+
+  <script src="../assets/main.js"></script>
+  <script>
+    // ----- Pitch timer (5 min total, chime at 30s) -----
+    (function () {
+      const TOTAL = 5 * 60;
+      const $ = (id) => document.getElementById(id);
+      let remaining = TOTAL;
+      let interval = null;
+      let muted = false;
+      let chimedAt30 = false;
+
+      const sections = [
+        { from: 0,   to: 30,  name: "1. Hook (00:00–00:30)" },
+        { from: 30,  to: 75,  name: "2. Problem (00:30–01:15)" },
+        { from: 75,  to: 120, name: "3. Solution (01:15–02:00)" },
+        { from: 120, to: 210, name: "4. Demo — LIVE (02:00–03:30)" },
+        { from: 210, to: 255, name: "5. Tech & Tokenomics (03:30–04:15)" },
+        { from: 255, to: 270, name: "6. GTM & Why Base (04:15–04:30)" },
+        { from: 270, to: 300, name: "7. Ask (04:30–05:00)" },
+      ];
+
+      function fmt(s) {
+        const m = Math.floor(s / 60); const r = s % 60;
+        return `${String(m).padStart(2,"0")}:${String(r).padStart(2,"0")}`;
+      }
+      function chime() {
+        if (muted) return;
+        try {
+          const AC = window.AudioContext || window.webkitAudioContext;
+          const ctx = new AC();
+          const o = ctx.createOscillator(); const g = ctx.createGain();
+          o.type = "sine"; o.frequency.value = 880;
+          g.gain.value = 0.0; o.connect(g); g.connect(ctx.destination);
+          o.start();
+          g.gain.linearRampToValueAtTime(0.15, ctx.currentTime + 0.02);
+          g.gain.linearRampToValueAtTime(0.0,  ctx.currentTime + 0.6);
+          o.stop(ctx.currentTime + 0.62);
+        } catch (_) {}
+      }
+      function tick() {
+        remaining -= 1;
+        if (remaining < 0) { stop(); return; }
+        render();
+        if (remaining === 30 && !chimedAt30) { chimedAt30 = true; chime(); }
+      }
+      function render() {
+        $("timerOut").textContent = fmt(remaining);
+        const elapsed = TOTAL - remaining;
+        $("timerBar").style.width = ((elapsed / TOTAL) * 100).toFixed(1) + "%";
+        const cur = sections.find((s) => elapsed >= s.from && elapsed < s.to);
+        if (cur) {
+          $("timerHint").querySelector(".callout-label").textContent = "Now: " + cur.name;
+          $("timerHint").querySelector("p").textContent = `${TOTAL - elapsed}s remaining total.`;
+        }
+        // color coding
+        if (remaining <= 30) $("timerOut").style.color = "#fca5a5";
+        else if (remaining <= 60) $("timerOut").style.color = "#fbbf24";
+        else $("timerOut").style.color = "";
+      }
+      function start() { if (!interval) interval = setInterval(tick, 1000); }
+      function stop()  { clearInterval(interval); interval = null; }
+      function reset() { stop(); remaining = TOTAL; chimedAt30 = false; render(); }
+
+      $("timerStart").addEventListener("click", start);
+      $("timerPause").addEventListener("click", stop);
+      $("timerReset").addEventListener("click", reset);
+      $("timerMute").addEventListener("click", () => {
+        muted = !muted;
+        $("timerMute").textContent = muted ? "🔕 Sound: OFF" : "🔔 Sound: ON";
+      });
+      render();
+    })();
+
+    // ----- 90-second demo script auto-advance -----
+    (function () {
+      const TOTAL = 90;
+      const $ = (id) => document.getElementById(id);
+      let elapsed = 0;
+      let interval = null;
+      const steps = document.querySelectorAll("[data-demo-from]");
+      function fmt(s) { const m = Math.floor(s / 60); const r = s % 60; return `${String(m).padStart(2,"0")}:${String(r).padStart(2,"0")}`; }
+      function render() {
+        $("demoElapsed").textContent = fmt(elapsed);
+        $("demoBar").style.width = ((elapsed / TOTAL) * 100).toFixed(1) + "%";
+        steps.forEach((s) => {
+          const from = +s.dataset.demoFrom, to = +s.dataset.demoTo;
+          s.style.borderColor = ""; s.style.background = "";
+          if (elapsed >= from && elapsed < to) {
+            s.style.borderColor = "var(--accent)";
+            s.style.background = "rgba(0,82,255,0.06)";
+          } else if (elapsed >= to) {
+            s.style.borderColor = "rgba(16,185,129,0.4)";
+          }
+        });
+      }
+      $("demoStart").addEventListener("click", () => {
+        if (interval) return;
+        interval = setInterval(() => { elapsed += 1; render(); if (elapsed >= TOTAL) { clearInterval(interval); interval = null; } }, 1000);
+      });
+      $("demoReset").addEventListener("click", () => {
+        clearInterval(interval); interval = null; elapsed = 0; render();
+      });
+      render();
+    })();
+
+    // ----- Judge questions -----
+    (function () {
+      const questions = [
+        "What's stopping me from forking your contract and launching a copycat tomorrow?",
+        "Your APR is X%. Where does the yield come from after emissions taper?",
+        "What's your moat against the next protocol with 2x your APR?",
+        "Walk me through what happens if you, the founder, disappear tomorrow. What does the user still have?",
+        "Why is this a Base-only play instead of multichain?",
+        "What's your treasury runway at current emissions?",
+        "Who is your first 1,000 users specifically? Name names.",
+        "Have you talked to a real user? What did they say?",
+        "What does your contract do that Aave/Lido doesn't already do better?",
+        "If gas became 10× more expensive tomorrow, does your unit economics break?",
+        "How will you handle a critical vulnerability disclosed after launch?",
+        "You're asking for $X. Show me the line-by-line: what gets us to first revenue?",
+      ];
+      let order = [];
+      let idx = -1;
+      function shuffle() {
+        order = [...questions];
+        for (let i = order.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [order[i], order[j]] = [order[j], order[i]];
+        }
+        idx = -1;
+      }
+      function next() {
+        idx += 1;
+        if (idx >= order.length) { shuffle(); idx = 0; }
+        document.getElementById("judgeQuestion").textContent = order[idx];
+        document.getElementById("judgeCount").textContent = `${idx + 1} of ${order.length}`;
+      }
+      document.getElementById("judgeNext").addEventListener("click", next);
+      document.getElementById("judgeReset").addEventListener("click", () => { shuffle(); document.getElementById("judgeQuestion").textContent = "Reshuffled. Click 'Next question' to begin."; document.getElementById("judgeCount").textContent = "0 of " + questions.length; });
+      shuffle();
+    })();
+  </script>
+
+  <style>
+    @media (min-width: 768px) {
+      .grid-2-md { grid-template-columns: repeat(2, 1fr) !important; }
+    }
+  </style>
+</body>
+</html>

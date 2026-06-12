@@ -1,0 +1,551 @@
+<!doctype html>
+<html lang="en" data-track="base">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Meet 4 — Smart Contract Development · Bandung Base Builders</title>
+  <link rel="stylesheet" href="../assets/styles.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a href="index.html" class="topbar-brand"><span class="topbar-brand-mark">B³</span><span>Bandung Base Builders</span></a>
+      <nav>
+        <button class="nav-toggle">☰</button>
+        <a href="meet-3.html" class="btn btn-ghost btn-sm">← Meet 3</a>
+        <a href="../index.html" class="btn btn-ghost btn-sm">Tracks</a>
+        <a href="index.html" class="btn btn-ghost btn-sm">Home</a>
+        <a href="meet-5.html" class="btn btn-primary btn-sm">Next: Meet 5 →</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="mobile-nav">
+    <a href="#hero">Overview</a>
+    <a href="#agenda">Agenda</a>
+    <a href="#frame">The mental model</a>
+    <a href="#block-a">Block A — IStakingProtocol</a>
+    <a href="#block-b">Block B — State & modifier</a>
+    <a href="#sim" class="depth-1">Live accumulator</a>
+    <a href="#block-c">Block C — User actions</a>
+    <a href="#reentrancy" class="depth-1">Reentrancy</a>
+    <a href="#block-d">Block D — Tests</a>
+    <a href="#test-output" class="depth-1">forge test output</a>
+    <a href="#takehome">Take-home</a>
+  </div>
+
+  <div class="page-shell">
+    <aside class="sidenav">
+      <div class="sidenav-title">Meet 4 · Sections</div>
+      <a href="#hero">Overview</a>
+      <a href="#agenda">Agenda</a>
+      <a href="#frame">Mental model</a>
+      <a href="#block-a">Block A — Interface</a>
+      <a href="#block-b">Block B — State + modifier</a>
+      <a href="#sim" class="depth-1">Accumulator simulator</a>
+      <a href="#block-c">Block C — User actions</a>
+      <a href="#reentrancy" class="depth-1">Reentrancy</a>
+      <a href="#block-d">Block D — Tests</a>
+      <a href="#test-output" class="depth-1">forge test output</a>
+      <a href="#takehome">Take-home</a>
+    </aside>
+
+    <main>
+      <!-- HERO -->
+      <section class="hero" id="hero">
+        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+          <span class="badge tech">Technical</span>
+          <span class="badge">Week 2 · Meet 4</span>
+          <span class="badge">Duration 2.5 hr</span>
+        </div>
+        <h1>Smart Contract Development — Solidity + Forge</h1>
+        <p class="lead">
+          Live-code a Synthetix-style single-asset staking protocol. By 02:30 every attendee
+          has a green test suite locally.
+        </p>
+
+        <div style="display: grid; grid-template-columns: 1fr; gap: 1rem; margin-top: 2.5rem;" class="grid-2-md">
+          <div class="panel">
+            <div class="panel-title">Learning objectives</div>
+            <ol class="prose" style="margin: 0;">
+              <li>Explain the Synthetix-style "reward accumulator" pattern out loud.</li>
+              <li>Implement <code>stake</code>, <code>withdraw</code>, <code>getReward</code>, <code>updateReward</code>.</li>
+              <li>Defend the order of operations inside <code>updateReward</code>.</li>
+              <li>Write a Foundry test using <code>vm.prank</code> + <code>vm.warp</code> + <code>vm.expectRevert</code>.</li>
+            </ol>
+          </div>
+          <div class="panel">
+            <div class="panel-title">Companion files</div>
+            <ul class="prose" style="margin: 0;">
+              <li><a href="../contracts/src/StakingProtocol.sol">contracts/src/StakingProtocol.sol</a></li>
+              <li><a href="../contracts/src/StakingProtocol.exercise.sol">…/StakingProtocol.exercise.sol</a></li>
+              <li><a href="../contracts/test/StakingProtocol.t.sol">…/test/StakingProtocol.t.sol</a></li>
+              <li><a href="../../tracks/base/docs/week-2/meet-4-solidity-staking.md">…/docs/week-2/meet-4-solidity-staking.md</a></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- AGENDA -->
+      <section class="block" id="agenda">
+        <div class="eyebrow">Agenda · 150 min</div>
+        <h2>How the 2.5 hours unfold</h2>
+        <div class="prose">
+          <table>
+            <thead><tr><th>Time</th><th>Block</th></tr></thead>
+            <tbody>
+              <tr><td class="mono">00:00–00:10</td><td>Frame: the mental model of a continuous reward stream</td></tr>
+              <tr><td class="mono">00:10–00:35</td><td>Block A — read <code>IStakingProtocol.sol</code> together</td></tr>
+              <tr><td class="mono">00:35–01:05</td><td>Block B — state variables + <code>updateReward</code> modifier (LIVE-CODE)</td></tr>
+              <tr><td class="mono">01:05–01:15</td><td>Stretch break</td></tr>
+              <tr><td class="mono">01:15–01:55</td><td>Block C — <code>stake</code>, <code>withdraw</code>, <code>getReward</code> (LIVE-CODE)</td></tr>
+              <tr><td class="mono">01:55–02:25</td><td>Block D — write 4 Foundry tests; everyone goes green</td></tr>
+              <tr><td class="mono">02:25–02:30</td><td>Wrap-up + commit deliverable</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- FRAME -->
+      <section class="block" id="frame">
+        <div class="eyebrow">Frame · 10 min</div>
+        <h2>The mental model</h2>
+        <div class="prose">
+          <p>Imagine a tap dripping reward tokens into a pool at <code>rewardRate</code> tokens per second. Everyone with stake in the pool owns a <em>share</em> of the drip proportional to their stake. Naive implementation: iterate over every staker on every second to credit their share. That is <strong>O(n)</strong> and would gas-implode the chain.</p>
+          <p>The Synthetix accumulator solves this with a single global counter — <code>rewardPerTokenStored</code> — measured in "reward-tokens per staked-token, scaled by 1e18". Whenever <em>anyone</em> interacts, two things happen:</p>
+          <ol>
+            <li>Advance the global counter by elapsed-time × rate / totalStaked.</li>
+            <li>Snapshot the current counter for that one user (<code>userRewardPerTokenPaid</code>).</li>
+          </ol>
+          <p>Now <code>earned(user) = balanceOf(user) × (current − userSnapshot)</code>. <strong>O(1) per interaction.</strong> Beautiful.</p>
+        </div>
+
+        <div class="callout">
+          <div class="callout-label">Math we encode</div>
+<pre style="background: transparent; border: none; padding: 0; color: inherit;">rewardPerToken() = rewardPerTokenStored
+                 + (now − lastUpdateTime) × rewardRate × 1e18 / totalStaked
+
+earned(user)     = balanceOf[user] × (rewardPerToken() − userRewardPerTokenPaid[user]) / 1e18
+                 + rewards[user]</pre>
+        </div>
+      </section>
+
+      <!-- BLOCK A -->
+      <section class="block" id="block-a">
+        <div class="eyebrow">Block A · 25 min</div>
+        <h2>Read the interface together</h2>
+        <div class="prose">
+          <p>Open <a href="../contracts/src/interfaces/IStakingProtocol.sol">IStakingProtocol.sol</a> on the projector. The interface is the contract you owe the world.</p>
+        </div>
+
+<pre><code class="language-solidity">interface IStakingProtocol {
+    // ---- events ----
+    event Staked(address indexed user, uint256 amount);
+    event Withdrawn(address indexed user, uint256 amount);
+    event RewardPaid(address indexed user, uint256 amount);
+    event RewardRateUpdated(uint256 newRate);
+    event RewardsFunded(address indexed funder, uint256 amount);
+
+    // ---- custom errors ----
+    error ZeroAmount();
+    error InsufficientBalance();
+    error InsufficientRewardLiquidity();
+
+    // ---- views ----
+    function rewardPerToken() external view returns (uint256);
+    function earned(address account) external view returns (uint256);
+
+    // ---- user actions ----
+    function stake(uint256 amount) external;
+    function withdraw(uint256 amount) external;
+    function getReward() external;
+    function exit() external;
+
+    // ---- admin ----
+    function setRewardRate(uint256 newRate) external;
+}</code></pre>
+
+        <div class="callout">
+          <div class="callout-label">Drill the room</div>
+          <ul class="prose" style="margin: 0.4rem 0 0;">
+            <li>What's the difference between <code>balanceOf</code> on this contract and on the staking token?</li>
+            <li>Why <code>indexed</code> on the <code>user</code> param of <code>Staked</code>?</li>
+            <li>Why custom errors instead of <code>require(..., "ZeroAmount")</code>?</li>
+            <li>Why is there <code>fundRewards</code> separate from <code>setRewardRate</code>?</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- BLOCK B -->
+      <section class="block" id="block-b">
+        <div class="eyebrow">Block B · 30 min</div>
+        <h2>State variables &amp; the <code>updateReward</code> modifier</h2>
+
+        <h3>State layout (writing live)</h3>
+<pre><code class="language-solidity">contract StakingProtocol is IStakingProtocol, ReentrancyGuard, Ownable {
+    using SafeERC20 for IERC20;
+
+    uint256 private constant PRECISION = 1e18;
+
+    IERC20 public immutable stakingToken;
+    IERC20 public immutable rewardToken;
+
+    uint256 public rewardRate;          // tokens per second, scaled in token units
+    uint256 public lastUpdateTime;
+    uint256 public rewardPerTokenStored;
+
+    mapping(address => uint256) public userRewardPerTokenPaid;
+    mapping(address => uint256) public rewards;
+
+    uint256 public totalStaked;
+    mapping(address => uint256) public balanceOf;
+}</code></pre>
+
+        <h3>The modifier — write it first, then explain</h3>
+<pre><code class="language-solidity">modifier updateReward(address account) {
+    rewardPerTokenStored = rewardPerToken();
+    lastUpdateTime = block.timestamp;
+
+    if (account != address(0)) {
+        rewards[account] = earned(account);
+        userRewardPerTokenPaid[account] = rewardPerTokenStored;
+    }
+    _;
+}</code></pre>
+
+        <div class="callout warn">
+          <div class="callout-label">Defend the order</div>
+          <p class="prose" style="margin: 0;">
+            <strong>Settle BEFORE the state change.</strong> If a user stakes <em>before</em>
+            we update, their new bigger balance back-dates over time they didn't actually have it.
+            If a user withdraws <em>after</em> we update, they lose accrual they earned.
+          </p>
+        </div>
+
+        <h3>The views</h3>
+<pre><code class="language-solidity">function rewardPerToken() public view returns (uint256) {
+    if (totalStaked == 0) {
+        return rewardPerTokenStored;
+    }
+    uint256 elapsed = block.timestamp - lastUpdateTime;
+    return rewardPerTokenStored + (elapsed * rewardRate * PRECISION) / totalStaked;
+}
+
+function earned(address account) public view returns (uint256) {
+    uint256 delta = rewardPerToken() - userRewardPerTokenPaid[account];
+    return (balanceOf[account] * delta) / PRECISION + rewards[account];
+}</code></pre>
+
+        <!-- ACCUMULATOR SIMULATOR -->
+        <h3 id="sim">Interactive · Live accumulator simulator</h3>
+        <p class="prose">
+          Drag the time slider to advance <code>block.timestamp</code>. Adjust stake and rate.
+          Watch <code>rewardPerToken</code> and <code>earned(Alice)</code> recompute live —
+          this is precisely what the contract does on each interaction.
+        </p>
+
+        <div class="panel panel-lg">
+          <div style="display: grid; grid-template-columns: 1fr; gap: 1rem;" class="grid-2-md">
+            <label class="field">
+              <span class="label-text">Time elapsed (seconds): <span class="mono" id="simTLabel">0</span></span>
+              <input type="range" id="simT" min="0" max="86400" step="60" value="0" />
+            </label>
+            <label class="field">
+              <span class="label-text">rewardRate (tokens/sec): <span class="mono" id="simRLabel">0.01</span></span>
+              <input type="range" id="simR" min="0" max="1" step="0.01" value="0.01" />
+            </label>
+            <label class="field">
+              <span class="label-text">Alice stake: <span class="mono" id="simALabel">100</span></span>
+              <input type="range" id="simA" min="0" max="1000" step="10" value="100" />
+            </label>
+            <label class="field">
+              <span class="label-text">Total staked (incl. Alice): <span class="mono" id="simTSLabel">500</span></span>
+              <input type="range" id="simTS" min="100" max="5000" step="50" value="500" />
+            </label>
+          </div>
+
+          <div class="kpi-grid" style="margin-top: 1rem; grid-template-columns: repeat(3, 1fr);">
+            <div class="kpi">
+              <div class="kpi-label">rewardPerToken</div>
+              <div class="kpi-value mono" id="simRPT">0.0000</div>
+            </div>
+            <div class="kpi">
+              <div class="kpi-label">earned(Alice)</div>
+              <div class="kpi-value accent mono" id="simEarned">0.0000</div>
+            </div>
+            <div class="kpi">
+              <div class="kpi-label">Alice share</div>
+              <div class="kpi-value ok mono" id="simShare">0%</div>
+            </div>
+          </div>
+          <p class="muted tiny" style="margin-top: 0.7rem;">
+            Sanity check: at any moment, <code>sum of earned() across all stakers</code> should
+            equal <code>rewardRate × elapsed</code>. Drag the time slider to verify.
+          </p>
+        </div>
+      </section>
+
+      <!-- BLOCK C -->
+      <section class="block" id="block-c">
+        <div class="eyebrow">Block C · 40 min</div>
+        <h2>User actions: <code>stake</code>, <code>withdraw</code>, <code>getReward</code></h2>
+
+        <p class="prose">
+          The exercise file ships with these as <code>// TODO</code> blocks. We type the
+          reference implementation together. Click the toggles to reveal the canonical version
+          when you're ready to compare.
+        </p>
+
+        <h3>stake()</h3>
+<pre><code class="language-solidity">function stake(uint256 amount) external nonReentrant updateReward(msg.sender) {
+    if (amount == 0) revert ZeroAmount();
+
+    totalStaked += amount;
+    balanceOf[msg.sender] += amount;
+
+    stakingToken.safeTransferFrom(msg.sender, address(this), amount);
+    emit Staked(msg.sender, amount);
+}</code></pre>
+
+        <div class="callout">
+          <div class="callout-label">CEI (Checks-Effects-Interactions)</div>
+          <p class="prose" style="margin: 0;">
+            All accounting (Effects) is done <strong>before</strong> the external call
+            (Interaction). Combined with <code>nonReentrant</code> this is belt-and-suspenders
+            against reentrancy on stake.
+          </p>
+        </div>
+
+        <h3>withdraw()</h3>
+<pre><code class="language-solidity">function withdraw(uint256 amount) public nonReentrant updateReward(msg.sender) {
+    if (amount == 0) revert ZeroAmount();
+    if (balanceOf[msg.sender] < amount) revert InsufficientBalance();
+
+    totalStaked -= amount;
+    balanceOf[msg.sender] -= amount;
+
+    stakingToken.safeTransfer(msg.sender, amount);
+    emit Withdrawn(msg.sender, amount);
+}</code></pre>
+
+        <h3>getReward()</h3>
+<pre><code class="language-solidity">function getReward() public nonReentrant updateReward(msg.sender) {
+    uint256 reward = rewards[msg.sender];
+    if (reward == 0) return;
+
+    if (rewardToken.balanceOf(address(this)) < reward) {
+        revert InsufficientRewardLiquidity();
+    }
+
+    rewards[msg.sender] = 0;
+    rewardToken.safeTransfer(msg.sender, reward);
+    emit RewardPaid(msg.sender, reward);
+}</code></pre>
+
+        <!-- REENTRANCY -->
+        <h3 id="reentrancy">Why <code>nonReentrant</code>? — the attack visualised</h3>
+        <div class="panel panel-lg">
+          <ol class="prose" style="margin: 0;">
+            <li>Attacker stakes <code>X</code>.</li>
+            <li>Attacker waits to accrue rewards.</li>
+            <li>Attacker calls <code>getReward()</code> from a malicious ERC20 reward token (or a malicious receiver).</li>
+            <li>The malicious token's <code>transfer()</code> hook calls back into <code>getReward()</code> <em>before</em> <code>rewards[attacker] = 0</code>.</li>
+            <li>Without <code>nonReentrant</code>: attacker drains rewards repeatedly.</li>
+            <li>With <code>nonReentrant</code>: re-entry reverts immediately with <code>ReentrancyGuardReentrantCall</code>.</li>
+          </ol>
+          <p class="muted tiny" style="margin-top: 0.6rem;">
+            <strong>Why not <em>only</em> CEI?</strong> Because reward token is configurable — a future
+            malicious or upgradeable reward token could violate our assumptions. The guard is
+            defense-in-depth.
+          </p>
+        </div>
+
+        <h3>exit() — convenience</h3>
+<pre><code class="language-solidity">function exit() external {
+    uint256 staked = balanceOf[msg.sender];
+    if (staked > 0) {
+        withdraw(staked);
+    }
+    getReward();
+}</code></pre>
+
+        <h3>Owner: setRewardRate &amp; fundRewards</h3>
+<pre><code class="language-solidity">function setRewardRate(uint256 newRate) external onlyOwner updateReward(address(0)) {
+    rewardRate = newRate;
+    emit RewardRateUpdated(newRate);
+}
+
+function fundRewards(uint256 amount) external onlyOwner {
+    if (amount == 0) revert ZeroAmount();
+    rewardToken.safeTransferFrom(msg.sender, address(this), amount);
+    emit RewardsFunded(msg.sender, amount);
+}</code></pre>
+
+        <div class="callout warn">
+          <div class="callout-label">Critical: pass <code>address(0)</code> on rate-change</div>
+          <p class="prose" style="margin: 0;">
+            We're not interacting with any specific user — we just want to settle the global
+            accumulator at the OLD rate before flipping it. Forgetting this is the most common
+            audit finding in homegrown forks of this pattern.
+          </p>
+        </div>
+      </section>
+
+      <!-- BLOCK D -->
+      <section class="block" id="block-d">
+        <div class="eyebrow">Block D · 30 min</div>
+        <h2>Forge tests with <code>vm.prank</code> + <code>vm.warp</code></h2>
+
+        <div class="prose">
+          <p>Open <a href="../contracts/test/StakingProtocol.t.sol">contracts/test/StakingProtocol.t.sol</a>. Walk through each test.</p>
+        </div>
+
+        <h3>Sample: time-based reward accrual</h3>
+<pre><code class="language-solidity">function test_RewardAccrualOverTime() public {
+    // Alice and Bob stake 100 each
+    vm.prank(alice);
+    staking.stake(100e18);
+    vm.prank(bob);
+    staking.stake(100e18);
+
+    // Fast-forward 1 hour
+    vm.warp(block.timestamp + 1 hours);
+
+    // Expected: rewardRate × 3600 split evenly
+    uint256 expected = REWARD_RATE * 3600 / 2;
+    assertApproxEqAbs(staking.earned(alice), expected, 1e9);
+    assertApproxEqAbs(staking.earned(bob),   expected, 1e9);
+}</code></pre>
+
+        <h3>Sample: reentrancy guard</h3>
+<pre><code class="language-solidity">function test_RevertsWhen_ReentrantClaim() public {
+    // ReentrantToken's transfer() hook tries to call getReward() again.
+    vm.prank(attacker);
+    vm.expectRevert(); // ReentrancyGuardReentrantCall
+    staking.getReward();
+}</code></pre>
+
+        <!-- TEST OUTPUT MOCK -->
+        <h3 id="test-output">What "green" looks like</h3>
+        <div class="term">
+<span class="prompt">forge test -vvv</span>
+<span class="out">[⠊] Compiling...</span>
+<span class="out">[⠒] Compiling 2 files with 0.8.24</span>
+<span class="out">[⠆] Solc 0.8.24 finished in 1.42s</span>
+<span class="out">Compiler run successful!</span>
+
+<span class="out">Ran 12 tests for test/StakingProtocol.t.sol:StakingProtocolTest</span>
+<span class="ok">[PASS] test_Constructor() (gas: 18,232)</span>
+<span class="ok">[PASS] test_Stake_HappyPath() (gas: 145,891)</span>
+<span class="ok">[PASS] test_Stake_RevertsZeroAmount() (gas: 32,107)</span>
+<span class="ok">[PASS] test_Withdraw_HappyPath() (gas: 158,234)</span>
+<span class="ok">[PASS] test_Withdraw_RevertsInsufficient() (gas: 35,801)</span>
+<span class="ok">[PASS] test_GetReward_HappyPath() (gas: 192,440)</span>
+<span class="ok">[PASS] test_RewardAccrualOverTime() (gas: 287,604)</span>
+<span class="ok">[PASS] test_RewardSplit_ProRata() (gas: 412,890)</span>
+<span class="ok">[PASS] test_SetRewardRate_OnlyOwner() (gas: 28,917)</span>
+<span class="ok">[PASS] test_SetRewardRate_SettlesAtOldRate() (gas: 318,742)</span>
+<span class="ok">[PASS] test_Exit_WithdrawsAndClaims() (gas: 245,109)</span>
+<span class="ok">[PASS] test_RevertsWhen_ReentrantClaim() (gas: 188,210)</span>
+
+<span class="dim">Suite result:</span> <span class="ok">ok.</span> <span class="dim">12 passed; 0 failed; finished in 4.21ms (8.42ms CPU time)</span>
+<span class="prompt blink"> </span>
+        </div>
+      </section>
+
+      <!-- TAKE-HOME -->
+      <section class="block" id="takehome">
+        <div class="eyebrow">Take-home</div>
+        <h2>Before Meet 5</h2>
+
+        <div style="display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 0.5rem;">
+          <div class="muted tiny">Your progress</div>
+          <div class="mono tiny progress-label">0 / 5</div>
+        </div>
+        <div class="progress" data-checklist-progress="meet-4-take-home" style="margin-bottom: 1rem;"><span style="width:0%"></span></div>
+
+        <div class="panel">
+          <label class="check">
+            <input type="checkbox" data-checklist="meet-4-take-home" data-key="green" />
+            <span class="check-text">Your fork of <code>StakingProtocol.exercise.sol</code> compiles and tests pass.</span>
+          </label>
+          <label class="check">
+            <input type="checkbox" data-checklist="meet-4-take-home" data-key="pr" />
+            <span class="check-text">Pushed to your branch + opened a PR for peer review (per Rule 2).</span>
+          </label>
+          <label class="check">
+            <input type="checkbox" data-checklist="meet-4-take-home" data-key="explain" />
+            <span class="check-text">Can explain the <code>updateReward</code> modifier without notes.</span>
+          </label>
+          <label class="check">
+            <input type="checkbox" data-checklist="meet-4-take-home" data-key="extra-test" />
+            <span class="check-text">(Stretch) Wrote one new test for <code>setRewardRate</code> mid-period.</span>
+          </label>
+          <label class="check">
+            <input type="checkbox" data-checklist="meet-4-take-home" data-key="economics" />
+            <span class="check-text">Read <a href="../../tracks/base/docs/week-3/meet-5-defi-tokenomics.md">meet-5-defi-tokenomics.md</a> intro (next session).</span>
+          </label>
+        </div>
+
+        <div class="callout warn" style="margin-top: 1.5rem;">
+          <div class="callout-label">Common gotchas</div>
+          <ul class="prose" style="margin: 0.4rem 0 0;">
+            <li><strong>Division before multiplication</strong> — <code>(elapsed * rewardRate * PRECISION) / totalStaked</code>, not the other order. Otherwise you truncate to zero.</li>
+            <li><strong>Forgot <code>updateReward</code></strong> on <code>setRewardRate</code> — historical accrual leaks at the new rate. Audit finding.</li>
+            <li><strong>Reentrancy on reward token</strong> — only an issue if the reward token has hooks. We assume it doesn't, but <code>nonReentrant</code> protects us anyway.</li>
+            <li><strong>Test for time-zero</strong> — if you don't <code>vm.warp</code>, <code>earned()</code> returns 0 and you'll think your code is broken when it's not.</li>
+          </ul>
+        </div>
+      </section>
+
+      <footer class="session-footer">
+        <a href="meet-3.html" class="btn btn-ghost">← Meet 3</a>
+        <button class="btn btn-primary" data-mark-complete="4">Mark this session complete</button>
+        <a href="meet-5.html" class="btn btn-primary">Next: Meet 5 — Tokenomics →</a>
+      </footer>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-core.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+  <script src="../assets/main.js"></script>
+  <script>
+    // ----- Accumulator simulator -----
+    (function () {
+      const ids = ["simT", "simR", "simA", "simTS"];
+      const $ = (id) => document.getElementById(id);
+      function recalc() {
+        const t = +$("simT").value;
+        const r = +$("simR").value;
+        const a = +$("simA").value;
+        let ts = +$("simTS").value;
+        // Ensure totalStaked >= alice
+        if (ts < a) { ts = a; $("simTS").value = a; }
+        $("simTLabel").textContent = t + " s (" + (t / 3600).toFixed(2) + " hr)";
+        $("simRLabel").textContent = r.toFixed(3);
+        $("simALabel").textContent = BBB.fmt(a) + " tokens";
+        $("simTSLabel").textContent = BBB.fmt(ts) + " tokens";
+
+        // rewardPerToken = elapsed * rate / totalStaked  (in real tokens)
+        const rpt = ts > 0 ? (t * r) / ts : 0;
+        // earned = alice * rpt
+        const earned = a * rpt;
+        const share = ts > 0 ? (a / ts) * 100 : 0;
+
+        $("simRPT").textContent = rpt.toFixed(6);
+        $("simEarned").textContent = earned.toFixed(4);
+        $("simShare").textContent = share.toFixed(1) + "%";
+      }
+      ids.forEach((id) => $(id).addEventListener("input", recalc));
+      recalc();
+    })();
+  </script>
+
+  <style>
+    @media (min-width: 768px) {
+      .grid-2-md { grid-template-columns: repeat(2, 1fr) !important; }
+    }
+  </style>
+</body>
+</html>

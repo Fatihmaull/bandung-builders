@@ -1,0 +1,605 @@
+<!doctype html>
+<html lang="en" data-track="base">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Meet 6 — Frontend Connection · Bandung Base Builders</title>
+  <link rel="stylesheet" href="../assets/styles.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a href="index.html" class="topbar-brand"><span class="topbar-brand-mark">B³</span><span>Bandung Base Builders</span></a>
+      <nav>
+        <button class="nav-toggle">☰</button>
+        <a href="meet-5.html" class="btn btn-ghost btn-sm">← Meet 5</a>
+        <a href="../index.html" class="btn btn-ghost btn-sm">Tracks</a>
+        <a href="index.html" class="btn btn-ghost btn-sm">Home</a>
+        <a href="meet-7.html" class="btn btn-primary btn-sm">Next: Meet 7 →</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="mobile-nav">
+    <a href="#hero">Overview</a>
+    <a href="#agenda">Agenda</a>
+    <a href="#stack">The 3-layer stack</a>
+    <a href="#block-a">Block A — Providers</a>
+    <a href="#block-b">Block B — Read hooks</a>
+    <a href="#block-c">Block C — Write hooks</a>
+    <a href="#tx-anim" class="depth-1">Tx lifecycle animator</a>
+    <a href="#exercise">Exercise — useApproveStake</a>
+    <a href="#takehome">Take-home</a>
+  </div>
+
+  <div class="page-shell">
+    <aside class="sidenav">
+      <div class="sidenav-title">Meet 6 · Sections</div>
+      <a href="#hero">Overview</a>
+      <a href="#agenda">Agenda</a>
+      <a href="#stack">The stack</a>
+      <a href="#block-a">Block A — Providers</a>
+      <a href="#block-b">Block B — Read hooks</a>
+      <a href="#block-c">Block C — Write hooks</a>
+      <a href="#tx-anim" class="depth-1">Tx animator</a>
+      <a href="#exercise">Exercise</a>
+      <a href="#takehome">Take-home</a>
+    </aside>
+
+    <main>
+      <section class="hero" id="hero">
+        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+          <span class="badge tech">Technical</span>
+          <span class="badge">Week 3 · Meet 6</span>
+          <span class="badge">Duration 2.5 hr</span>
+        </div>
+        <h1>Frontend Connection — Viem, Wagmi &amp; RainbowKit</h1>
+        <p class="lead">
+          Wire the dApp end-to-end. Connect wallet → read on-chain state → write a transaction
+          → handle every state of its lifecycle. No magic.
+        </p>
+
+        <div style="display: grid; grid-template-columns: 1fr; gap: 1rem; margin-top: 2.5rem;" class="grid-2-md">
+          <div class="panel">
+            <div class="panel-title">Learning objectives</div>
+            <ol class="prose" style="margin: 0;">
+              <li>Explain the Viem / Wagmi / RainbowKit responsibility split.</li>
+              <li>Configure providers in the correct nesting order.</li>
+              <li>Read on-chain state with <code>useReadContract</code> via a custom hook.</li>
+              <li>Submit a transaction with <code>useWriteContract</code>, then wait for confirmation.</li>
+              <li>Author <code>useApproveStake</code> on your own (homework graded peer-to-peer).</li>
+            </ol>
+          </div>
+          <div class="panel">
+            <div class="panel-title">Companion docs &amp; code</div>
+            <ul class="prose" style="margin: 0;">
+              <li><a href="../../tracks/base/docs/week-3/meet-6-frontend-integration.md">meet-6-frontend-integration.md</a></li>
+              <li><a href="../frontend/src/app/providers.tsx">frontend/src/app/providers.tsx</a></li>
+              <li><a href="../frontend/src/lib/wagmi.ts">frontend/src/lib/wagmi.ts</a></li>
+              <li><a href="../frontend/src/hooks/">frontend/src/hooks/</a></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="block" id="agenda">
+        <div class="eyebrow">Agenda · 150 min</div>
+        <h2>How the 2.5 hours unfold</h2>
+        <div class="prose">
+          <table>
+            <thead><tr><th>Time</th><th>Block</th></tr></thead>
+            <tbody>
+              <tr><td class="mono">00:00–00:15</td><td>Frame: the 3-layer stack</td></tr>
+              <tr><td class="mono">00:15–00:55</td><td>Block A — providers + WalletConnect projectId</td></tr>
+              <tr><td class="mono">00:55–01:25</td><td>Block B — read hooks (live-code <code>useEarnedRewards</code> ground-up)</td></tr>
+              <tr><td class="mono">01:25–01:35</td><td>Break</td></tr>
+              <tr><td class="mono">01:35–02:05</td><td>Block C — write hooks + tx lifecycle</td></tr>
+              <tr><td class="mono">02:05–02:25</td><td>Exercise: implement <code>useApproveStake</code></td></tr>
+              <tr><td class="mono">02:25–02:30</td><td>Wrap-up</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- STACK -->
+      <section class="block" id="stack">
+        <div class="eyebrow">Frame · 15 min</div>
+        <h2>The 3-layer stack — click to highlight</h2>
+
+        <div class="panel panel-lg">
+          <div id="stackDiagram" style="display: grid; grid-template-columns: 1fr; gap: 0.7rem;">
+            <button class="evm-box" data-stack="rk" style="cursor: pointer; text-align: left;">
+              <div class="muted tiny">UI / WALLET CONNECTOR</div>
+              <strong>RainbowKit</strong>
+              <p class="muted tiny" style="margin: 0.3rem 0 0;">Pretty connect-wallet button + chain switcher.</p>
+            </button>
+            <div class="evm-arrow">↓</div>
+            <button class="evm-box" data-stack="wagmi" style="cursor: pointer; text-align: left;">
+              <div class="muted tiny">REACT HOOKS LAYER</div>
+              <strong>Wagmi</strong>
+              <p class="muted tiny" style="margin: 0.3rem 0 0;">Cache, state, account, <code>useReadContract</code>, <code>useWriteContract</code>.</p>
+            </button>
+            <div class="evm-arrow">↓</div>
+            <button class="evm-box" data-stack="viem" style="cursor: pointer; text-align: left;">
+              <div class="muted tiny">RPC / ENCODING LAYER</div>
+              <strong>Viem</strong>
+              <p class="muted tiny" style="margin: 0.3rem 0 0;">ABI encoder/decoder, JSON-RPC client, formatting (<code>formatUnits</code>, <code>parseUnits</code>).</p>
+            </button>
+            <div class="evm-arrow">↓</div>
+            <button class="evm-box" data-stack="rpc" style="cursor: pointer; text-align: left;">
+              <div class="muted tiny">REMOTE</div>
+              <strong>Base Sepolia RPC</strong>
+              <p class="muted tiny" style="margin: 0.3rem 0 0;"><code>https://sepolia.base.org</code></p>
+            </button>
+          </div>
+          <div class="callout" id="stackExplain" style="margin-top: 1rem;">
+            <div class="callout-label">Click a layer above</div>
+            <p class="prose" style="margin: 0;">Click any of the 4 boxes to see what that layer does for you, and what you do NOT do because of it.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- BLOCK A -->
+      <section class="block" id="block-a">
+        <div class="eyebrow">Block A · 40 min</div>
+        <h2>Providers (order matters)</h2>
+
+<pre><code class="language-tsx">// frontend/src/app/providers.tsx
+"use client";
+
+import "@rainbow-me/rainbowkit/styles.css";
+
+import { ReactNode, useState } from "react";
+import { WagmiProvider } from "wagmi";
+import { RainbowKitProvider } from "@rainbow-me/rainbowkit";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+import { wagmiConfig } from "@/lib/wagmi";
+
+export function Providers({ children }: { children: ReactNode }) {
+  const [queryClient] = useState(() => new QueryClient());
+
+  return (
+    &lt;WagmiProvider config={wagmiConfig}&gt;
+      &lt;QueryClientProvider client={queryClient}&gt;
+        &lt;RainbowKitProvider&gt;{children}&lt;/RainbowKitProvider&gt;
+      &lt;/QueryClientProvider&gt;
+    &lt;/WagmiProvider&gt;
+  );
+}</code></pre>
+
+        <div class="callout warn">
+          <div class="callout-label">Order matters</div>
+          <p class="prose" style="margin: 0;">
+            Wagmi → TanStack Query → RainbowKit. RainbowKit depends on Query (for tx cache),
+            which depends on Wagmi (for config). Invert the order and you get cryptic
+            "QueryClient not found" errors at runtime.
+          </p>
+        </div>
+
+        <h3>The Wagmi config</h3>
+<pre><code class="language-ts">// frontend/src/lib/wagmi.ts
+import { getDefaultConfig } from "@rainbow-me/rainbowkit";
+import { baseSepolia } from "wagmi/chains";
+
+const projectId = process.env.NEXT_PUBLIC_WC_PROJECT_ID;
+if (!projectId) {
+  throw new Error(
+    "Missing NEXT_PUBLIC_WC_PROJECT_ID. Get one at https://cloud.walletconnect.com."
+  );
+}
+
+export const wagmiConfig = getDefaultConfig({
+  appName: "Bandung Base Builders",
+  projectId,
+  chains: [baseSepolia],
+  ssr: true,
+});</code></pre>
+
+        <div class="callout">
+          <div class="callout-label">Pinned to <code>baseSepolia</code></div>
+          <p class="prose" style="margin: 0;">
+            We pass a one-element array. That guarantees the user cannot accidentally try to
+            use mainnet. RainbowKit will offer a "switch network" prompt if their wallet is on
+            anything else.
+          </p>
+        </div>
+      </section>
+
+      <!-- BLOCK B -->
+      <section class="block" id="block-b">
+        <div class="eyebrow">Block B · 30 min</div>
+        <h2>Read hooks: <code>useEarnedRewards</code></h2>
+
+<pre><code class="language-ts">// frontend/src/hooks/useEarnedRewards.ts
+import { useAccount, useReadContract } from "wagmi";
+import { STAKING_CONTRACT_ADDRESS, stakingAbi } from "@/lib/contracts";
+
+export function useEarnedRewards() {
+  const { address } = useAccount();
+
+  return useReadContract({
+    address: STAKING_CONTRACT_ADDRESS,
+    abi: stakingAbi,
+    functionName: "earned",
+    args: address ? [address] : undefined,
+    query: { enabled: Boolean(address), refetchInterval: 6_000 },
+  });
+}</code></pre>
+
+        <h3>What just happened, line by line</h3>
+        <div class="prose">
+          <ul>
+            <li><strong><code>useAccount</code></strong> pulls the connected wallet from Wagmi's React context.</li>
+            <li><strong>Reads disabled before connect</strong> via <code>query.enabled</code>. Don't fire RPC calls into the void.</li>
+            <li><strong><code>refetchInterval</code></strong> — poll every 6 s. Reward accrues in time; polling makes "earned" tick up on screen.</li>
+            <li><strong>Return value</strong> is the standard TanStack <code>{ data, isLoading, isError, error, refetch }</code>.</li>
+          </ul>
+        </div>
+
+        <div class="callout warn">
+          <div class="callout-label">BigInt rendering</div>
+          <p class="prose" style="margin: 0;">
+            <code>data</code> is a <code>bigint</code> for uint256 returns. Format with
+            <code>formatUnits(data, 18)</code> from <code>viem</code> before showing the user.
+            React will throw if you render a bare bigint.
+          </p>
+        </div>
+      </section>
+
+      <!-- BLOCK C -->
+      <section class="block" id="block-c">
+        <div class="eyebrow">Block C · 30 min</div>
+        <h2>Write hooks &amp; the transaction lifecycle</h2>
+
+<pre><code class="language-ts">// frontend/src/hooks/useStakeTokens.ts
+import { useCallback } from "react";
+import { useWriteContract, useWaitForTransactionReceipt } from "wagmi";
+import { STAKING_CONTRACT_ADDRESS, stakingAbi } from "@/lib/contracts";
+
+export function useStakeTokens() {
+  const {
+    writeContract, data: hash,
+    isPending, error: writeError, reset,
+  } = useWriteContract();
+
+  const {
+    isLoading: isConfirming, isSuccess: isConfirmed,
+    error: receiptError,
+  } = useWaitForTransactionReceipt({ hash });
+
+  const stake = useCallback((amount: bigint) => {
+    writeContract({
+      address: STAKING_CONTRACT_ADDRESS,
+      abi: stakingAbi,
+      functionName: "stake",
+      args: [amount],
+    });
+  }, [writeContract]);
+
+  return {
+    stake, hash,
+    isPending, isConfirming, isConfirmed,
+    error: writeError ?? receiptError, reset,
+  };
+}</code></pre>
+
+        <h3 id="tx-anim">Interactive · The transaction lifecycle in real time</h3>
+        <div class="panel panel-lg">
+          <p class="muted tiny" style="margin: 0 0 0.8rem;">
+            Click "Submit". Watch the states transition. This is exactly what the user sees
+            in their UI when they click "Stake" — every step has a name; every state needs UI.
+          </p>
+
+          <div class="tx-states" id="txStates">
+            <div class="tx-state" data-txstate="idle">idle</div>
+            <div class="tx-state" data-txstate="pending">isPending — wallet open</div>
+            <div class="tx-state" data-txstate="confirming">isConfirming — in mempool</div>
+            <div class="tx-state" data-txstate="confirmed">isConfirmed ✓</div>
+          </div>
+
+          <div style="display: flex; gap: 0.6rem; align-items: center; margin-top: 1rem; flex-wrap: wrap;">
+            <button class="btn btn-primary" id="txStart">Submit "stake(100e18)"</button>
+            <button class="btn btn-ghost" id="txError">Simulate revert</button>
+            <button class="btn btn-ghost" id="txReset">Reset</button>
+            <div class="mono tiny muted" id="txOut" style="margin-left: auto;">click to start</div>
+          </div>
+
+          <div class="callout" style="margin-top: 1rem;">
+            <div class="callout-label">UI implication</div>
+            <p class="prose" style="margin: 0;">
+              You need four UI states minimum: a default button, a disabled-with-spinner button
+              ("Waiting for wallet…"), a disabled-with-spinner ("Confirming on Base…"), and a
+              success state. Plus an error toast that doesn't dismiss too quickly.
+            </p>
+          </div>
+        </div>
+
+        <h3>Hook anatomy — the 5 contract surfaces of our dApp</h3>
+        <div class="prose">
+          <table>
+            <thead><tr><th>Hook</th><th>Reads / writes</th><th>Function</th></tr></thead>
+            <tbody>
+              <tr><td><code>useStakingBalance</code></td><td>Read</td><td><code>balanceOf(address)</code></td></tr>
+              <tr><td><code>useEarnedRewards</code></td><td>Read · polls</td><td><code>earned(address)</code></td></tr>
+              <tr><td><code>useStakeTokens</code></td><td>Write</td><td><code>stake(uint256)</code></td></tr>
+              <tr><td><code>useWithdraw</code></td><td>Write</td><td><code>withdraw(uint256)</code></td></tr>
+              <tr><td><code>useClaimRewards</code></td><td>Write</td><td><code>getReward()</code></td></tr>
+              <tr><td><code>useApproveStake</code> 👀</td><td>Write · <strong>exercise</strong></td><td><code>approve(spender, uint256)</code> on staking token</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- EXERCISE -->
+      <section class="block" id="exercise">
+        <div class="eyebrow">Exercise · 20 min</div>
+        <h2><code>useApproveStake</code> — your turn</h2>
+
+        <div class="prose">
+          <p>
+            Every <code>stake()</code> transaction will revert with <code>ERC20InsufficientAllowance</code>
+            unless the user has first <em>approved</em> the staking contract to pull their tokens.
+            That's a separate transaction. Today you implement the hook for it.
+          </p>
+          <p>Use <code>useStakeTokens.ts</code> as the model. Differences:</p>
+          <ul>
+            <li>The contract you write to is the <strong>staking token</strong>, not <code>StakingProtocol</code>.</li>
+            <li>The function is <code>approve(spender, amount)</code> with spender = <code>STAKING_CONTRACT_ADDRESS</code>.</li>
+            <li>You'll need <code>useReadContract</code> to check current allowance before showing the approve button.</li>
+          </ul>
+        </div>
+
+        <h3>Scaffold — fill in the blanks</h3>
+<pre><code class="language-ts">"use client";
+
+import { useCallback } from "react";
+import { useAccount, useReadContract, useWriteContract, useWaitForTransactionReceipt } from "wagmi";
+import { erc20Abi, maxUint256 } from "viem";
+import { STAKING_CONTRACT_ADDRESS, STAKING_TOKEN_ADDRESS } from "@/lib/contracts";
+
+export function useApproveStake() {
+  const { address } = useAccount();
+
+  const { data: allowance, refetch: refetchAllowance } = useReadContract({
+    // TODO 1: which contract?
+    abi: erc20Abi,
+    // TODO 2: which function?
+    args: address ? [address, STAKING_CONTRACT_ADDRESS] : undefined,
+    query: { enabled: Boolean(address) },
+  });
+
+  const { writeContract, data: hash, isPending, error: writeError, reset } = useWriteContract();
+  const { isLoading: isConfirming, isSuccess: isConfirmed, error: receiptError } =
+    useWaitForTransactionReceipt({ hash });
+
+  const approve = useCallback((amount: bigint = maxUint256) =&gt; {
+    writeContract({
+      // TODO 3
+      abi: erc20Abi,
+      functionName: "approve",
+      // TODO 4
+    });
+  }, [writeContract]);
+
+  // Refetch allowance after confirmation
+  // TODO 5: useEffect that calls refetchAllowance when isConfirmed flips true.
+
+  return {
+    approve, allowance,
+    hash, isPending, isConfirming, isConfirmed,
+    error: writeError ?? receiptError, reset, refetchAllowance,
+  };
+}</code></pre>
+
+        <div style="display: flex; align-items: center; gap: 0.6rem;">
+          <button class="btn btn-ghost" data-reveal-trigger="useApproveSolution" data-show-label="Reveal reference solution" data-hide-label="Hide solution"></button>
+        </div>
+
+        <div id="useApproveSolution">
+<pre><code class="language-ts">"use client";
+
+import { useCallback, useEffect } from "react";
+import {
+  useAccount, useReadContract,
+  useWriteContract, useWaitForTransactionReceipt,
+} from "wagmi";
+import { erc20Abi, maxUint256 } from "viem";
+import { STAKING_CONTRACT_ADDRESS, STAKING_TOKEN_ADDRESS } from "@/lib/contracts";
+
+export function useApproveStake() {
+  const { address } = useAccount();
+
+  const { data: allowance, refetch: refetchAllowance } = useReadContract({
+    address: STAKING_TOKEN_ADDRESS,             // TODO 1
+    abi: erc20Abi,
+    functionName: "allowance",                  // TODO 2
+    args: address ? [address, STAKING_CONTRACT_ADDRESS] : undefined,
+    query: { enabled: Boolean(address) },
+  });
+
+  const { writeContract, data: hash, isPending, error: writeError, reset } = useWriteContract();
+  const { isLoading: isConfirming, isSuccess: isConfirmed, error: receiptError } =
+    useWaitForTransactionReceipt({ hash });
+
+  const approve = useCallback((amount: bigint = maxUint256) =&gt; {
+    writeContract({
+      address: STAKING_TOKEN_ADDRESS,           // TODO 3
+      abi: erc20Abi,
+      functionName: "approve",
+      args: [STAKING_CONTRACT_ADDRESS, amount], // TODO 4
+    });
+  }, [writeContract]);
+
+  useEffect(() =&gt; {                             // TODO 5
+    if (isConfirmed) refetchAllowance();
+  }, [isConfirmed, refetchAllowance]);
+
+  return {
+    approve, allowance,
+    hash, isPending, isConfirming, isConfirmed,
+    error: writeError ?? receiptError, reset, refetchAllowance,
+  };
+}</code></pre>
+
+          <div class="callout">
+            <div class="callout-label">Why <code>maxUint256</code> as default?</div>
+            <p class="prose" style="margin: 0;">
+              UX: one approve covers the entire user lifetime. Without it, every stake = two
+              transactions. Trade-off: a buggy contract can drain the entire balance. For
+              <em>this</em> protocol — audited test code, no admin-set token — the UX win is worth it.
+            </p>
+          </div>
+        </div>
+
+        <div class="callout warn" style="margin-top: 1.5rem;">
+          <div class="callout-label">Gotchas you will hit</div>
+          <ul class="prose" style="margin: 0.4rem 0 0;">
+            <li><strong>Reading before connect</strong> — guard with <code>query.enabled</code>.</li>
+            <li><strong>BigInt math in JSX</strong> — never <code>{amount + fee}</code> on bigints inside JSX without <code>.toString()</code>.</li>
+            <li><strong>Stale allowance after approve</strong> — must <code>refetchAllowance()</code> on <code>isConfirmed</code>, otherwise the stake button stays disabled.</li>
+            <li><strong>Network mismatch</strong> — RainbowKit prompts; trust it.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- TAKE-HOME -->
+      <section class="block" id="takehome">
+        <div class="eyebrow">Take-home</div>
+        <h2>Before Meet 7</h2>
+
+        <div style="display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 0.5rem;">
+          <div class="muted tiny">Your progress</div>
+          <div class="mono tiny progress-label">0 / 5</div>
+        </div>
+        <div class="progress" data-checklist-progress="meet-6-take-home" style="margin-bottom: 1rem;"><span style="width:0%"></span></div>
+
+        <div class="panel">
+          <label class="check">
+            <input type="checkbox" data-checklist="meet-6-take-home" data-key="approve-pr" />
+            <span class="check-text"><code>useApproveStake</code> implemented + tests pass on testnet.</span>
+          </label>
+          <label class="check">
+            <input type="checkbox" data-checklist="meet-6-take-home" data-key="stake-ui" />
+            <span class="check-text">UI shows all 4 tx states: idle → pending → confirming → confirmed.</span>
+          </label>
+          <label class="check">
+            <input type="checkbox" data-checklist="meet-6-take-home" data-key="error" />
+            <span class="check-text">Error toast/banner implemented and tested by faking a revert.</span>
+          </label>
+          <label class="check">
+            <input type="checkbox" data-checklist="meet-6-take-home" data-key="env" />
+            <span class="check-text"><code>.env.local</code> populated with deployed contract address + WC project ID.</span>
+          </label>
+          <label class="check">
+            <input type="checkbox" data-checklist="meet-6-take-home" data-key="pitch" />
+            <span class="check-text">Skim <a href="../../tracks/base/docs/week-4/meet-7-pitch-deck.md">meet-7-pitch-deck.md</a> for next session.</span>
+          </label>
+        </div>
+      </section>
+
+      <footer class="session-footer">
+        <a href="meet-5.html" class="btn btn-ghost">← Meet 5</a>
+        <button class="btn btn-primary" data-mark-complete="6">Mark this session complete</button>
+        <a href="meet-7.html" class="btn btn-primary">Next: Meet 7 — Pitching →</a>
+      </footer>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-core.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+  <script src="../assets/main.js"></script>
+  <script>
+    // ----- Stack diagram highlighter -----
+    (function () {
+      const explanations = {
+        rk:    { label: "RainbowKit", body: "Polished connect-wallet modal, chain switching, and the iconic round button. Nothing you write yourself unless you want to. It calls into Wagmi underneath." },
+        wagmi: { label: "Wagmi",      body: "Account context, chain context, and the typed React hooks: useReadContract, useWriteContract, useWaitForTransactionReceipt. Provides caching via TanStack Query." },
+        viem:  { label: "Viem",       body: "Encodes your call → calldata, decodes the result. JSON-RPC client. Type-safe ABI inference. Formatting helpers (formatUnits, parseUnits). You'll touch it explicitly when formatting bigints." },
+        rpc:   { label: "RPC endpoint", body: "The actual Base Sepolia node, reached over HTTPS at https://sepolia.base.org. The end of the rainbow." },
+      };
+      document.querySelectorAll("[data-stack]").forEach((b) =>
+        b.addEventListener("click", () => {
+          document.querySelectorAll("[data-stack]").forEach((x) => x.classList.remove("active"));
+          b.classList.add("active");
+          const k = b.dataset.stack;
+          const ex = document.getElementById("stackExplain");
+          ex.querySelector(".callout-label").textContent = explanations[k].label;
+          ex.querySelector("p").textContent = explanations[k].body;
+        })
+      );
+    })();
+
+    // ----- Tx lifecycle animator -----
+    (function () {
+      const states = document.querySelectorAll("[data-txstate]");
+      const out = document.getElementById("txOut");
+      let timers = [];
+      function set(state) {
+        states.forEach((s) => {
+          s.classList.remove("active");
+          if (s.dataset.txstate === "idle") return;
+        });
+        // mark all up to current as done; current as active
+        const order = ["idle", "pending", "confirming", "confirmed"];
+        const cur = order.indexOf(state);
+        states.forEach((s) => {
+          const i = order.indexOf(s.dataset.txstate);
+          s.classList.remove("active", "done");
+          if (i < cur) s.classList.add("done");
+          if (i === cur) s.classList.add("active");
+        });
+      }
+      function clear() {
+        timers.forEach(clearTimeout);
+        timers = [];
+        states.forEach((s) => s.classList.remove("active", "done"));
+        document.querySelector('[data-txstate="idle"]').classList.add("active");
+        out.textContent = "click to start";
+      }
+      document.getElementById("txStart").addEventListener("click", () => {
+        clear();
+        out.textContent = "submitting…";
+        out.classList.add("pulse-soft");
+        set("pending");
+        out.textContent = "waiting for wallet signature";
+        timers.push(setTimeout(() => {
+          set("confirming");
+          out.textContent = "tx hash 0x9f3a… · waiting confirmations";
+        }, 1500));
+        timers.push(setTimeout(() => {
+          set("confirmed");
+          out.classList.remove("pulse-soft");
+          out.textContent = "✓ confirmed on Base Sepolia";
+        }, 4500));
+      });
+      document.getElementById("txError").addEventListener("click", () => {
+        clear();
+        set("pending");
+        out.textContent = "waiting for wallet signature";
+        out.classList.add("pulse-soft");
+        timers.push(setTimeout(() => {
+          out.classList.remove("pulse-soft");
+          out.textContent = "✗ reverted: ERC20InsufficientAllowance";
+          document.querySelector('[data-txstate="pending"]').classList.remove("active");
+          document.querySelector('[data-txstate="pending"]').style.borderColor = "rgba(239,68,68,0.5)";
+          document.querySelector('[data-txstate="pending"]').style.background = "rgba(239,68,68,0.1)";
+          document.querySelector('[data-txstate="pending"]').style.color = "#fca5a5";
+        }, 1500));
+      });
+      document.getElementById("txReset").addEventListener("click", () => {
+        clear();
+        states.forEach((s) => { s.style.borderColor = ""; s.style.background = ""; s.style.color = ""; });
+      });
+      clear();
+    })();
+  </script>
+
+  <style>
+    @media (min-width: 768px) {
+      .grid-2-md { grid-template-columns: repeat(2, 1fr) !important; }
+    }
+  </style>
+</body>
+</html>

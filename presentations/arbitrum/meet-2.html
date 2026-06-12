@@ -1,0 +1,546 @@
+<!doctype html>
+<html lang="en" data-track="arbitrum">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Meet 2 — Fundamental EVM & Foundry Setup · Bandung Arbitrum Builders</title>
+  <link rel="stylesheet" href="../assets/styles.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a href="index.html" class="topbar-brand">
+        <span class="topbar-brand-mark">B³</span>
+        <span>Bandung Arbitrum Builders</span>
+      </a>
+      <nav>
+        <button class="nav-toggle">☰ Sections</button>
+        <a href="meet-1.html" class="btn btn-ghost btn-sm">← Meet 1</a>
+        <a href="../index.html" class="btn btn-ghost btn-sm">Tracks</a>
+        <a href="index.html" class="btn btn-ghost btn-sm">Home</a>
+        <a href="meet-3.html" class="btn btn-primary btn-sm">Next: Meet 3 →</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="mobile-nav">
+    <a href="#hero">Overview</a>
+    <a href="#agenda">Agenda</a>
+    <a href="#frame">Frame · the toolbox</a>
+    <a href="#block-a">Block A — Forge, Cast, Anvil</a>
+    <a href="#block-b">Block B — foundry.toml anatomy</a>
+    <a href="#block-c">Block C — Cast field trip</a>
+    <a href="#live-cast" class="depth-1">Live cast call</a>
+    <a href="#block-d">Block D — Boilerplate walkthrough</a>
+    <a href="#takehome">Take-home checklist</a>
+  </div>
+
+  <div class="page-shell">
+    <aside class="sidenav">
+      <div class="sidenav-title">Meet 2 · Sections</div>
+      <a href="#hero">Overview</a>
+      <a href="#agenda">Agenda</a>
+      <a href="#frame">Frame</a>
+      <a href="#block-a">Block A — Toolbox</a>
+      <a href="#block-b">Block B — foundry.toml</a>
+      <a href="#block-c">Block C — Cast field trip</a>
+      <a href="#live-cast" class="depth-1">Live cast call</a>
+      <a href="#block-d">Block D — Boilerplate</a>
+      <a href="#takehome">Take-home</a>
+    </aside>
+
+    <main>
+      <!-- HERO -->
+      <section class="hero" id="hero">
+        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+          <span class="badge tech">Technical</span>
+          <span class="badge">Week 1 · Meet 2</span>
+          <span class="badge">Duration 2.5 hr</span>
+        </div>
+        <h1>Fundamental EVM &amp; Foundry Setup</h1>
+        <p class="lead">
+          By the end of this session you can use <code>forge</code>, <code>cast</code>, and
+          <code>anvil</code> with the same casual fluency you use <code>git</code> and
+          <code>npm</code>.
+        </p>
+
+        <div style="display: grid; grid-template-columns: 1fr; gap: 1rem; margin-top: 2.5rem;" class="grid-2-md">
+          <div class="panel">
+            <div class="panel-title">Learning objectives</div>
+            <ol class="prose" style="margin: 0;">
+              <li>Explain what <code>forge</code>, <code>cast</code>, and <code>anvil</code> each do.</li>
+              <li>Read and modify a <code>foundry.toml</code>, including remappings and the <code>[etherscan]</code> block.</li>
+              <li>Use <code>cast</code> to call a read function on a verified Arbitrum Sepolia contract from the terminal.</li>
+              <li>Run <code>forge test -vvv</code> and interpret the output.</li>
+            </ol>
+          </div>
+          <div class="panel">
+            <div class="panel-title">Prerequisite</div>
+            <p class="prose" style="margin: 0;">
+              Meet 1 attended. <a href="../../tracks/arbitrum/docs/00-prerequisites.md">docs/00-prerequisites.md</a> completed
+              (Foundry + Node + pnpm + wallet + faucet).
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- AGENDA -->
+      <section class="block" id="agenda">
+        <div class="eyebrow">Agenda · 150 minutes</div>
+        <h2>How the 2.5 hours unfold</h2>
+        <div class="prose">
+          <table>
+            <thead><tr><th>Time</th><th>Block</th></tr></thead>
+            <tbody>
+              <tr><td class="mono">00:00–00:10</td><td>Pre-flight: everyone runs <code>forge --version</code> and <code>node --version</code></td></tr>
+              <tr><td class="mono">00:10–00:30</td><td>Block A — the Foundry toolbox</td></tr>
+              <tr><td class="mono">00:30–01:00</td><td>Block B — anatomy of <code>foundry.toml</code></td></tr>
+              <tr><td class="mono">01:00–01:10</td><td>Stretch break</td></tr>
+              <tr><td class="mono">01:10–01:40</td><td>Block C — <code>cast</code> field trip on Arbitrum Sepolia</td></tr>
+              <tr><td class="mono">01:40–02:10</td><td>Block D — boilerplate walkthrough</td></tr>
+              <tr><td class="mono">02:10–02:30</td><td>Q&amp;A + take-home checklist</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- FRAME -->
+      <section class="block" id="frame">
+        <div class="eyebrow">Pre-flight · 10 min</div>
+        <h2>Everyone, terminals up</h2>
+        <div class="prose">
+          <p>
+            Open your terminal. Type each command, hit enter. If any fail, raise your hand —
+            we are explicitly judged on the whole cohort arriving at Block A together.
+          </p>
+        </div>
+
+        <!-- TERMINAL animation -->
+        <div class="term" id="termFrame" aria-live="polite">
+<span class="prompt">forge --version</span>
+<span class="out" id="termFrame1"></span>
+
+<span class="prompt">node --version</span>
+<span class="out" id="termFrame2"></span>
+
+<span class="prompt">pnpm --version</span>
+<span class="out" id="termFrame3"></span>
+
+<span class="prompt blink" id="termFrameCursor"> </span>
+        </div>
+        <button class="btn btn-ghost btn-sm" id="termFramePlay" style="margin-top: 0.6rem;">▶ Replay typing</button>
+      </section>
+
+      <!-- BLOCK A -->
+      <section class="block" id="block-a">
+        <div class="eyebrow">Block A · 20 min</div>
+        <h2>The Foundry toolbox</h2>
+
+        <div class="prose">
+          <table>
+            <thead><tr><th>Tool</th><th>Purpose</th></tr></thead>
+            <tbody>
+              <tr><td><code>forge</code></td><td>The build &amp; test runner. Compiles Solidity, runs unit tests, broadcasts deploy scripts.</td></tr>
+              <tr><td><code>cast</code></td><td>The Swiss Army knife. Make RPC calls, encode/decode calldata, sign messages, send txs.</td></tr>
+              <tr><td><code>anvil</code></td><td>A local Ethereum node. Forks any RPC, prints private keys for testing, fast block times.</td></tr>
+              <tr><td><code>chisel</code></td><td>A REPL for Solidity. Useful for explaining language features.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="callout">
+          <div class="callout-label">For Hardhat refugees</div>
+          <p class="prose" style="margin: 0;">
+            <code>forge</code> is your <code>npx hardhat</code>. <code>cast</code> is your
+            <code>ethers.Contract</code>. <code>anvil</code> is your <code>hardhat node</code>.
+            Written in Rust, much faster, tests are themselves Solidity (no JS context-switch),
+            and the cheatcodes are unmatched.
+          </p>
+        </div>
+
+        <h3>Live demo on projector</h3>
+<pre><code class="language-bash">forge --version
+
+cd contracts
+forge build
+ls out/StakingProtocol.sol/
+cat out/StakingProtocol.sol/StakingProtocol.json | jq '.abi[0]'</code></pre>
+
+        <div class="prose">
+          <p>
+            Notice the build output is JSON — ABI + bytecode + metadata. <strong>This is what
+            your frontend will consume.</strong> The ABI lives at
+            <code>contracts/out/&lt;file&gt;.sol/&lt;contract&gt;.json</code> and we copy the
+            <code>.abi</code> field into <code>frontend/src/abi/</code>.
+          </p>
+        </div>
+      </section>
+
+      <!-- BLOCK B -->
+      <section class="block" id="block-b">
+        <div class="eyebrow">Block B · 30 min</div>
+        <h2>Anatomy of <code>foundry.toml</code></h2>
+
+        <div class="prose">
+          <p>
+            Open <a href="../contracts/foundry.toml">contracts/foundry.toml</a> on the
+            projector. Hover the blocks below to see why each line is the way it is.
+          </p>
+        </div>
+
+        <div class="panel panel-lg">
+          <div class="panel-title">Interactive · Click any block to see the explanation</div>
+
+          <div data-tabs="toml">
+            <div style="display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1rem;">
+              <button class="badge" data-tab="profile" data-tabs-group="toml">profile.default</button>
+              <button class="badge" data-tab="rpc" data-tabs-group="toml">rpc_endpoints</button>
+              <button class="badge" data-tab="etherscan" data-tabs-group="toml">etherscan</button>
+              <button class="badge" data-tab="remappings" data-tabs-group="toml">remappings</button>
+              <button class="badge" data-tab="fmt" data-tabs-group="toml">fmt</button>
+            </div>
+
+            <div data-tabpanel="profile" data-tabs-group="toml">
+<pre><code class="language-toml">[profile.default]
+src             = "src"
+out             = "out"
+libs            = ["lib"]
+test            = "test"
+script          = "script"
+solc_version    = "0.8.24"
+optimizer       = true
+optimizer_runs  = 200
+evm_version     = "paris"</code></pre>
+              <div class="prose">
+                <ul>
+                  <li><strong><code>solc_version</code></strong> pinned to 0.8.24. Workshop policy. Unpinned <code>^0.8.x</code> produces different bytecode in 6 months.</li>
+                  <li><strong><code>optimizer_runs = 200</code></strong> — OZ default. Tells the optimizer to assume each function will be called ~200 times.</li>
+                  <li><strong><code>evm_version = "paris"</code></strong> — safest cross-OP-Stack choice.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div data-tabpanel="rpc" data-tabs-group="toml">
+<pre><code class="language-toml">[rpc_endpoints]
+arbitrum_sepolia = "${ARBITRUM_SEPOLIA_RPC_URL}"
+anvil        = "http://127.0.0.1:8545"</code></pre>
+              <div class="prose">
+                <p>
+                  These are <em>aliases</em>. Now anywhere a Foundry command wants
+                  <code>--rpc-url</code>, you can pass <code>arbitrum_sepolia</code> instead of the
+                  full URL. <code>${VAR}</code> is shell env substitution; Foundry reads from
+                  a sibling <code>.env</code> when you <code>source ../.env</code>.
+                </p>
+              </div>
+            </div>
+
+            <div data-tabpanel="etherscan" data-tabs-group="toml">
+<pre><code class="language-toml">[etherscan]
+arbitrum_sepolia = { key = "${ARBISCAN_API_KEY}", chain = 421614, url = "https://api-sepolia.arbiscan.io/api" }</code></pre>
+              <div class="prose">
+                <p>
+                  Arbiscan implements the Etherscan v2 API — same auth header. The same
+                  <code>forge verify-contract</code> flag works against Arbiscan because of
+                  this block. Without it, you'd be passing <code>--chain-id 421614
+                  --verifier-url ...</code> on every verify command.
+                </p>
+              </div>
+            </div>
+
+            <div data-tabpanel="remappings" data-tabs-group="toml">
+<pre><code class="language-toml">remappings = [
+    "@openzeppelin/=lib/openzeppelin-contracts/",
+    "forge-std/=lib/forge-std/src/",
+]</code></pre>
+              <div class="prose">
+                <p>
+                  When you write <code>import "@openzeppelin/contracts/.../ReentrancyGuard.sol";</code>
+                  Solidity does not know what <code>@openzeppelin</code> means. Remappings teach it:
+                  the prefix resolves to <code>lib/openzeppelin-contracts/</code>. Foundry's
+                  <code>forge install &lt;repo&gt;</code> clones into <code>lib/</code> automatically.
+                </p>
+              </div>
+            </div>
+
+            <div data-tabpanel="fmt" data-tabs-group="toml">
+<pre><code class="language-toml">[fmt]
+line_length         = 120
+tab_width           = 4
+quote_style         = "double"
+number_underscore   = "thousands"
+multiline_func_header = "all"</code></pre>
+              <div class="prose">
+                <p>
+                  Foundry ships its own formatter — <code>forge fmt</code>. Run it before every
+                  commit; we will enforce this in peer review.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- BLOCK C -->
+      <section class="block" id="block-c">
+        <div class="eyebrow">Block C · 30 min</div>
+        <h2><code>cast</code> field trip on Arbitrum Sepolia</h2>
+
+        <div class="prose">
+          <p>
+            The point of this block is to make Arbitrum Sepolia feel <strong>real and reachable
+            from the command line</strong> before you ever write a contract of your own.
+          </p>
+        </div>
+
+        <h3>C.1. Chain-level values</h3>
+<pre><code class="language-bash"># Current block number
+cast block-number --rpc-url https://sepolia-rollup.arbitrum.io/rpc
+
+# Chain ID, confirming we're on Arbitrum Sepolia
+cast chain-id --rpc-url https://sepolia-rollup.arbitrum.io/rpc
+# -> 421614
+
+# Gas price (in wei; divide by 1e9 for gwei)
+cast gas-price --rpc-url https://sepolia-rollup.arbitrum.io/rpc</code></pre>
+
+        <h3>C.2. Read someone else's contract</h3>
+<pre><code class="language-bash"># Total supply of WETH on Arbitrum Sepolia
+cast call \
+  0x4200000000000000000000000000000000000006 \
+  "totalSupply()(uint256)" \
+  --rpc-url https://sepolia-rollup.arbitrum.io/rpc
+
+# Your own ETH balance
+cast balance YOUR_ADDRESS --rpc-url https://sepolia-rollup.arbitrum.io/rpc</code></pre>
+
+        <div class="callout ok">
+          <div class="callout-label">Repeat after the facilitator</div>
+          <p class="prose" style="margin: 0;">
+            "With <strong>zero</strong> code, I talked to a contract on a real L2. No SDK, no
+            <code>npm install</code>, no wallet. <code>cast</code> is my fastest debugging
+            surface for the next four weeks."
+          </p>
+        </div>
+
+        <!-- LIVE CAST CALL -->
+        <h3 id="live-cast">Live cast call — from this browser</h3>
+        <div class="panel panel-lg">
+          <div class="panel-title">Real · <code>WETH9.totalSupply()</code> on Arbitrum Sepolia</div>
+          <p class="muted tiny" style="margin: 0 0 0.6rem;">
+            Address <code class="mono">0x4200000000000000000000000000000000000006</code> ·
+            Selector <code class="mono">0x18160ddd</code>
+          </p>
+          <div style="display: flex; flex-wrap: wrap; gap: 0.7rem; align-items: center;">
+            <button class="btn btn-primary" id="liveCastBtn">Call totalSupply()</button>
+            <div class="mono" id="liveCastOut">click to fetch</div>
+          </div>
+          <p class="muted tiny" style="margin-top: 0.7rem;">
+            This does <em>exactly</em> what <code>cast call</code> does — a JSON-RPC
+            <code>eth_call</code> against <code>https://sepolia-rollup.arbitrum.io/rpc</code>. The result is
+            a 256-bit number returned as hex; we decode it to a decimal big-int and divide by
+            <code>1e18</code> to format.
+          </p>
+        </div>
+
+        <h3>C.3. Decode calldata from a tx</h3>
+<pre><code class="language-bash">cast 4byte 0xa9059cbb
+# -> transfer(address,uint256)
+
+cast --calldata-decode "transfer(address,uint256)" \
+  0xa9059cbb000000000000000000000000aaaa...0064</code></pre>
+
+        <div class="callout">
+          <div class="callout-label">Muscle memory you want by end of Week 1</div>
+          <p class="prose" style="margin: 0;">
+            See calldata → know what function. We will do it constantly when something reverts
+            on testnet.
+          </p>
+        </div>
+      </section>
+
+      <!-- BLOCK D -->
+      <section class="block" id="block-d">
+        <div class="eyebrow">Block D · 30 min</div>
+        <h2>Boilerplate walkthrough</h2>
+
+        <div class="prose">
+          <p>
+            Open the project in Cursor on the projector. Each step is a stop. Click open the
+            file, narrate. Full script in
+            <a href="../../tracks/arbitrum/docs/week-1/meet-2-boilerplate-walkthrough.md">docs/week-1/meet-2-boilerplate-walkthrough.md</a>.
+          </p>
+        </div>
+
+        <h3>The repo at a glance</h3>
+<pre><code class="language-bash">bandungbuildmaterial/
+├── README.md
+├── .cursorrules               <-- this is for your AI
+├── docs/system-prompt.md      <-- mirror for non-Cursor AIs
+├── .env.example
+├── package.json               <-- pnpm workspaces config
+├── contracts/                 <-- Foundry
+├── frontend/                  <-- Next.js
+└── docs/                      <-- curriculum</code></pre>
+
+        <h3>The 10 stops on the tour</h3>
+        <div style="display: grid; grid-template-columns: 1fr; gap: 0.7rem;" class="grid-2-md">
+          <div class="panel"><strong>Stop 1 · Repo root.</strong> Monorepo, two workspaces, one curriculum folder.</div>
+          <div class="panel"><strong>Stop 2 · <code>.cursorrules</code>.</strong> The most important file from an AI-pairing perspective. Verify your agent picks it up.</div>
+          <div class="panel"><strong>Stop 3 · <code>foundry.toml</code>.</strong> See Block B above.</div>
+          <div class="panel"><strong>Stop 4 · <code>contracts/src/</code>.</strong> Reference + exercise contracts; the interface documents public surface area.</div>
+          <div class="panel"><strong>Stop 5 · <code>contracts/test/StakingProtocol.t.sol</code>.</strong> Tests are themselves Solidity, in this directory, <code>.t.sol</code> suffix.</div>
+          <div class="panel"><strong>Stop 6 · <code>contracts/script/Deploy.s.sol</code>.</strong> Forge scripts are also Solidity, with <code>vm.startBroadcast</code>.</div>
+          <div class="panel"><strong>Stop 7 · <code>frontend/package.json</code>.</strong> Versions are pinned: Wagmi v2, Viem v2, RainbowKit v2.</div>
+          <div class="panel"><strong>Stop 8 · <code>frontend/src/lib/</code>.</strong> <code>wagmi.ts</code> + <code>contracts.ts</code> — single sources of truth.</div>
+          <div class="panel"><strong>Stop 9 · <code>frontend/src/hooks/</code>.</strong> Five hooks, each does one thing.</div>
+          <div class="panel"><strong>Stop 10 · <code>frontend/src/app/</code>.</strong> Layout, providers, minimal example page.</div>
+        </div>
+
+        <div class="callout warn" style="margin-top: 1.5rem;">
+          <div class="callout-label">Wrap-up exercise · 5 min</div>
+          <p class="prose" style="margin: 0;">
+            Open your AI agent right now. Ask it: <em>"In this repo, where do contract addresses
+            live? Cite the file path."</em> If the answer is anything other than
+            <code>frontend/src/lib/contracts.ts</code>, your <code>.cursorrules</code> isn't
+            loaded. Fix it now, before you leave the room.
+          </p>
+        </div>
+      </section>
+
+      <!-- TAKE-HOME -->
+      <section class="block" id="takehome">
+        <div class="eyebrow">Closing · 20 min</div>
+        <h2>Take-home checklist</h2>
+
+        <div style="display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 0.5rem;">
+          <div class="muted tiny">Your progress</div>
+          <div class="mono tiny progress-label">0 / 6</div>
+        </div>
+        <div class="progress" data-checklist-progress="meet-2-take-home" style="margin-bottom: 1rem;"><span style="width:0%"></span></div>
+
+        <div class="panel">
+          <label class="check">
+            <input type="checkbox" data-checklist="meet-2-take-home" data-key="forge-test" />
+            <span class="check-text"><code>forge test -vvv</code> passes locally.</span>
+          </label>
+          <label class="check">
+            <input type="checkbox" data-checklist="meet-2-take-home" data-key="cast-commands" />
+            <span class="check-text">Successfully ran all <code>cast</code> commands from Block C.</span>
+          </label>
+          <label class="check">
+            <input type="checkbox" data-checklist="meet-2-take-home" data-key="toml-understood" />
+            <span class="check-text"><code>foundry.toml</code> makes sense — you can explain remappings out loud.</span>
+          </label>
+          <label class="check">
+            <input type="checkbox" data-checklist="meet-2-take-home" data-key="interface-read" />
+            <span class="check-text">Read <code>IStakingProtocol.sol</code>; can list the four user-facing functions from memory.</span>
+          </label>
+          <label class="check">
+            <input type="checkbox" data-checklist="meet-2-take-home" data-key="cursorrules" />
+            <span class="check-text">AI agent picks up <code>.cursorrules</code> (verified).</span>
+          </label>
+          <label class="check">
+            <input type="checkbox" data-checklist="meet-2-take-home" data-key="oz-reading" />
+            <span class="check-text">Watched/scheduled a deep-dive on Solidity custom errors and OZ v5 <code>Ownable</code>.</span>
+          </label>
+        </div>
+
+        <div class="callout warn" style="margin-top: 1.5rem;">
+          <div class="callout-label">Common pitfalls</div>
+          <ul class="prose" style="margin: 0.4rem 0 0;">
+            <li><strong>"<code>forge install</code> doesn't find the package"</strong> — CWD must be <code>contracts/</code>, not repo root.</li>
+            <li><strong>Remapping not found</strong> — <code>remappings.txt</code> AND <code>foundry.toml</code> must agree.</li>
+            <li><strong><code>solc_version</code> mismatch</strong> — <code>auto_detect_solc = false</code> is deliberate. Pin and stay pinned.</li>
+            <li><strong><code>source ../.env</code> on Windows native</strong> — use WSL2 or <code>$env:VAR = "..."</code>.</li>
+          </ul>
+        </div>
+      </section>
+
+      <footer class="session-footer">
+        <a href="meet-1.html" class="btn btn-ghost">← Meet 1</a>
+        <button class="btn btn-primary" data-mark-complete="2">Mark this session complete</button>
+        <a href="meet-3.html" class="btn btn-primary">Next: Meet 3 — Design Thinking →</a>
+      </footer>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-core.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+  <script src="../assets/main.js"></script>
+  <script>
+    // ----- Typing terminal animation -----
+    (function () {
+      const lines = [
+        { el: "termFrame1", text: "forge 0.2.0 (b6a3f8a 2026-04-12T00:00:00.000000000Z)" },
+        { el: "termFrame2", text: "v22.10.0" },
+        { el: "termFrame3", text: "9.12.3" },
+      ];
+      function type(el, text, delay = 18) {
+        return new Promise((resolve) => {
+          let i = 0;
+          (function tick() {
+            if (i <= text.length) { el.textContent = text.slice(0, i++); setTimeout(tick, delay); }
+            else resolve();
+          })();
+        });
+      }
+      async function play() {
+        for (const ln of lines) {
+          const el = document.getElementById(ln.el);
+          el.textContent = "";
+          await type(el, ln.text);
+          await new Promise((r) => setTimeout(r, 200));
+        }
+      }
+      document.getElementById("termFramePlay").addEventListener("click", play);
+      // Kick off automatically once when the user scrolls past it
+      let played = false;
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach((e) => { if (e.isIntersecting && !played) { played = true; play(); } });
+      });
+      obs.observe(document.getElementById("termFrame"));
+    })();
+
+    // ----- Live cast call: WETH9.totalSupply() on Arbitrum Sepolia -----
+    (function () {
+      const btn = document.getElementById("liveCastBtn");
+      const out = document.getElementById("liveCastOut");
+      const WETH = "0x4200000000000000000000000000000000000006";
+      const SELECTOR = "0x18160ddd"; // totalSupply()
+
+      function decodeUint256(hex) {
+        // hex is "0x" + up to 64 chars
+        const clean = hex.startsWith("0x") ? hex.slice(2) : hex;
+        return BigInt("0x" + (clean || "0"));
+      }
+      function formatUnits(bi, decimals) {
+        const s = bi.toString().padStart(decimals + 1, "0");
+        const whole = s.slice(0, -decimals);
+        const frac = s.slice(-decimals).replace(/0+$/, "");
+        return frac ? `${whole}.${frac}` : whole;
+      }
+
+      btn.addEventListener("click", async () => {
+        out.textContent = "Fetching…";
+        out.classList.add("pulse-soft");
+        try {
+          const result = await BBB.ethCall("https://sepolia-rollup.arbitrum.io/rpc", WETH, SELECTOR);
+          const supply = decodeUint256(result);
+          out.textContent = `${formatUnits(supply, 18)} WETH (raw: ${supply.toString()})`;
+        } catch (e) {
+          out.textContent = "Error: " + e.message;
+        } finally {
+          out.classList.remove("pulse-soft");
+        }
+      });
+    })();
+  </script>
+
+  <style>
+    @media (min-width: 768px) {
+      .grid-2-md { grid-template-columns: repeat(2, 1fr) !important; }
+    }
+  </style>
+</body>
+</html>

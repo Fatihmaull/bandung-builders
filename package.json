@@ -1,17 +1,26 @@
 {
   "name": "bandungbuildmaterial",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
-  "description": "Bandung Base L2 DeFi Staking Workshop — monorepo containing Foundry contracts, Next.js frontend, and 8-session curriculum.",
+  "description": "Bandung L2 DeFi Staking Workshop — multi-track monorepo (Base, Optimism, Arbitrum Sepolia).",
   "workspaces": [
-    "frontend"
+    "tracks/base/frontend",
+    "tracks/optimism/frontend",
+    "tracks/arbitrum/frontend"
   ],
   "scripts": {
-    "dev": "pnpm --filter ./frontend dev",
-    "build:frontend": "pnpm --filter ./frontend build",
-    "build:contracts": "cd contracts && forge build",
-    "test:contracts": "cd contracts && forge test -vvv",
-    "deploy:sepolia": "cd contracts && forge script script/Deploy.s.sol:Deploy --rpc-url $BASE_SEPOLIA_RPC_URL --broadcast --verify --etherscan-api-key $BASESCAN_API_KEY -vvvv"
+    "dev:base": "pnpm --filter @bandung/frontend-base dev",
+    "dev:optimism": "pnpm --filter @bandung/frontend-optimism dev",
+    "dev:arbitrum": "pnpm --filter @bandung/frontend-arbitrum dev",
+    "build:base": "pnpm --filter @bandung/frontend-base build",
+    "build:optimism": "pnpm --filter @bandung/frontend-optimism build",
+    "build:arbitrum": "pnpm --filter @bandung/frontend-arbitrum build",
+    "test:base": "cd tracks/base/contracts && forge test -vvv",
+    "test:optimism": "cd tracks/optimism/contracts && forge test -vvv",
+    "test:arbitrum": "cd tracks/arbitrum/contracts && forge test -vvv",
+    "build:contracts:base": "cd tracks/base/contracts && forge build",
+    "build:contracts:optimism": "cd tracks/optimism/contracts && forge build",
+    "build:contracts:arbitrum": "cd tracks/arbitrum/contracts && forge build"
   },
   "packageManager": "pnpm@9.0.0",
   "engines": {
