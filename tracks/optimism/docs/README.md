@@ -15,6 +15,7 @@ A 4-week, 8-session intensive workshop teaching tech-savvy developers in Bandung
 ### Onboarding
 
 - [`00-prerequisites.md`](./00-prerequisites.md) — Foundry + Node + pnpm install, OS-agnostic.
+- [`skills.md`](./skills.md) — Per-session prerequisites for participants to import into AI agents (Meet 1–8 + combined 2 hr).
 - [`system-prompt.md`](./system-prompt.md) — AI agent operating contract (mirror of `/.cursorrules`).
 
 ### Week 1 — Alignment & Core Architecture
