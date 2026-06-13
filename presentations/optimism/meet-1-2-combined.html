@@ -1,0 +1,597 @@
+<!doctype html>
+<html lang="en" data-track="optimism">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Meet 1 + 2 Combined — EVM, OP Sepolia &amp; Foundry · Bandung OP Builders</title>
+  <meta name="description" content="Combined 2-hour session: EVM state machine, OP Sepolia, Foundry, cast, and forge test." />
+  <link rel="stylesheet" href="../assets/styles.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a href="index.html" class="topbar-brand">
+        <span class="topbar-brand-mark">B³</span>
+        <span>Bandung OP Builders</span>
+      </a>
+      <nav>
+        <button class="nav-toggle" aria-label="Toggle sections">☰ Sections</button>
+        <div class="track-nav" data-track-nav aria-label="Switch L2 track">
+          <a href="../optimism/index.html" data-track-pill="optimism" title="OP Sepolia (default)">OP</a>
+          <a href="../base/index.html" data-track-pill="base" title="Base Sepolia">Base</a>
+          <a href="../arbitrum/index.html" data-track-pill="arbitrum" title="Arbitrum Sepolia">Arb</a>
+        </div>
+        <a href="../index.html?tracks=1" class="btn btn-ghost btn-sm">All tracks</a>
+        <a href="index.html" class="btn btn-ghost btn-sm">Home</a>
+        <a href="meet-3.html" class="btn btn-primary btn-sm">Next: Meet 3 →</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="mobile-nav" id="mobileNav">
+    <a href="#hero">Overview</a>
+    <a href="#agenda">Agenda</a>
+    <a href="#opening">Opening</a>
+    <a href="#evm">EVM state machine</a>
+    <a href="#op-stack">OP Stack &amp; OP Sepolia</a>
+    <a href="#live-block">Live block</a>
+    <a href="#rules">Rules of the Game</a>
+    <a href="#faucet">Faucet &amp; wallet</a>
+    <a href="#foundry">Foundry toolbox</a>
+    <a href="#foundry-toml">foundry.toml</a>
+    <a href="#cast">cast field trip</a>
+    <a href="#hands-on">Hands-on checkpoint</a>
+    <a href="#takehome">Take-home</a>
+  </div>
+
+  <div class="page-shell">
+    <aside class="sidenav">
+      <div class="sidenav-title">Meet 1 + 2 · Sections</div>
+      <a href="#hero">Overview</a>
+      <a href="#agenda">Agenda</a>
+      <a href="#opening">Opening</a>
+      <a href="#evm">EVM state machine</a>
+      <a href="#op-stack">OP Stack &amp; OP Sepolia</a>
+      <a href="#live-block">Live block</a>
+      <a href="#rules">Rules of the Game</a>
+      <a href="#faucet">Faucet &amp; wallet</a>
+      <a href="#foundry">Foundry toolbox</a>
+      <a href="#foundry-toml">foundry.toml</a>
+      <a href="#cast">cast field trip</a>
+      <a href="#hands-on">Hands-on checkpoint</a>
+      <a href="#takehome">Take-home</a>
+    </aside>
+
+    <main>
+      <section class="hero" id="hero">
+        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+          <span class="badge">Week 1 · Combined session</span>
+          <span class="badge tech">Meet 1 + Meet 2</span>
+          <span class="badge">Duration 2 hr</span>
+        </div>
+        <h1>EVM, OP Sepolia &amp; Foundry Setup</h1>
+        <p class="lead">
+          Today we go from concepts to the command line: understand the EVM as a deterministic
+          state machine, fund your wallet on <strong>OP Sepolia</strong>, and leave with
+          <code>forge test -vvv</code> green on your laptop.
+        </p>
+        <p class="muted tiny">
+          Repo: <code>tracks/optimism/</code> · Chain ID <code>11155420</code> ·
+          RPC <code>https://sepolia.optimism.io</code>
+        </p>
+
+        <div style="display: grid; grid-template-columns: 1fr; gap: 1rem; margin-top: 2.5rem;" class="grid-2-md">
+          <div class="panel">
+            <div class="panel-title">Learning objectives</div>
+            <ol class="prose" style="margin: 0;">
+              <li>Describe the EVM as a deterministic state machine.</li>
+              <li>Explain why we build on OP Sepolia (OP Stack / Superchain).</li>
+              <li>Use <code>forge</code>, <code>cast</code>, and read <code>foundry.toml</code>.</li>
+              <li>Call a live contract on OP Sepolia from your terminal.</li>
+              <li>Run <code>forge test -vvv</code> successfully in the workshop repo.</li>
+            </ol>
+          </div>
+          <div class="panel" style="border-color: var(--ok);">
+            <div class="panel-title">Success by end of session</div>
+            <ul class="prose" style="margin: 0;">
+              <li>You can say: <strong>EVM = deterministic state machine</strong>.</li>
+              <li>Your wallet has <strong>OP Sepolia ETH</strong>.</li>
+              <li><code>forge test -vvv</code> is <strong>green</strong> on your machine.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="block" id="agenda">
+        <div class="eyebrow">Agenda · 120 minutes</div>
+        <h2>How the 2 hours unfold</h2>
+        <div class="prose">
+          <table>
+            <thead><tr><th>Time</th><th>Topic</th></tr></thead>
+            <tbody>
+              <tr><td class="mono">0:00–0:05</td><td>Opening — today's goals</td></tr>
+              <tr><td class="mono">0:05–0:20</td><td>EVM + OP Stack + live block</td></tr>
+              <tr><td class="mono">0:20–0:30</td><td>Rules of the Game + Superchain Faucet</td></tr>
+              <tr><td class="mono">0:30–0:45</td><td>Foundry toolbox + <code>foundry.toml</code></td></tr>
+              <tr><td class="mono">0:45–1:10</td><td><code>cast</code> field trip on OP Sepolia</td></tr>
+              <tr><td class="mono">1:10–1:50</td><td>Hands-on: <code>forge install</code> + <code>forge test</code></td></tr>
+              <tr><td class="mono">1:50–2:00</td><td>Recap + take-home homework</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="block" id="opening">
+        <div class="eyebrow">Opening</div>
+        <h2>From Web3 overview to builder setup</h2>
+        <div class="prose">
+          <p>
+            Last week: the big picture of Web3. <strong>Today:</strong> the EVM, OP Sepolia,
+            and your Foundry terminal. By the end of these two hours your wallet holds testnet
+            ETH and your tests pass locally.
+          </p>
+          <p>
+            Work from <code>tracks/optimism/</code> in the
+            <a href="https://github.com/Fatihmaull/bandung-builders" target="_blank" rel="noopener">bandung-builders</a>
+            monorepo. Follow along on your laptop whenever you see terminal commands.
+          </p>
+        </div>
+      </section>
+
+      <section class="block" id="evm">
+        <div class="eyebrow">Meet 1 essentials</div>
+        <h2>The EVM as a deterministic state machine</h2>
+        <div class="prose">
+          <p>
+            The Ethereum Virtual Machine is a global state machine. Same starting state + same
+            input → every node computes the same next state. That determinism is the foundation
+            of everything we build.
+          </p>
+          <pre><code>Transactions → EVM (deterministic) → new state</code></pre>
+        </div>
+
+        <div class="panel panel-lg">
+          <div class="panel-title">Interactive · One transaction at a time</div>
+          <div class="evm-stage">
+            <div class="evm-box" id="evmBeforeBox">
+              <div class="muted tiny">STATE @ block N</div>
+              <div class="mono" style="font-size: 0.9rem; line-height: 1.7; margin-top: 0.3rem;">
+                Alice:   <span id="evmAliceBefore">100</span> ETH<br/>
+                Bob:     <span id="evmBobBefore">50</span> ETH<br/>
+                Counter: <span id="evmCounterBefore">0</span>
+              </div>
+            </div>
+            <div class="evm-arrow">→</div>
+            <div class="evm-box" id="evmAfterBox">
+              <div class="muted tiny">STATE @ block N+1</div>
+              <div class="mono" style="font-size: 0.9rem; line-height: 1.7; margin-top: 0.3rem;">
+                Alice:   <span id="evmAliceAfter">100</span> ETH<br/>
+                Bob:     <span id="evmBobAfter">50</span> ETH<br/>
+                Counter: <span id="evmCounterAfter">0</span>
+              </div>
+            </div>
+          </div>
+          <div style="margin-top: 1rem; display: flex; flex-wrap: wrap; gap: 0.5rem;">
+            <button class="btn btn-ghost btn-sm" data-evm-tx="transfer">Tx: Alice → Bob (10 ETH)</button>
+            <button class="btn btn-ghost btn-sm" data-evm-tx="increment">Tx: Counter += 1</button>
+            <button class="btn btn-ghost btn-sm" data-evm-tx="revert">Tx: Reverts</button>
+            <button class="btn btn-ghost btn-sm" data-evm-tx="reset">Reset</button>
+          </div>
+        </div>
+
+        <div class="callout ok" style="margin-top: 1.5rem;">
+          <div class="callout-label">Three sentences to remember</div>
+          <ol class="prose" style="margin: 0.5rem 0 0;">
+            <li><strong>EVM = deterministic state machine</strong> — same input → same output on every node.</li>
+            <li><strong>Gas = compute meter</strong> — storage is expensive, calldata is cheap.</li>
+            <li><strong>Accounts:</strong> EOA (private key) vs Contract (code + storage).</li>
+          </ol>
+        </div>
+
+        <p class="prose muted tiny" style="margin-top: 1rem;">
+          Solidity compiles to opcodes. Every line you write maps to gas.
+        </p>
+      </section>
+
+      <section class="block" id="op-stack">
+        <div class="eyebrow">Why OP Sepolia?</div>
+        <h2>Rollups &amp; the OP Stack</h2>
+        <div class="prose">
+          <p>
+            A rollup executes transactions off L1 with cheap fees, then posts a summary back to
+            Ethereum. L1 remains the security anchor.
+          </p>
+        </div>
+        <div class="mermaid">
+flowchart LR
+  users["L2 Users"] -->|"transactions"| seq["L2 Sequencer (OP Stack)"]
+  seq -->|"execute"| l2exec["Cheap L2 execution"]
+  l2exec -->|"state root"| l1["L1 Rollup Contract"]
+        </div>
+        <div class="prose">
+          <p><strong>OP Sepolia</strong> is the testnet for the OP Stack — the same framework behind Base, Mode, and Zora. Our cohort default because:</p>
+          <ul>
+            <li><strong>EVM-equivalent</strong> — same Solidity, Foundry, and Wagmi as Ethereum.</li>
+            <li><strong>Superchain Faucet</strong> — GitHub login at <a href="https://console.optimism.io/faucet" target="_blank" rel="noopener">console.optimism.io/faucet</a>, no mainnet ETH required.</li>
+            <li><strong>Chain ID</strong> <code>11155420</code> · RPC <code>https://sepolia.optimism.io</code></li>
+          </ul>
+          <table>
+            <thead><tr><th>Property</th><th>Ethereum L1</th><th>OP Sepolia</th></tr></thead>
+            <tbody>
+              <tr><td>Chain ID</td><td class="mono">11155111</td><td class="mono">11155420</td></tr>
+              <tr><td>Block time</td><td>~12 s</td><td>~2 s</td></tr>
+              <tr><td>Typical fee</td><td>$0.30–$50</td><td>$0.001–$0.05</td></tr>
+              <tr><td>Stack</td><td>—</td><td>OP Stack (Superchain)</td></tr>
+            </tbody>
+          </table>
+          <p class="muted tiny">Base is a branded OP Stack chain. We learn on the parent stack first.</p>
+        </div>
+      </section>
+
+      <section class="block" id="live-block">
+        <div class="eyebrow">Live demo</div>
+        <h2>Read OP Sepolia from the network</h2>
+        <div class="prose">
+          <p>The block number below comes from a real JSON-RPC call. Every full node worldwide agrees on this number — that's determinism.</p>
+        </div>
+        <div class="panel">
+          <div class="panel-title">Fetch current block number</div>
+          <div style="display: flex; flex-wrap: wrap; gap: 0.7rem; align-items: center;">
+            <button class="btn btn-primary" id="fetchBlockBtn">Fetch block number</button>
+            <div class="mono" id="fetchBlockOut">—</div>
+          </div>
+        </div>
+<pre><code class="language-bash">cast block-number --rpc-url https://sepolia.optimism.io</code></pre>
+      </section>
+
+      <section class="block" id="rules">
+        <div class="eyebrow">Cohort contract</div>
+        <h2>Rules of the Game</h2>
+        <div class="prose">
+          <p>Five non-negotiable habits for the next four weeks. Read, sign, submit to the cohort group.</p>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr; gap: 1rem;" class="grid-2-lg">
+          <div class="panel">
+            <div class="panel-title"><span class="mono accent">1.</span> Ship over polish (until Week 4)</div>
+            <p class="prose" style="margin: 0;">Weeks 1–3: imperfect &amp; merged beats perfect &amp; local.</p>
+          </div>
+          <div class="panel">
+            <div class="panel-title"><span class="mono accent">2.</span> Every PR reviewed by one peer</div>
+            <p class="prose" style="margin: 0;">Reviewer runs <code>forge test</code> or <code>pnpm dev</code>.</p>
+          </div>
+          <div class="panel">
+            <div class="panel-title"><span class="mono accent">3.</span> Every contract change ships with a test</div>
+            <p class="prose" style="margin: 0;">Solidity behavior changes require a <code>forge test</code> update.</p>
+          </div>
+          <div class="panel">
+            <div class="panel-title"><span class="mono accent">4.</span> OP Sepolia only — no mainnet</div>
+            <p class="prose" style="margin: 0;">Testnet keys only. No mainnet RPC URLs in the repo.</p>
+          </div>
+          <div class="panel">
+            <div class="panel-title"><span class="mono accent">5.</span> AI is co-pilot, not pilot</div>
+            <p class="prose" style="margin: 0;">You must explain every line you commit.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="block" id="faucet">
+        <div class="eyebrow">Wallet setup</div>
+        <h2>Superchain Faucet — get OP Sepolia ETH</h2>
+        <div style="display: grid; grid-template-columns: 1fr; gap: 1rem;" class="grid-2-md">
+          <div class="panel">
+            <div class="panel-title">MetaMask — OP Sepolia network</div>
+            <table class="prose" style="margin: 0; font-size: 0.9rem;">
+              <tbody>
+                <tr><td>Network</td><td class="mono">OP Sepolia</td></tr>
+                <tr><td>RPC</td><td class="mono">https://sepolia.optimism.io</td></tr>
+                <tr><td>Chain ID</td><td class="mono">11155420</td></tr>
+                <tr><td>Symbol</td><td class="mono">ETH</td></tr>
+                <tr><td>Explorer</td><td class="mono">sepolia-optimism.etherscan.io</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="panel">
+            <div class="panel-title">Superchain Faucet steps</div>
+            <ol class="prose" style="margin: 0.3rem 0 0; padding-left: 1.1rem;">
+              <li>Open <a href="https://console.optimism.io/faucet" target="_blank" rel="noopener">console.optimism.io/faucet</a></li>
+              <li>Sign in with <strong>GitHub</strong></li>
+              <li>Select <strong>OP Sepolia</strong>, paste your wallet address, claim</li>
+              <li>Switch MetaMask to OP Sepolia and confirm balance</li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <section class="block" id="foundry">
+        <div class="eyebrow">Meet 2 essentials</div>
+        <h2>The Foundry toolbox</h2>
+        <div class="prose">
+          <p>Run these in your terminal. Raise your hand if any command fails.</p>
+        </div>
+        <div class="term" id="termFrame" aria-live="polite">
+<span class="prompt">forge --version</span>
+<span class="out" id="termFrame1"></span>
+<span class="prompt">node --version</span>
+<span class="out" id="termFrame2"></span>
+<span class="prompt">pnpm --version</span>
+<span class="out" id="termFrame3"></span>
+<span class="prompt blink" id="termFrameCursor"> </span>
+        </div>
+        <button class="btn btn-ghost btn-sm" id="termFramePlay" style="margin-top: 0.6rem;">▶ Replay typing</button>
+
+        <div class="prose" style="margin-top: 2rem;">
+          <table>
+            <thead><tr><th>Tool</th><th>Purpose</th></tr></thead>
+            <tbody>
+              <tr><td><code>forge</code></td><td>Build, test, and deploy Solidity</td></tr>
+              <tr><td><code>cast</code></td><td>RPC calls from the terminal</td></tr>
+              <tr><td><code>anvil</code></td><td>Local node / fork for testing</td></tr>
+            </tbody>
+          </table>
+        </div>
+<pre><code class="language-bash">cd tracks/optimism/contracts
+forge build
+forge test -vvv</code></pre>
+        <div class="callout ok">
+          <div class="callout-label">Green output = healthy repo</div>
+          <p class="prose" style="margin: 0;"><code>Suite result: ok</code> means all tests passed.</p>
+        </div>
+      </section>
+
+      <section class="block" id="foundry-toml">
+        <div class="eyebrow">Config</div>
+        <h2><code>foundry.toml</code> — three sections that matter</h2>
+        <div data-tabs="toml">
+          <div style="display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1rem;">
+            <button class="badge" data-tab="profile" data-tabs-group="toml">profile.default</button>
+            <button class="badge" data-tab="rpc" data-tabs-group="toml">rpc_endpoints</button>
+            <button class="badge" data-tab="etherscan" data-tabs-group="toml">etherscan</button>
+          </div>
+          <div data-tabpanel="profile" data-tabs-group="toml">
+<pre><code class="language-toml">[profile.default]
+solc_version    = "0.8.24"
+optimizer       = true
+optimizer_runs  = 200</code></pre>
+            <p class="prose"><code>solc_version</code> is pinned to <strong>0.8.24</strong> — workshop policy. Do not upgrade unprompted.</p>
+          </div>
+          <div data-tabpanel="rpc" data-tabs-group="toml">
+<pre><code class="language-toml">[rpc_endpoints]
+op_sepolia = "${OP_SEPOLIA_RPC_URL}"</code></pre>
+            <p class="prose">Alias for <code>--rpc-url</code>. Value comes from <code>.env</code> in <code>tracks/optimism/</code>.</p>
+          </div>
+          <div data-tabpanel="etherscan" data-tabs-group="toml">
+<pre><code class="language-toml">[etherscan]
+op_sepolia = { key = "${OP_ETHERSCAN_API_KEY}", chain = 11155420, ... }</code></pre>
+            <p class="prose">Enables <code>forge verify-contract</code> on OP Sepolia Etherscan (Meet 8).</p>
+          </div>
+        </div>
+        <p class="prose muted tiny">OpenZeppelin lives in <code>lib/</code> via remappings — installed with <code>forge install</code>.</p>
+      </section>
+
+      <section class="block" id="cast">
+        <div class="eyebrow">Field trip</div>
+        <h2><code>cast</code> on OP Sepolia — follow in your terminal</h2>
+        <div class="prose">
+          <p>No Solidity, no frontend — you are talking to a real L2 contract from the CLI.</p>
+        </div>
+<pre><code class="language-bash"># 1. Confirm chain
+cast chain-id --rpc-url https://sepolia.optimism.io
+# expect: 11155420
+
+# 2. Latest block
+cast block-number --rpc-url https://sepolia.optimism.io
+
+# 3. WETH totalSupply (OP Stack predeploy)
+cast call 0x4200000000000000000000000000000000000006 \
+  "totalSupply()(uint256)" \
+  --rpc-url https://sepolia.optimism.io
+
+# 4. Your balance
+cast balance YOUR_WALLET_ADDRESS --rpc-url https://sepolia.optimism.io</code></pre>
+
+        <div class="panel panel-lg" style="margin-top: 1.5rem;">
+          <div class="panel-title">Live · <code>WETH9.totalSupply()</code></div>
+          <div style="display: flex; flex-wrap: wrap; gap: 0.7rem; align-items: center;">
+            <button class="btn btn-primary" id="liveCastBtn">Call totalSupply()</button>
+            <div class="mono" id="liveCastOut">click to fetch</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="block" id="hands-on">
+        <div class="eyebrow">Hands-on · 40 min</div>
+        <h2>Checkpoint — get <code>forge test</code> green</h2>
+        <div class="prose">
+          <p>Run these commands in order. Target: all tests pass on your machine.</p>
+        </div>
+<pre><code class="language-bash">cd bandungbuildmaterial/tracks/optimism
+cp .env.example .env
+cp frontend/.env.local.example frontend/.env.local
+cd contracts
+forge install
+forge build
+forge test -vvv</code></pre>
+        <div class="prose">
+          <table>
+            <thead><tr><th>Problem</th><th>Try this</th></tr></thead>
+            <tbody>
+              <tr><td><code>forge: command not found</code></td><td>Install Foundry — see <code>docs/00-prerequisites.md</code></td></tr>
+              <tr><td><code>forge install</code> fails</td><td><code>forge install OpenZeppelin/openzeppelin-contracts@v5.0.2 --no-commit</code></td></tr>
+              <tr><td>Tests fail</td><td>Run <code>forge install</code> first, then retry</td></tr>
+              <tr><td>Faucet balance 0</td><td>MetaMask must be on OP Sepolia (11155420)</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="block" id="takehome">
+        <div class="eyebrow">Closing</div>
+        <h2>Recap &amp; take-home</h2>
+        <ul class="prose">
+          <li>EVM = deterministic state machine + gas</li>
+          <li>OP Sepolia = our testnet + Superchain Faucet</li>
+          <li><code>forge test</code> = your safety net</li>
+          <li><code>cast</code> = fastest way to debug on-chain</li>
+        </ul>
+
+        <div style="display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin: 2rem 0 0.5rem;">
+          <div class="muted tiny">Your progress</div>
+          <div class="mono tiny progress-label">0 / 6</div>
+        </div>
+        <div class="progress" data-checklist-progress="meet-1-2-take-home" style="margin-bottom: 1rem;"><span style="width:0%"></span></div>
+
+        <div class="panel">
+          <label class="check">
+            <input type="checkbox" data-checklist="meet-1-2-take-home" data-key="forge-test" />
+            <span class="check-text"><code>forge test -vvv</code> passes locally.</span>
+          </label>
+          <label class="check">
+            <input type="checkbox" data-checklist="meet-1-2-take-home" data-key="op-eth" />
+            <span class="check-text">OP Sepolia ETH in wallet (screenshot to group).</span>
+          </label>
+          <label class="check">
+            <input type="checkbox" data-checklist="meet-1-2-take-home" data-key="cast-done" />
+            <span class="check-text">Completed all <code>cast</code> commands above.</span>
+          </label>
+          <label class="check">
+            <input type="checkbox" data-checklist="meet-1-2-take-home" data-key="rules-signed" />
+            <span class="check-text">Rules of the Game signed and submitted.</span>
+          </label>
+          <label class="check">
+            <input type="checkbox" data-checklist="meet-1-2-take-home" data-key="skill-map" />
+            <span class="check-text">Skill mapping questionnaire completed.</span>
+          </label>
+          <label class="check">
+            <input type="checkbox" data-checklist="meet-1-2-take-home" data-key="superchain-read" />
+            <span class="check-text">Read <a href="meet-1.html#superchain">Superchain deep dive</a> at home.</span>
+          </label>
+        </div>
+
+        <div class="callout" style="margin-top: 1.5rem;">
+          <div class="callout-label">Preview Meet 3</div>
+          <p class="prose" style="margin: 0;">Design thinking — bring one Bandung problem you want to solve on-chain.</p>
+        </div>
+      </section>
+
+      <footer class="session-footer">
+        <a href="index.html" class="btn btn-ghost">← All sessions</a>
+        <a href="meet-3.html" class="btn btn-primary">Next: Meet 3 — Design Thinking →</a>
+      </footer>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-core.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+  <script src="../assets/main.js"></script>
+  <script>
+    mermaid.initialize({ startOnLoad: true, theme: "dark", themeVariables: { darkMode: true, background: "#0d1015", primaryColor: "#14181f", primaryBorderColor: "#1c2230", lineColor: "#5b6172", primaryTextColor: "#f5f7fa" }});
+
+    (function () {
+      const initial = { alice: 100, bob: 50, counter: 0 };
+      let before = { ...initial };
+      let after = { ...initial };
+      const $ = (id) => document.getElementById(id);
+      function render() {
+        $("evmAliceBefore").textContent = before.alice;
+        $("evmBobBefore").textContent = before.bob;
+        $("evmCounterBefore").textContent = before.counter;
+        $("evmAliceAfter").textContent = after.alice;
+        $("evmBobAfter").textContent = after.bob;
+        $("evmCounterAfter").textContent = after.counter;
+        $("evmBeforeBox").classList.remove("active");
+        $("evmAfterBox").classList.add("active");
+        setTimeout(() => $("evmAfterBox").classList.remove("active"), 1200);
+      }
+      function apply(tx) {
+        before = { ...after };
+        if (tx === "transfer" && after.alice >= 10) { after.alice -= 10; after.bob += 10; }
+        else if (tx === "increment") { after.counter += 1; }
+        else if (tx === "reset") { before = { ...initial }; after = { ...initial }; }
+        render();
+      }
+      document.querySelectorAll("[data-evm-tx]").forEach((b) =>
+        b.addEventListener("click", () => apply(b.dataset.evmTx))
+      );
+      render();
+    })();
+
+    (function () {
+      const lines = [
+        { el: "termFrame1", text: "forge 0.2.0" },
+        { el: "termFrame2", text: "v22.10.0" },
+        { el: "termFrame3", text: "9.12.3" },
+      ];
+      function type(el, text, delay = 18) {
+        return new Promise((resolve) => {
+          let i = 0;
+          (function tick() {
+            if (i <= text.length) { el.textContent = text.slice(0, i++); setTimeout(tick, delay); }
+            else resolve();
+          })();
+        });
+      }
+      async function play() {
+        for (const ln of lines) {
+          const el = document.getElementById(ln.el);
+          el.textContent = "";
+          await type(el, ln.text);
+          await new Promise((r) => setTimeout(r, 200));
+        }
+      }
+      document.getElementById("termFramePlay").addEventListener("click", play);
+      let played = false;
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach((e) => { if (e.isIntersecting && !played) { played = true; play(); } });
+      });
+      obs.observe(document.getElementById("termFrame"));
+    })();
+
+    (function () {
+      document.getElementById("fetchBlockBtn").addEventListener("click", async () => {
+        const out = document.getElementById("fetchBlockOut");
+        out.textContent = "Fetching…";
+        try {
+          const block = await BBB.fetchBlockNumber();
+          out.textContent = "Block #" + BBB.fmt(block) + " on OP Sepolia";
+        } catch (e) {
+          out.textContent = "Error: " + e.message;
+        }
+      });
+    })();
+
+    (function () {
+      const btn = document.getElementById("liveCastBtn");
+      const out = document.getElementById("liveCastOut");
+      const WETH = "0x4200000000000000000000000000000000000006";
+      const SELECTOR = "0x18160ddd";
+      function formatUnits(bi, decimals) {
+        const s = bi.toString().padStart(decimals + 1, "0");
+        const whole = s.slice(0, -decimals);
+        const frac = s.slice(-decimals).replace(/0+$/, "");
+        return frac ? whole + "." + frac : whole;
+      }
+      btn.addEventListener("click", async () => {
+        out.textContent = "Fetching…";
+        try {
+          const result = await BBB.ethCall("https://sepolia.optimism.io", WETH, SELECTOR);
+          const clean = result.startsWith("0x") ? result.slice(2) : result;
+          const supply = BigInt("0x" + (clean || "0"));
+          out.textContent = formatUnits(supply, 18) + " WETH";
+        } catch (e) {
+          out.textContent = "Error: " + e.message;
+        }
+      });
+    })();
+  </script>
+  <style>
+    @media (min-width: 768px) {
+      .grid-2-md { grid-template-columns: repeat(2, 1fr) !important; }
+    }
+    @media (min-width: 1024px) {
+      .grid-2-lg { grid-template-columns: repeat(2, 1fr) !important; }
+    }
+  </style>
+</body>
+</html>

@@ -86,7 +86,7 @@ Work dir  : tracks/optimism/
 
 ## Combined Meet 1 + Meet 2 (2-hour cohort variant)
 
-Use this section if your cohort runs **Meet 1 and Meet 2 in one 120-minute session** (see [`presentations/optimism/meet-1-2-combined-facilitator.html`](../../../presentations/optimism/meet-1-2-combined-facilitator.html)).
+Use this section if your cohort runs **Meet 1 and Meet 2 in one 120-minute session**. Participant slides: [`meet-1-2-combined.html`](../../../presentations/optimism/meet-1-2-combined.html). Facilitator runbook: [`meet-1-2-combined-facilitator.html`](../../../presentations/optimism/meet-1-2-combined-facilitator.html).
 
 ### Before you arrive
 

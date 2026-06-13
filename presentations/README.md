@@ -27,7 +27,8 @@ presentations/
 | ----- | --- |
 | Track picker (auto → OP) | https://presentations-pi-blue.vercel.app/ |
 | OP Sepolia (default) | https://presentations-pi-blue.vercel.app/optimism/ |
-| Combined Meet 1+2 facilitator | https://presentations-pi-blue.vercel.app/optimism/meet-1-2-combined-facilitator.html |
+| Combined Meet 1+2 (participants) | https://presentations-pi-blue.vercel.app/optimism/meet-1-2-combined.html |
+| Combined Meet 1+2 (facilitator) | https://presentations-pi-blue.vercel.app/optimism/meet-1-2-combined-facilitator.html |
 | Meet 1 slides | https://presentations-pi-blue.vercel.app/optimism/meet-1.html |
 | Meet 2 slides | https://presentations-pi-blue.vercel.app/optimism/meet-2.html |
 
