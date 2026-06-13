@@ -19,6 +19,29 @@ presentations/
 
 ## How to use
 
+### Live site (participants)
+
+**Production URL:** https://presentations-pi-blue.vercel.app
+
+| Entry | URL |
+| ----- | --- |
+| Track picker (auto → OP) | https://presentations-pi-blue.vercel.app/ |
+| OP Sepolia (default) | https://presentations-pi-blue.vercel.app/optimism/ |
+| Combined Meet 1+2 facilitator | https://presentations-pi-blue.vercel.app/optimism/meet-1-2-combined-facilitator.html |
+| Meet 1 slides | https://presentations-pi-blue.vercel.app/optimism/meet-1.html |
+| Meet 2 slides | https://presentations-pi-blue.vercel.app/optimism/meet-2.html |
+
+Redeploy after HTML changes (from repo root):
+
+```bash
+cd presentations
+npx vercel deploy --prod
+```
+
+Or connect the GitHub repo in the [Vercel dashboard](https://vercel.com/fatihmaulls-projects/presentations/settings) with **Root Directory** = `presentations` for automatic deploys on push.
+
+### Local
+
 1. Open **`presentations/index.html`** — you'll land on **Optimism sessions** within ~1 second.
 2. Use the **OP | Base | Arb** navbar on any page to switch tracks.
 3. Click **All tracks** to return to the full comparison (`?tracks=1`).

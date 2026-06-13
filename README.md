@@ -11,7 +11,7 @@ New builders start here:
 | | |
 |---|---|
 | **Code** | [`tracks/optimism/`](tracks/optimism/) |
-| **Presentations** | [`presentations/optimism/`](presentations/optimism/) (auto-opens from [`presentations/index.html`](presentations/index.html)) |
+| **Presentations** | [Live slides](https://presentations-pi-blue.vercel.app/optimism/) · [`presentations/optimism/`](presentations/optimism/) |
 | **Faucet** | [Superchain Faucet](https://console.optimism.io/faucet) (GitHub login) |
 | **Chain ID** | `11155420` |
 
