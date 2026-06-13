@@ -513,11 +513,26 @@ cast --calldata-decode "transfer(address,uint256)" \
         </div>
       </section>
 
+      <section class="block session-glossary" id="session-glossary">
+        <div class="eyebrow">Kamus sesi / Session glossary</div>
+        <h2>Istilah baru di halaman ini</h2>
+        <p class="prose muted tiny">Istilah dari Meet 2 penuh yang belum muncul di sesi gabungan Meet 1+2.</p>
+        <dl class="glossary-list">
+          <div class="glossary-item"><dt>chisel</dt><dd>REPL Solidity Foundry untuk eksperimen cepat di terminal.</dd></div>
+          <div class="glossary-item"><dt>Remappings</dt><dd>Map prefix import (<code>@openzeppelin/</code>) ke folder <code>lib/</code>.</dd></div>
+          <div class="glossary-item"><dt>forge fmt</dt><dd>Formatter resmi Foundry; standar sebelum commit.</dd></div>
+          <div class="glossary-item"><dt>ABI</dt><dd>JSON interface kontrak; dipakai frontend dan tooling.</dd></div>
+          <div class="glossary-item"><dt>Function selector</dt><dd>4 byte pertama calldata = signature hash fungsi.</dd></div>
+          <div class="glossary-item"><dt>4byte directory</dt><dd>Database signature fungsi; <code>cast 4byte</code> lookup.</dd></div>
+          <div class="glossary-item"><dt>eth_call</dt><dd>JSON-RPC read-only call; dasar <code>cast call</code>.</dd></div>
+          <div class="glossary-item"><dt>IStakingProtocol</dt><dd>Interface public API kontrak staking workshop.</dd></div>
+          <div class="glossary-item"><dt>Monorepo</dt><dd>Satu repo: contracts + frontend + docs + presentations.</dd></div>
+          <div class="glossary-item"><dt>Boilerplate walkthrough</dt><dd>Tour file-per-file struktur repo cohort.</dd></div>
+        </dl>
+        <p class="muted tiny" style="margin-top: 1rem;"><a href="glossary.html">Buka kamus lengkap seluruh workshop →</a></p>
+      </section>
+
       <footer class="session-footer">
-        <a href="meet-1.html" class="btn btn-ghost">← Meet 1</a>
-        <button class="btn btn-primary" data-mark-complete="2">Mark this session complete</button>
-        <a href="meet-3.html" class="btn btn-primary">Next: Meet 3 — Design Thinking →</a>
-      </footer>
     </main>
   </div>
 

@@ -499,9 +499,28 @@ function fundRewards(uint256 amount) external onlyOwner {
             <li><strong>Division before multiplication</strong> — <code>(elapsed * rewardRate * PRECISION) / totalStaked</code>, not the other order. Otherwise you truncate to zero.</li>
             <li><strong>Forgot <code>updateReward</code></strong> on <code>setRewardRate</code> — historical accrual leaks at the new rate. Audit finding.</li>
             <li><strong>Reentrancy on reward token</strong> — only an issue if the reward token has hooks. We assume it doesn't, but <code>nonReentrant</code> protects us anyway.</li>
-            <li><strong>Test for time-zero</strong> — if you don't <code>vm.warp</code>, <code>earned()</code> returns 0 and you'll think your code is broken when it's not.</li>
-          </ul>
         </div>
+      </section>
+
+      <section class="block session-glossary" id="session-glossary">
+        <div class="eyebrow">Kamus sesi / Session glossary</div>
+        <h2>Istilah baru di halaman ini</h2>
+        <p class="prose muted tiny">Istilah Solidity &amp; Foundry staking — belum muncul di sesi sebelumnya.</p>
+        <dl class="glossary-list">
+          <div class="glossary-item"><dt>Synthetix-style accumulator</dt><dd>Pattern reward O(1) via global <code>rewardPerTokenStored</code>.</dd></div>
+          <div class="glossary-item"><dt>rewardPerTokenStored</dt><dd>Index global reward per 1 token staked sejak genesis.</dd></div>
+          <div class="glossary-item"><dt>userRewardPerTokenPaid</dt><dd>Checkpoint user terakhir update ke global index.</dd></div>
+          <div class="glossary-item"><dt>updateReward modifier</dt><dd>Finalizes accrual sebelum mutasi balance/rewards.</dd></div>
+          <div class="glossary-item"><dt>earned(account)</dt><dd>View unclaimed rewards dari delta index × balance.</dd></div>
+          <div class="glossary-item"><dt>1e18 / PRECISION</dt><dd>Faktor presisi wajib; jangan dihilangkan.</dd></div>
+          <div class="glossary-item"><dt>SafeERC20</dt><dd>OZ wrapper transfer ERC20 aman.</dd></div>
+          <div class="glossary-item"><dt>ReentrancyGuard</dt><dd><code>nonReentrant</code> pada fungsi mutasi balance.</dd></div>
+          <div class="glossary-item"><dt>vm.warp</dt><dd>Cheatcode lompat waktu block untuk test accrual.</dd></div>
+          <div class="glossary-item"><dt>vm.prank</dt><dd>Cheatcode impersonate caller address.</dd></div>
+          <div class="glossary-item"><dt>vm.expectRevert</dt><dd>Assert tx harus revert dengan error tertentu.</dd></div>
+          <div class="glossary-item"><dt>Custom errors</dt><dd><code>ZeroAmount()</code>, <code>InsufficientBalance()</code> — gas lebih murah dari string.</dd></div>
+        </dl>
+        <p class="muted tiny" style="margin-top: 1rem;"><a href="glossary.html">Buka kamus lengkap seluruh workshop →</a></p>
       </section>
 
       <footer class="session-footer">

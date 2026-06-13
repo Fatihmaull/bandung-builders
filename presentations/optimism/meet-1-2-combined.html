@@ -23,6 +23,7 @@
           <a href="../arbitrum/index.html" data-track-pill="arbitrum" title="Arbitrum Sepolia">Arb</a>
         </div>
         <a href="../index.html?tracks=1" class="btn btn-ghost btn-sm">All tracks</a>
+        <a href="glossary.html" class="btn btn-ghost btn-sm">Kamus</a>
         <a href="index.html" class="btn btn-ghost btn-sm">Home</a>
         <a href="meet-3.html" class="btn btn-primary btn-sm">Next: Meet 3 →</a>
       </nav>
@@ -34,6 +35,7 @@
     <a href="#agenda">Agenda</a>
     <a href="#opening">Opening</a>
     <a href="#evm">EVM state machine</a>
+    <a href="#evm-visuals" class="depth-1">EVM visualizations</a>
     <a href="#op-stack">OP Stack &amp; OP Sepolia</a>
     <a href="#live-block">Live block</a>
     <a href="#rules">Rules of the Game</a>
@@ -43,6 +45,7 @@
     <a href="#cast">cast field trip</a>
     <a href="#hands-on">Hands-on checkpoint</a>
     <a href="#takehome">Take-home</a>
+    <a href="#session-glossary">Kamus sesi</a>
   </div>
 
   <div class="page-shell">
@@ -52,6 +55,7 @@
       <a href="#agenda">Agenda</a>
       <a href="#opening">Opening</a>
       <a href="#evm">EVM state machine</a>
+    <a href="#evm-visuals" class="depth-1">EVM visualizations</a>
       <a href="#op-stack">OP Stack &amp; OP Sepolia</a>
       <a href="#live-block">Live block</a>
       <a href="#rules">Rules of the Game</a>
@@ -61,6 +65,7 @@
       <a href="#cast">cast field trip</a>
       <a href="#hands-on">Hands-on checkpoint</a>
       <a href="#takehome">Take-home</a>
+    <a href="#session-glossary">Kamus sesi</a>
     </aside>
 
     <main>
@@ -178,6 +183,94 @@
             <button class="btn btn-ghost btn-sm" data-evm-tx="revert">Tx: Reverts</button>
             <button class="btn btn-ghost btn-sm" data-evm-tx="reset">Reset</button>
           </div>
+        </div>
+
+        <h3 id="evm-visuals" style="margin-top: 2.5rem;">Three ways to picture the EVM</h3>
+        <p class="prose muted tiny">Visual models — same idea, different angle. Use these when explaining EVM to someone new.</p>
+
+        <div class="evm-diagram-grid">
+          <div class="panel evm-diagram">
+            <div class="panel-title">1 · Global state machine</div>
+            <div class="evm-state-flow">
+              <div class="flow-box">State @ block N<br/><span class="muted tiny">all accounts + storage</span></div>
+              <div class="flow-arrow">↓</div>
+              <div class="flow-box highlight">Signed transaction(s)<br/><span class="muted tiny">ordered, deterministic</span></div>
+              <div class="flow-arrow">↓</div>
+              <div class="flow-box">EVM executes opcodes<br/><span class="muted tiny">charges gas per step</span></div>
+              <div class="flow-arrow">↓</div>
+              <div class="flow-box">State @ block N+1<br/><span class="muted tiny">every node gets identical result</span></div>
+            </div>
+            <p class="prose muted tiny" style="margin: 0.5rem 0 0;">The chain is a sequence of state transitions. Blocks batch transactions; the EVM applies them one by one.</p>
+          </div>
+
+          <div class="panel evm-diagram">
+            <div class="panel-title">2 · Two account types</div>
+            <div class="evm-account-compare">
+              <div class="evm-account-card eoa">
+                <strong>EOA</strong>
+                <span class="muted tiny">Externally Owned Account</span>
+                <ul class="prose" style="margin: 0.5rem 0 0; padding-left: 1rem; text-align: left; font-size: 0.78rem;">
+                  <li>Controlled by private key</li>
+                  <li>Can send transactions</li>
+                  <li>Has ETH balance</li>
+                  <li>No code — e.g. MetaMask wallet</li>
+                </ul>
+              </div>
+              <div class="evm-account-card contract">
+                <strong>Contract</strong>
+                <span class="muted tiny">Smart contract account</span>
+                <ul class="prose" style="margin: 0.5rem 0 0; padding-left: 1rem; text-align: left; font-size: 0.78rem;">
+                  <li>Controlled by bytecode</li>
+                  <li>Cannot init tx alone</li>
+                  <li>Has ETH + storage</li>
+                  <li>Runs when called — e.g. WETH, staking pool</li>
+                </ul>
+              </div>
+            </div>
+            <p class="prose muted tiny" style="margin: 0.75rem 0 0;">Both are addresses on chain. Only EOAs sign transactions; contracts respond to calls.</p>
+          </div>
+
+          <div class="panel evm-diagram">
+            <div class="panel-title">3 · Gas cost ladder</div>
+            <p class="muted tiny" style="margin: 0 0 0.25rem;">Relative cost of writing data on-chain (not to scale, but directionally true):</p>
+            <div class="evm-gas-ladder">
+              <div class="evm-gas-row storage">
+                <span><strong>Storage</strong></span>
+                <div class="evm-gas-bar-wrap"><div class="evm-gas-bar"></div></div>
+                <span class="mono">$$$</span>
+              </div>
+              <div class="evm-gas-row memory">
+                <span><strong>Memory</strong></span>
+                <div class="evm-gas-bar-wrap"><div class="evm-gas-bar"></div></div>
+                <span class="mono">$$</span>
+              </div>
+              <div class="evm-gas-row calldata">
+                <span><strong>Calldata</strong></span>
+                <div class="evm-gas-bar-wrap"><div class="evm-gas-bar"></div></div>
+                <span class="mono">$</span>
+              </div>
+            </div>
+            <p class="prose muted tiny" style="margin: 0.75rem 0 0;"><code>SSTORE</code> persists forever — expensive. Calldata is read-only input — cheapest. Design contracts accordingly.</p>
+          </div>
+        </div>
+
+        <div class="mermaid" style="margin-top: 1.5rem;">
+flowchart TB
+  subgraph blockN ["Block N"]
+    S1["Account balances"]
+    S2["Contract storage"]
+    S3["Nonces & code hashes"]
+  end
+  TX["Transaction batch"]
+  EVM["EVM execution"]
+  subgraph blockN1 ["Block N+1"]
+    S1b["Updated balances"]
+    S2b["Updated storage"]
+    S3b["Updated nonces"]
+  end
+  blockN --> TX
+  TX --> EVM
+  EVM --> blockN1
         </div>
 
         <div class="callout ok" style="margin-top: 1.5rem;">
@@ -472,6 +565,35 @@ forge test -vvv</code></pre>
           <div class="callout-label">Preview Meet 3</div>
           <p class="prose" style="margin: 0;">Design thinking — bring one Bandung problem you want to solve on-chain.</p>
         </div>
+      </section>
+
+      <section class="block session-glossary" id="session-glossary">
+        <div class="eyebrow">Kamus sesi / Session glossary</div>
+        <h2>Istilah baru di halaman ini</h2>
+        <p class="prose muted tiny">Terminologi yang diperkenalkan di sesi gabungan Meet 1+2 — belum muncul di slide workshop sebelumnya.</p>
+        <dl class="glossary-list">
+          <div class="glossary-item"><dt>EVM</dt><dd>Ethereum Virtual Machine — runtime yang mengeksekusi transaksi dan mengubah state chain secara deterministik.</dd></div>
+          <div class="glossary-item"><dt>State machine</dt><dd>Model di mana state saat ini + input → state berikutnya; semua node harus setuju hasilnya.</dd></div>
+          <div class="glossary-item"><dt>Determinism</dt><dd>Input sama → output sama di setiap node; fondasi kepercayaan blockchain.</dd></div>
+          <div class="glossary-item"><dt>Gas</dt><dd>Meteran biaya compute; setiap opcode dan penyimpanan data memakan gas.</dd></div>
+          <div class="glossary-item"><dt>EOA</dt><dd>Externally Owned Account — wallet dengan private key; satu-satunya yang bisa memulai transaksi.</dd></div>
+          <div class="glossary-item"><dt>Smart contract</dt><dd>Account dengan bytecode + storage; dieksekusi saat dipanggil transaksi lain.</dd></div>
+          <div class="glossary-item"><dt>Opcode</dt><dd>Instruksi primitif EVM (<code>ADD</code>, <code>SSTORE</code>, …); Solidity compile ke opcode.</dd></div>
+          <div class="glossary-item"><dt>Rollup</dt><dd>L2 yang mengeksekusi tx off-chain murah, lalu posting bukti/state root ke Ethereum L1.</dd></div>
+          <div class="glossary-item"><dt>OP Stack</dt><dd>Framework open-source Optimism untuk optimistic rollup; dipakai Base, Mode, Zora, dll.</dd></div>
+          <div class="glossary-item"><dt>OP Sepolia</dt><dd>Testnet OP Stack cohort ini; chainId <code>11155420</code>.</dd></div>
+          <div class="glossary-item"><dt>Superchain</dt><dd>Jaringan L2 berbasis OP Stack dengan standar upgrade &amp; interoperabilitas bersama.</dd></div>
+          <div class="glossary-item"><dt>Chain ID</dt><dd>Angka unik per network; MetaMask dan tools memakainya agar tidak salah chain.</dd></div>
+          <div class="glossary-item"><dt>RPC</dt><dd>Endpoint HTTP/WebSocket untuk bicara ke node (<code>eth_blockNumber</code>, <code>eth_call</code>, …).</dd></div>
+          <div class="glossary-item"><dt>Sequencer</dt><dd>Node L2 yang mengurutkan dan mengeksekusi transaksi rollup (di testnet dioperasikan infrastruktur).</dd></div>
+          <div class="glossary-item"><dt><code>forge</code></dt><dd>CLI Foundry: compile, test, deploy Solidity.</dd></div>
+          <div class="glossary-item"><dt><code>cast</code></dt><dd>CLI Foundry: RPC call, encode/decode, cek balance dari terminal.</dd></div>
+          <div class="glossary-item"><dt><code>anvil</code></dt><dd>Local Ethereum node Foundry untuk dev/test; bisa fork chain live.</dd></div>
+          <div class="glossary-item"><dt><code>foundry.toml</code></dt><dd>Config Foundry: compiler pin, RPC alias, Etherscan verify.</dd></div>
+          <div class="glossary-item"><dt>Predeploy</dt><dd>Kontrak canonical di alamat tetap di OP Stack — mis. WETH <code>0x4200…0006</code>.</dd></div>
+          <div class="glossary-item"><dt>Testnet</dt><dd>Network uji dengan ETH tanpa nilai riil; workshop hanya OP Sepolia.</dd></div>
+        </dl>
+        <p class="muted tiny" style="margin-top: 1rem;"><a href="glossary.html">Buka kamus lengkap seluruh workshop →</a></p>
       </section>
 
       <footer class="session-footer">

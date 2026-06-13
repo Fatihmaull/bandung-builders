@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="id" data-track="optimism">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Workshop Glossary — Bandung OP Builders</title>
+  <meta name="description" content="Kamus lengkap istilah Web3, EVM, Foundry, DeFi, dan frontend untuk cohort Bandung Builders." />
+  <link rel="stylesheet" href="../assets/styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a href="index.html" class="topbar-brand">
+        <span class="topbar-brand-mark">B³</span>
+        <span>Bandung OP Builders</span>
+      </a>
+      <nav>
+        <div class="track-nav" data-track-nav aria-label="Switch L2 track">
+          <a href="../optimism/index.html" data-track-pill="optimism">OP</a>
+          <a href="../base/index.html" data-track-pill="base">Base</a>
+          <a href="../arbitrum/index.html" data-track-pill="arbitrum">Arb</a>
+        </div>
+        <a href="meet-1-2-combined.html" class="btn btn-ghost btn-sm">Combined session</a>
+        <a href="index.html" class="btn btn-primary btn-sm">Home</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-shell" style="grid-template-columns: 1fr; max-width: 1100px;">
+    <section class="hero" style="border: none; padding: 3rem 0 1.5rem;">
+      <span class="badge">Reference</span>
+      <h1>Workshop glossary / Kamus workshop</h1>
+      <p class="lead">
+        Semua istilah penting dari 8 sesi + sesi gabungan Meet 1+2. Setiap halaman sesi juga
+        punya daftar <em>istilah baru</em> di bagian bawah — halaman ini adalah indeks lengkapnya.
+      </p>
+      <p class="muted tiny">Urutan cohort: Combined 1+2 → Meet 3 → … → Meet 8. Slide Meet 1 &amp; 2 penuh = materi lanjutan.</p>
+    </section>
+
+    <section class="block" style="padding-top: 0;">
+      <div class="glossary-alpha-nav" aria-label="Jump to letter">
+        <a href="#letter-a">A</a><a href="#letter-b">B</a><a href="#letter-c">C</a><a href="#letter-d">D</a>
+        <a href="#letter-e">E</a><a href="#letter-f">F</a><a href="#letter-g">G</a><a href="#letter-h">H</a>
+        <a href="#letter-i">I</a><a href="#letter-j">J</a><a href="#letter-l">L</a><a href="#letter-m">M</a>
+        <a href="#letter-n">N</a><a href="#letter-o">O</a><a href="#letter-p">P</a><a href="#letter-r">R</a>
+        <a href="#letter-s">S</a><a href="#letter-t">T</a><a href="#letter-v">V</a><a href="#letter-w">W</a>
+        <a href="#letter-z">Z</a>
+      </div>
+
+      <div class="glossary-letter-block" id="letter-a">
+        <h3>A</h3>
+        <dl class="glossary-list">
+          <div class="glossary-item"><dt>ABI <span class="glossary-session-tag">Meet 2</span></dt><dd>Application Binary Interface — JSON deskripsi fungsi kontrak; frontend &amp; <code>cast</code> memakainya.</dd></div>
+          <div class="glossary-item"><dt>anvil <span class="glossary-session-tag">Combined</span></dt><dd>Local node Foundry; fork RPC atau block time cepat untuk testing.</dd></div>
+          <div class="glossary-item"><dt>APR <span class="glossary-session-tag">Meet 5</span></dt><dd>Annual Percentage Rate — yield sederhana dari <code>rewardRate</code> dan <code>totalStaked</code>.</dd></div>
+          <div class="glossary-item"><dt>APY <span class="glossary-session-tag">Meet 5</span></dt><dd>Annual Percentage Yield — includes compounding; marketing number, beda dari on-chain rate.</dd></div>
+        </dl>
+      </div>
+
+      <div class="glossary-letter-block" id="letter-b">
+        <h3>B</h3>
+        <dl class="glossary-list">
+          <div class="glossary-item"><dt>bigint <span class="glossary-session-tag">Meet 6</span></dt><dd>Tipe JavaScript untuk integer on-chain; jangan pakai <code>Number</code> untuk wei.</dd></div>
+          <div class="glossary-item"><dt>Block <span class="glossary-session-tag">Combined</span></dt><dd>Batch transaksi + state root; nomor block naik monoton di chain.</dd></div>
+          <div class="glossary-item"><dt>--broadcast <span class="glossary-session-tag">Meet 8</span></dt><dd>Flag <code>forge script</code> untuk mengirim tx deploy ke network nyata.</dd></div>
+        </dl>
+      </div>
+
+      <div class="glossary-letter-block" id="letter-c">
+        <h3>C</h3>
+        <dl class="glossary-list">
+          <div class="glossary-item"><dt>Calldata <span class="glossary-session-tag">Meet 1</span></dt><dd>Input read-only ke kontrak; termurah di gas ladder; berisi function selector + args.</dd></div>
+          <div class="glossary-item"><dt>cast <span class="glossary-session-tag">Combined</span></dt><dd>CLI Foundry untuk RPC, encode/decode, dan debug tanpa frontend.</dd></div>
+          <div class="glossary-item"><dt>Chain ID <span class="glossary-session-tag">Combined</span></dt><dd>Identitas numerik network; OP Sepolia = <code>11155420</code>.</dd></div>
+          <div class="glossary-item"><dt>chisel <span class="glossary-session-tag">Meet 2</span></dt><dd>REPL Solidity Foundry untuk eksperimen cepat.</dd></div>
+          <div class="glossary-item"><dt>Cohort contract <span class="glossary-session-tag">Meet 1</span></dt><dd>Rules of the Game — lima kebiasaan builder yang disepakati cohort.</dd></div>
+        </dl>
+      </div>
+
+      <div class="glossary-letter-block" id="letter-d">
+        <h3>D</h3>
+        <dl class="glossary-list">
+          <div class="glossary-item"><dt>Demo Day <span class="glossary-session-tag">Meet 8</span></dt><dd>Sesi akhir: deploy, pitch, dan penilaian rubric.</dd></div>
+          <div class="glossary-item"><dt>Determinism <span class="glossary-session-tag">Combined</span></dt><dd>Same input → same output on every node.</dd></div>
+          <div class="glossary-item"><dt>Design thinking (EDIPT) <span class="glossary-session-tag">Meet 3</span></dt><dd>Empathize → Define → Ideate → Prototype → Test; framework ide produk Web3.</dd></div>
+        </dl>
+      </div>
+
+      <div class="glossary-letter-block" id="letter-e">
+        <h3>E</h3>
+        <dl class="glossary-list">
+          <div class="glossary-item"><dt>earned() <span class="glossary-session-tag">Meet 4–5</span></dt><dd>View function reward accumulator; unclaimed rewards user.</dd></div>
+          <div class="glossary-item"><dt>Emissions schedule <span class="glossary-session-tag">Meet 5</span></dt><dd>Kecepatan token reward habis dari pool; tied to <code>rewardRate</code>.</dd></div>
+          <div class="glossary-item"><dt>EOA <span class="glossary-session-tag">Combined</span></dt><dd>Externally Owned Account — wallet dengan private key.</dd></div>
+          <div class="glossary-item"><dt>eth_call <span class="glossary-session-tag">Meet 2</span></dt><dd>JSON-RPC read-only; dasar <code>cast call</code> dan <code>useReadContract</code>.</dd></div>
+          <div class="glossary-item"><dt>EVM <span class="glossary-session-tag">Combined</span></dt><dd>Ethereum Virtual Machine — state machine deterministik.</dd></div>
+          <div class="glossary-item"><dt>EVM-equivalence <span class="glossary-session-tag">Meet 1</span></dt><dd>Bytecode L2 identik dengan Ethereum L1; tooling sama.</dd></div>
+        </dl>
+      </div>
+
+      <div class="glossary-letter-block" id="letter-f">
+        <h3>F</h3>
+        <dl class="glossary-list">
+          <div class="glossary-item"><dt>Fault proof <span class="glossary-session-tag">Meet 1</span></dt><dd>Mekanisme optimistic rollup untuk challenge batch invalid di L1.</dd></div>
+          <div class="glossary-item"><dt>forge <span class="glossary-session-tag">Combined</span></dt><dd>Build, test, deploy Solidity.</dd></div>
+          <div class="glossary-item"><dt>forge fmt <span class="glossary-session-tag">Meet 2</span></dt><dd>Formatter resmi Foundry; jalankan sebelum commit.</dd></div>
+          <div class="glossary-item"><dt>forge install <span class="glossary-session-tag">Combined</span></dt><dd>Clone dependency ke <code>lib/</code> (OpenZeppelin, forge-std).</dd></div>
+          <div class="glossary-item"><dt>forge script <span class="glossary-session-tag">Meet 8</span></dt><dd>Deploy script Solidity dengan <code>vm.startBroadcast</code>.</dd></div>
+          <div class="glossary-item"><dt>foundry.toml <span class="glossary-session-tag">Combined</span></dt><dd>Config Foundry project.</dd></div>
+          <div class="glossary-item"><dt>Function selector <span class="glossary-session-tag">Meet 2</span></dt><dd>4 byte pertama calldata = keccak256 signature fungsi.</dd></div>
+        </dl>
+      </div>
+
+      <div class="glossary-letter-block" id="letter-g">
+        <h3>G</h3>
+        <dl class="glossary-list">
+          <div class="glossary-item"><dt>Gas <span class="glossary-session-tag">Combined</span></dt><dd>Unit biaya compute + storage on-chain.</dd></div>
+          <div class="glossary-item"><dt>getReward() <span class="glossary-session-tag">Meet 4</span></dt><dd>Claim accumulated reward tokens ke wallet user.</dd></div>
+          <div class="glossary-item"><dt>GTM <span class="glossary-session-tag">Meet 7</span></dt><dd>Go-to-market — strategi launch di ekosistem L2 / Superchain.</dd></div>
+        </dl>
+      </div>
+
+      <div class="glossary-letter-block" id="letter-h">
+        <h3>H</h3>
+        <dl class="glossary-list">
+          <div class="glossary-item"><dt>Hook (pitch) <span class="glossary-session-tag">Meet 7</span></dt><dd>15 detik pertama pitch yang menarik perhatian judge.</dd></div>
+        </dl>
+      </div>
+
+      <div class="glossary-letter-block" id="letter-i">
+        <h3>I</h3>
+        <dl class="glossary-list">
+          <div class="glossary-item"><dt>1e18 precision <span class="glossary-session-tag">Meet 4</span></dt><dd>Faktor presisi reward math; wajib di accumulator pattern.</dd></div>
+          <div class="glossary-item"><dt>IStakingProtocol <span class="glossary-session-tag">Meet 2</span></dt><dd>Interface public API kontrak staking workshop.</dd></div>
+        </dl>
+      </div>
+
+      <div class="glossary-letter-block" id="letter-j">
+        <h3>J</h3>
+        <dl class="glossary-list">
+          <div class="glossary-item"><dt>JSON-RPC <span class="glossary-session-tag">Combined</span></dt><dd>Protokol HTTP untuk node Ethereum (<code>eth_blockNumber</code>, …).</dd></div>
+        </dl>
+      </div>
+
+      <div class="glossary-letter-block" id="letter-l">
+        <h3>L</h3>
+        <dl class="glossary-list">
+          <div class="glossary-item"><dt>L1 / L2 <span class="glossary-session-tag">Combined</span></dt><dd>Layer 1 = Ethereum mainnet security; Layer 2 = rollup execution murah.</dd></div>
+          <div class="glossary-item"><dt>L2 Output Oracle <span class="glossary-session-tag">Meet 1</span></dt><dd>Kontrak OP Stack yang posting state root L2 ke L1.</dd></div>
+        </dl>
+      </div>
+
+      <div class="glossary-letter-block" id="letter-m">
+        <h3>M</h3>
+        <dl class="glossary-list">
+          <div class="glossary-item"><dt>Memory (EVM) <span class="glossary-session-tag">Meet 1</span></dt><dd>RAM-like; hilang setelah call; gas menengah.</dd></div>
+          <div class="glossary-item"><dt>Merkle-Patricia trie <span class="glossary-session-tag">Meet 1</span></dt><dd>Struktur data commit global state Ethereum.</dd></div>
+          <div class="glossary-item"><dt>Monorepo <span class="glossary-session-tag">Meet 2</span></dt><dd>Satu repo: <code>contracts/</code>, <code>frontend/</code>, <code>docs/</code>.</dd></div>
+        </dl>
+      </div>
+
+      <div class="glossary-letter-block" id="letter-n">
+        <h3>N</h3>
+        <dl class="glossary-list">
+          <div class="glossary-item"><dt>Nonce <span class="glossary-session-tag">Meet 1</span></dt><dd>Counter transaksi per EOA; mencegah replay.</dd></div>
+        </dl>
+      </div>
+
+      <div class="glossary-letter-block" id="letter-o">
+        <h3>O</h3>
+        <dl class="glossary-list">
+          <div class="glossary-item"><dt>Opcode <span class="glossary-session-tag">Combined</span></dt><dd>Instruksi mesin EVM.</dd></div>
+          <div class="glossary-item"><dt>OP Sepolia <span class="glossary-session-tag">Combined</span></dt><dd>Testnet default cohort; Superchain Faucet.</dd></div>
+          <div class="glossary-item"><dt>OP Stack <span class="glossary-session-tag">Combined</span></dt><dd>Software stack optimistic rollup Optimism.</dd></div>
+          <div class="glossary-item"><dt>Optimistic rollup <span class="glossary-session-tag">Meet 1</span></dt><dd>Assume valid unless fraud proof on L1.</dd></div>
+          <div class="glossary-item"><dt>Ownable (OZ v5) <span class="glossary-session-tag">Meet 4</span></dt><dd>Access control owner; constructor butuh <code>initialOwner</code>.</dd></div>
+        </dl>
+      </div>
+
+      <div class="glossary-letter-block" id="letter-p">
+        <h3>P</h3>
+        <dl class="glossary-list">
+          <div class="glossary-item"><dt>parseUnits / formatUnits <span class="glossary-session-tag">Meet 6</span></dt><dd>Viem helpers konversi human ↔ wei di UI boundary.</dd></div>
+          <div class="glossary-item"><dt>Pitch deck <span class="glossary-session-tag">Meet 7</span></dt><dd>7 slide struktur hackathon pitch 5 menit.</dd></div>
+          <div class="glossary-item"><dt>Portal (OP Stack) <span class="glossary-session-tag">Meet 1</span></dt><dd>Entry/exit ETH dan messages L1 ↔ L2.</dd></div>
+          <div class="glossary-item"><dt>Predeploy <span class="glossary-session-tag">Combined</span></dt><dd>Kontrak sistem di alamat canonical OP Stack.</dd></div>
+          <div class="glossary-item"><dt>Primitive <span class="glossary-session-tag">Meet 3</span></dt><dd>Building block DeFi (staking) — bukan produk jadi.</dd></div>
+          <div class="glossary-item"><dt>Problem statement <span class="glossary-session-tag">Meet 3</span></dt><dd>Satu paragraf masalah Bandung yang mau diselesaikan on-chain.</dd></div>
+        </dl>
+      </div>
+
+      <div class="glossary-letter-block" id="letter-r">
+        <h3>R</h3>
+        <dl class="glossary-list">
+          <div class="glossary-item"><dt>RainbowKit <span class="glossary-session-tag">Meet 6</span></dt><dd>UI wallet connect di atas Wagmi.</dd></div>
+          <div class="glossary-item"><dt>ReentrancyGuard <span class="glossary-session-tag">Meet 4</span></dt><dd>OZ modifier + <code>nonReentrant</code> cegah reentrancy attack.</dd></div>
+          <div class="glossary-item"><dt>Remappings <span class="glossary-session-tag">Meet 2</span></dt><dd>Alias import Solidity (<code>@openzeppelin/</code> → <code>lib/</code>).</dd></div>
+          <div class="glossary-item"><dt>rewardPerTokenStored <span class="glossary-session-tag">Meet 4</span></dt><dd>Global accumulator reward per 1 staked token.</dd></div>
+          <div class="glossary-item"><dt>rewardRate <span class="glossary-session-tag">Meet 4–5</span></dt><dd>Reward tokens emitted per second (owner-set).</dd></div>
+          <div class="glossary-item"><dt>Rollup <span class="glossary-session-tag">Combined</span></dt><dd>L2 posting state/commitment ke L1.</dd></div>
+          <div class="glossary-item"><dt>RPC <span class="glossary-session-tag">Combined</span></dt><dd>URL node — <code>https://sepolia.optimism.io</code>.</dd></div>
+          <div class="glossary-item"><dt>Runway <span class="glossary-session-tag">Meet 5</span></dt><dd>Berapa lama pool reward habis given emissions.</dd></div>
+        </dl>
+      </div>
+
+      <div class="glossary-letter-block" id="letter-s">
+        <h3>S</h3>
+        <dl class="glossary-list">
+          <div class="glossary-item"><dt>SafeERC20 <span class="glossary-session-tag">Meet 4</span></dt><dd>OZ wrapper transfer token yang handle return value non-standard.</dd></div>
+          <div class="glossary-item"><dt>Sequencer <span class="glossary-session-tag">Combined</span></dt><dd>Order &amp; execute L2 transactions.</dd></div>
+          <div class="glossary-item"><dt>Smart contract <span class="glossary-session-tag">Combined</span></dt><dd>Account dengan code + storage.</dd></div>
+          <div class="glossary-item"><dt>Smoke test <span class="glossary-session-tag">Meet 8</span></dt><dd>E2E manual: connect wallet → stake → claim di deploy URL.</dd></div>
+          <div class="glossary-item"><dt>Solidity <span class="glossary-session-tag">Meet 4</span></dt><dd>Bahasa kontrak workshop; pin <code>0.8.24</code>.</dd></div>
+          <div class="glossary-item"><dt> stake() <span class="glossary-session-tag">Meet 4</span></dt><dd>Deposit staking token ke protocol.</dd></div>
+          <div class="glossary-item"><dt>State machine <span class="glossary-session-tag">Combined</span></dt><dd>Model transisi state deterministik.</dd></div>
+          <div class="glossary-item"><dt>Storage (EVM) <span class="glossary-session-tag">Meet 1</span></dt><dd>Persistent contract data; paling mahal gas.</dd></div>
+          <div class="glossary-item"><dt>Superchain <span class="glossary-session-tag">Combined</span></dt><dd>Jaringan L2 OP Stack + standar bersama.</dd></div>
+          <div class="glossary-item"><dt>Superchain Faucet <span class="glossary-session-tag">Combined</span></dt><dd>console.optimism.io/faucet — GitHub login.</dd></div>
+          <div class="glossary-item"><dt>Synthetix-style accumulator <span class="glossary-session-tag">Meet 4</span></dt><dd>Pattern reward O(1) per user via global index.</dd></div>
+        </dl>
+      </div>
+
+      <div class="glossary-letter-block" id="letter-t">
+        <h3>T</h3>
+        <dl class="glossary-list">
+          <div class="glossary-item"><dt>Testnet <span class="glossary-session-tag">Combined</span></dt><dd>ETH tanpa nilai riil; workshop = OP Sepolia only.</dd></div>
+          <div class="glossary-item"><dt>Tokenomics Canvas <span class="glossary-session-tag">Meet 5</span></dt><dd>Template Supply / Vesting / Utility / Yield.</dd></div>
+          <div class="glossary-item"><dt>Transaction <span class="glossary-session-tag">Combined</span></dt><dd>Signed message dari EOA yang mutasi state.</dd></div>
+        </dl>
+      </div>
+
+      <div class="glossary-letter-block" id="letter-v">
+        <h3>V</h3>
+        <dl class="glossary-list">
+          <div class="glossary-item"><dt>Vercel <span class="glossary-session-tag">Meet 8</span></dt><dd>Hosting frontend Next.js cohort.</dd></div>
+          <div class="glossary-item"><dt>Verification (Etherscan) <span class="glossary-session-tag">Meet 8</span></dt><dd>Upload source + ABI ke explorer agar kontrak readable.</dd></div>
+          <div class="glossary-item"><dt>Vesting <span class="glossary-session-tag">Meet 5</span></dt><dd>Jadwal unlock token over time.</dd></div>
+          <div class="glossary-item"><dt>Viem <span class="glossary-session-tag">Meet 6</span></dt><dd>TypeScript Ethereum library; low-level di bawah Wagmi.</dd></div>
+          <div class="glossary-item"><dt>vm.prank / vm.warp <span class="glossary-session-tag">Meet 4</span></dt><dd>Foundry cheatcodes: fake caller &amp; time travel in tests.</dd></div>
+        </dl>
+      </div>
+
+      <div class="glossary-letter-block" id="letter-w">
+        <h3>W</h3>
+        <dl class="glossary-list">
+          <div class="glossary-item"><dt>Wagmi <span class="glossary-session-tag">Meet 6</span></dt><dd>React hooks untuk wallet + contract reads/writes v2.</dd></div>
+          <div class="glossary-item"><dt>WalletConnect <span class="glossary-session-tag">Meet 6</span></dt><dd>Protocol connect wallet; butuh <code>NEXT_PUBLIC_WC_PROJECT_ID</code>.</dd></div>
+          <div class="glossary-item"><dt>withdraw() <span class="glossary-session-tag">Meet 4</span></dt><dd>Tarik staking token dari protocol.</dd></div>
+        </dl>
+      </div>
+
+      <div class="glossary-letter-block" id="letter-z">
+        <h3>Z</h3>
+        <dl class="glossary-list">
+          <div class="glossary-item"><dt>ZK rollup <span class="glossary-session-tag">Meet 1</span></dt><dd>Rollup dengan proof kriptografik validity; beda dari optimistic.</dd></div>
+          <div class="glossary-item"><dt>ZeroAmount() <span class="glossary-session-tag">Meet 4</span></dt><dd>Custom error workshop untuk <code>amount == 0</code>.</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <footer style="border-top: 1px solid var(--border); padding: 2rem 0 4rem; text-align: center;">
+      <p class="muted tiny"><a href="index.html">← Kembali ke daftar sesi</a></p>
+    </footer>
+  </main>
+
+  <script src="../assets/main.js"></script>
+</body>
+</html>

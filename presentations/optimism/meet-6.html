@@ -499,9 +499,26 @@ export function useApproveStake() {
           </label>
           <label class="check">
             <input type="checkbox" data-checklist="meet-6-take-home" data-key="pitch" />
-            <span class="check-text">Skim <a href="../../tracks/optimism/docs/week-4/meet-7-pitch-deck.md">meet-7-pitch-deck.md</a> for next session.</span>
-          </label>
         </div>
+      </section>
+
+      <section class="block session-glossary" id="session-glossary">
+        <div class="eyebrow">Kamus sesi / Session glossary</div>
+        <h2>Istilah baru di halaman ini</h2>
+        <p class="prose muted tiny">Istilah frontend Web3 — belum muncul di sesi sebelumnya.</p>
+        <dl class="glossary-list">
+          <div class="glossary-item"><dt>Viem</dt><dd>TS library Ethereum; encode/decode/RPC low-level.</dd></div>
+          <div class="glossary-item"><dt>Wagmi v2</dt><dd>React hooks di atas Viem (<code>useAccount</code>, <code>useReadContract</code>).</dd></div>
+          <div class="glossary-item"><dt>RainbowKit v2</dt><dd>UI wallet picker + ConnectButton.</dd></div>
+          <div class="glossary-item"><dt>useReadContract</dt><dd>Hook baca view/pure on-chain state.</dd></div>
+          <div class="glossary-item"><dt>useWriteContract</dt><dd>Hook kirim state-changing tx.</dd></div>
+          <div class="glossary-item"><dt>useWaitForTransactionReceipt</dt><dd>Poll status tx pending → confirmed.</dd></div>
+          <div class="glossary-item"><dt>useApproveStake</dt><dd>Exercise hook: ERC20 approve sebelum stake.</dd></div>
+          <div class="glossary-item"><dt>Provider stack</dt><dd>QueryClient → Wagmi → RainbowKit wrap App.</dd></div>
+          <div class="glossary-item"><dt>WalletConnect projectId</dt><dd>Env var untuk RainbowKit mobile wallets.</dd></div>
+          <div class="glossary-item"><dt>bigint</dt><dd>Tipe JS untuk wei; stay bigint until UI format.</dd></div>
+        </dl>
+        <p class="muted tiny" style="margin-top: 1rem;"><a href="glossary.html">Buka kamus lengkap seluruh workshop →</a></p>
       </section>
 
       <footer class="session-footer">

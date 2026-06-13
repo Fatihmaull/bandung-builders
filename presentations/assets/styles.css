@@ -998,6 +998,204 @@ html[data-track="arbitrum"] { --accent: var(--arb-blue); }
   box-shadow: 0 0 0 1px color-mix(in srgb, var(--op-red) 20%, transparent);
 }
 
+/* ---------- 16. EVM diagram panels ---------- */
+
+.evm-diagram-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+}
+
+@media (min-width: 900px) {
+  .evm-diagram-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+.evm-diagram {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+.evm-diagram .panel-title { margin-bottom: 0.75rem; }
+
+.evm-account-compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.evm-account-card {
+  background: var(--bg-3);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.85rem;
+  text-align: center;
+}
+
+.evm-account-card strong {
+  display: block;
+  font-size: 0.95rem;
+  margin-bottom: 0.35rem;
+  color: var(--fg-0);
+}
+
+.evm-account-card.eoa { border-top: 3px solid var(--ok); }
+.evm-account-card.contract { border-top: 3px solid var(--accent); }
+
+.evm-gas-ladder {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  margin-top: 0.75rem;
+}
+
+.evm-gas-row {
+  display: grid;
+  grid-template-columns: 5.5rem 1fr 3rem;
+  gap: 0.5rem;
+  align-items: center;
+  font-size: 0.8rem;
+}
+
+.evm-gas-bar-wrap {
+  background: var(--bg-3);
+  border-radius: 4px;
+  height: 1.25rem;
+  overflow: hidden;
+}
+
+.evm-gas-bar {
+  height: 100%;
+  border-radius: 4px;
+  background: linear-gradient(90deg, var(--accent), color-mix(in srgb, var(--accent) 60%, white));
+}
+
+.evm-gas-row.storage .evm-gas-bar { width: 100%; background: linear-gradient(90deg, var(--err), #f97316); }
+.evm-gas-row.memory .evm-gas-bar { width: 45%; }
+.evm-gas-row.calldata .evm-gas-bar { width: 18%; background: linear-gradient(90deg, var(--ok), #34d399); }
+
+.evm-state-flow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  margin: 0.75rem 0;
+  font-size: 0.82rem;
+}
+
+.evm-state-flow .flow-box {
+  width: 100%;
+  padding: 0.55rem 0.75rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg-3);
+  text-align: center;
+}
+
+.evm-state-flow .flow-box.highlight {
+  border-color: var(--accent);
+  background: rgba(255, 4, 32, 0.08);
+}
+
+.evm-state-flow .flow-arrow {
+  color: var(--fg-3);
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+/* ---------- 17. Session glossary ---------- */
+
+.session-glossary {
+  border-top: 1px solid var(--border);
+  padding-top: 3rem;
+  margin-top: 2rem;
+}
+
+.glossary-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.85rem;
+  margin: 1.25rem 0 0;
+}
+
+@media (min-width: 768px) {
+  .glossary-list { grid-template-columns: repeat(2, 1fr); }
+}
+
+.glossary-item {
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0.85rem 1rem;
+}
+
+.glossary-item dt {
+  font-weight: 600;
+  font-size: 0.92rem;
+  color: var(--fg-0);
+  margin-bottom: 0.35rem;
+}
+
+.glossary-item dt code {
+  font-size: 0.88rem;
+}
+
+.glossary-item dd {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--fg-2);
+  line-height: 1.5;
+}
+
+.glossary-alpha-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin: 1rem 0 1.5rem;
+}
+
+.glossary-alpha-nav a {
+  display: inline-block;
+  padding: 0.3rem 0.55rem;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--fg-2);
+}
+
+.glossary-alpha-nav a:hover {
+  border-color: var(--accent);
+  color: var(--fg-0);
+}
+
+.glossary-letter-block {
+  margin-bottom: 2rem;
+}
+
+.glossary-letter-block h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.glossary-session-tag {
+  display: inline-block;
+  font-size: 0.65rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--fg-3);
+  margin-left: 0.35rem;
+  font-weight: 500;
+}
+
 /* Print */
 @media print {
   .topbar, .sidenav, .nav-toggle, .session-footer { display: none !important; }
