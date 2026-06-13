@@ -36,7 +36,8 @@ Agent **wajib** paham repo sebelum kamu mulai sesi. Load **semua** layer berikut
 | 2 | [`tracks/optimism/docs/system-prompt.md`](tracks/optimism/docs/system-prompt.md) | Mirror `.cursorrules` untuk non-Cursor agents |
 | 3 | **`guide.md` (file ini)** | Konteks facilitator: pre-flight, URL, alur sesi |
 | 4 | [`presentations/optimism/meet-1-2-combined-facilitator.html`](presentations/optimism/meet-1-2-combined-facilitator.html) | Runbook 2 jam (buka di browser, bukan untuk peserta) |
-| 5 | [`tracks/optimism/docs/skills.md`](tracks/optimism/docs/skills.md) | Prerequisite peserta per sesi — referensi saat triage |
+| 5 | [`tracks/optimism/docs/week-1/meet-1-2-combined-presenter-script.md`](tracks/optimism/docs/week-1/meet-1-2-combined-presenter-script.md) | **Script ucapan menit-per-menit** (120 menit) |
+| 6 | [`tracks/optimism/docs/skills.md`](tracks/optimism/docs/skills.md) | Prerequisite peserta per sesi — referensi saat triage |
 
 ### Cursor (recommended)
 
@@ -222,7 +223,9 @@ Semua harus hijau. Kalau `forge test` merah, fix **sebelum** peserta datang — 
 | 1:10–1:50 | forge install + test | Everyone types | Slide `#hands-on` |
 | 1:50–2:00 | Recap + homework | Talk | Slide `#takehome` |
 
-**Buka runbook lengkap:** [`meet-1-2-combined-facilitator.html`](presentations/optimism/meet-1-2-combined-facilitator.html) (timing, script, triage, contingency).
+**Buka runbook lengkap:** [`meet-1-2-combined-facilitator.html`](presentations/optimism/meet-1-2-combined-facilitator.html) (timing, triage, contingency).
+
+**Script ucapan menit-per-menit:** [`meet-1-2-combined-presenter-script.md`](tracks/optimism/docs/week-1/meet-1-2-combined-presenter-script.md) — baca di laptop kedua atau print.
 
 **Jangan potong:** Superchain Faucet + `forge test` pass.
 

@@ -28,6 +28,7 @@ A 4-week, 8-session intensive workshop teaching tech-savvy developers in Bandung
 | [`week-1/meet-1-skill-mapping.md`](./week-1/meet-1-skill-mapping.md)                 | Questionnaire   | Pre-cohort skill survey for pair-up                    |
 | [`week-1/meet-2-foundry-setup.md`](./week-1/meet-2-foundry-setup.md)                 | Hands-on doc    | OS-agnostic install, `foundry.toml` walkthrough        |
 | [`week-1/meet-2-boilerplate-walkthrough.md`](./week-1/meet-2-boilerplate-walkthrough.md) | Hands-on doc | Tour of the monorepo & AI-rules file                   |
+| [`week-1/meet-1-2-combined-presenter-script.md`](./week-1/meet-1-2-combined-presenter-script.md) | Presenter script | **Script menit-per-menit 120 min** sesi gabungan Meet 1+2 |
 
 ### Week 2 — Logic Development & Smart Contracts
 
