@@ -14,7 +14,12 @@
       <nav>
         <button class="nav-toggle">☰</button>
         <a href="meet-7.html" class="btn btn-ghost btn-sm">← Meet 7</a>
-        <a href="../index.html" class="btn btn-ghost btn-sm">Tracks</a>
+                <div class="track-nav" data-track-nav aria-label="Switch L2 track">
+          <a href="../optimism/index.html" data-track-pill="optimism" title="OP Sepolia (default)">OP</a>
+          <a href="../base/index.html" data-track-pill="base" title="Base Sepolia">Base</a>
+          <a href="../arbitrum/index.html" data-track-pill="arbitrum" title="Arbitrum Sepolia">Arb</a>
+        </div>
+        <a href="../index.html?tracks=1" class="btn btn-ghost btn-sm">All tracks</a>
         <a href="index.html" class="btn btn-ghost btn-sm">Home</a>
       </nav>
     </div>
@@ -110,6 +115,35 @@
           <label class="check"><input type="checkbox" data-checklist="meet-8-preflight" data-key="faucet" /><span class="check-text">Wallet has ≥ 0.05 OP Sepolia ETH (deploy + 5 user txs of demo headroom).</span></label>
           <label class="check"><input type="checkbox" data-checklist="meet-8-preflight" data-key="basescan-key" /><span class="check-text"><code>OP_ETHERSCAN_API_KEY</code> obtained from sepolia-optimism.etherscan.io and exported.</span></label>
           <label class="check"><input type="checkbox" data-checklist="meet-8-preflight" data-key="env" /><span class="check-text">Track <code>.env</code> (in <code>tracks/optimism/</code>) populated (RPC URL, private key, OP Sepolia Etherscan key) — never committed.</span></label>
+        </div>
+      </section>
+
+      <!-- SUPERCHAIN FAUCET -->
+      <section class="block" id="superchain-faucet">
+        <div class="eyebrow">OP Sepolia · 10 min</div>
+        <h2>Superchain Faucet &amp; last-mile wallet check</h2>
+
+        <div class="prose">
+          <p>
+            Before deploy, every builder confirms testnet ETH on <strong>OP Sepolia</strong> — not Ethereum
+            Mainnet, not Base Sepolia. The cohort default faucet is the Superchain Faucet.
+          </p>
+        </div>
+
+        <ol class="prose">
+          <li>Open <a href="https://console.optimism.io/faucet" target="_blank" rel="noopener">console.optimism.io/faucet</a> and sign in with GitHub.</li>
+          <li>Select <strong>OP Sepolia</strong> (not OP Mainnet, not Base Sepolia).</li>
+          <li>Paste the deployer address from your <code>.env</code> <code>PRIVATE_KEY</code>.</li>
+          <li>In MetaMask, switch network to OP Sepolia — balance should show ≥ 0.05 ETH.</li>
+          <li>Optional: bridge Sepolia L1 ETH via <a href="https://app.optimism.io/bridge" target="_blank" rel="noopener">Superchain Bridge</a> if faucet rate-limited.</li>
+        </ol>
+
+        <div class="callout warn">
+          <div class="callout-label">Common mistake</div>
+          <p class="prose" style="margin: 0;">
+            ETH on <strong>Ethereum Sepolia L1</strong> does not pay gas on OP Sepolia. You must claim on the
+            Superchain Faucet or bridge L1 Sepolia ETH into OP Sepolia.
+          </p>
         </div>
       </section>
 

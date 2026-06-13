@@ -219,6 +219,18 @@
     if (lbl) lbl.textContent = `${total} / 8`;
   };
 
+  BBB.initTrackNav = function () {
+    const root = document.querySelector("[data-track-nav]");
+    if (!root) return;
+    const current = BBB.getTrack();
+    root.querySelectorAll("[data-track-pill]").forEach((a) => {
+      const on = a.dataset.trackPill === current;
+      a.classList.toggle("active", on);
+      if (on) a.setAttribute("aria-current", "page");
+      else a.removeAttribute("aria-current");
+    });
+  };
+
   // ---------------------------------------------------------------------------
   // 8. Live block-number fetcher (used by Meet 1)
   // ---------------------------------------------------------------------------
@@ -308,6 +320,7 @@
     try { BBB.initTabs(); } catch (e) { console.error(e); }
     try { BBB.initReveals(); } catch (e) { console.error(e); }
     try { BBB.initFlipCards(); } catch (e) { console.error(e); }
+    try { BBB.initTrackNav(); } catch (e) { console.error(e); }
   });
 
   // ---------------------------------------------------------------------------

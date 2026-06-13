@@ -17,7 +17,12 @@
       <nav>
         <button class="nav-toggle">☰ Sections</button>
         <a href="meet-1.html" class="btn btn-ghost btn-sm">← Meet 1</a>
-        <a href="../index.html" class="btn btn-ghost btn-sm">Tracks</a>
+                <div class="track-nav" data-track-nav aria-label="Switch L2 track">
+          <a href="../optimism/index.html" data-track-pill="optimism" title="OP Sepolia (default)">OP</a>
+          <a href="../base/index.html" data-track-pill="base" title="Base Sepolia">Base</a>
+          <a href="../arbitrum/index.html" data-track-pill="arbitrum" title="Arbitrum Sepolia">Arb</a>
+        </div>
+        <a href="../index.html?tracks=1" class="btn btn-ghost btn-sm">All tracks</a>
         <a href="index.html" class="btn btn-ghost btn-sm">Home</a>
         <a href="meet-3.html" class="btn btn-primary btn-sm">Next: Meet 3 →</a>
       </nav>
@@ -277,6 +282,56 @@ multiline_func_header = "all"</code></pre>
                 </p>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- OP SEPOLIA SETUP -->
+      <section class="block" id="op-setup">
+        <div class="eyebrow">OP Sepolia setup · 15 min</div>
+        <h2>Wallet, faucet, and repo path for the default track</h2>
+
+        <div class="prose">
+          <p>
+            The cohort runs on <strong>OP Sepolia</strong> from <code>tracks/optimism/</code>.
+            Complete this block before touching <code>forge script</code>.
+          </p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr; gap: 1rem;" class="grid-2-md">
+          <div class="panel">
+            <div class="panel-title">1. Clone &amp; enter the Optimism track</div>
+<pre><code class="language-bash">cd bandungbuildmaterial/tracks/optimism
+cp .env.example .env
+cp frontend/.env.local.example frontend/.env.local</code></pre>
+          </div>
+          <div class="panel">
+            <div class="panel-title">2. Add OP Sepolia to MetaMask</div>
+            <table class="prose" style="margin: 0; font-size: 0.9rem;">
+              <tbody>
+                <tr><td>Network</td><td class="mono">OP Sepolia</td></tr>
+                <tr><td>RPC</td><td class="mono">https://sepolia.optimism.io</td></tr>
+                <tr><td>Chain ID</td><td class="mono">11155420</td></tr>
+                <tr><td>Symbol</td><td class="mono">ETH</td></tr>
+                <tr><td>Explorer</td><td class="mono">sepolia-optimism.etherscan.io</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="panel">
+            <div class="panel-title">3. Superchain Faucet (recommended)</div>
+            <ol class="prose" style="margin: 0.3rem 0 0; padding-left: 1.1rem;">
+              <li>Go to <a href="https://console.optimism.io/faucet" target="_blank" rel="noopener">console.optimism.io/faucet</a></li>
+              <li>Connect GitHub — no mainnet ETH required</li>
+              <li>Select <strong>OP Sepolia</strong>, paste address, claim</li>
+              <li>Confirm balance in MetaMask on OP Sepolia network</li>
+            </ol>
+          </div>
+          <div class="panel">
+            <div class="panel-title">4. OP Stack predeploys on OP Sepolia</div>
+            <p class="prose" style="margin: 0;">
+              OP Stack chains ship canonical contracts at fixed addresses — e.g. WETH at
+              <code>0x4200…0006</code>, same pattern as Base. You'll use these in the cast field trip below.
+            </p>
           </div>
         </div>
       </section>

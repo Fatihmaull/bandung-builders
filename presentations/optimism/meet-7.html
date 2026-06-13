@@ -13,7 +13,12 @@
       <nav>
         <button class="nav-toggle">☰</button>
         <a href="meet-6.html" class="btn btn-ghost btn-sm">← Meet 6</a>
-        <a href="../index.html" class="btn btn-ghost btn-sm">Tracks</a>
+                <div class="track-nav" data-track-nav aria-label="Switch L2 track">
+          <a href="../optimism/index.html" data-track-pill="optimism" title="OP Sepolia (default)">OP</a>
+          <a href="../base/index.html" data-track-pill="base" title="Base Sepolia">Base</a>
+          <a href="../arbitrum/index.html" data-track-pill="arbitrum" title="Arbitrum Sepolia">Arb</a>
+        </div>
+        <a href="../index.html?tracks=1" class="btn btn-ghost btn-sm">All tracks</a>
         <a href="index.html" class="btn btn-ghost btn-sm">Home</a>
         <a href="meet-8.html" class="btn btn-primary btn-sm">Next: Meet 8 →</a>
       </nav>
@@ -221,6 +226,54 @@
             <li><strong>Rupiah price formatting.</strong> Show IDR alongside USD. Builds trust 10×.</li>
             <li><strong>Bahasa</strong> on the landing page. English in the docs is fine; the homepage greets in Bahasa.</li>
           </ul>
+        </div>
+
+        <h3 id="superchain-gtm">Superchain ecosystem map — where to go after Demo Day</h3>
+        <div class="prose">
+          <p>
+            OP Sepolia is not an island. The Superchain is a <strong>go-to-market surface</strong> as much as a
+            technical stack. Know these names before you pitch:
+          </p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr; gap: 1rem;" class="grid-2-md">
+          <div class="panel">
+            <div class="panel-title">RetroPGF (Retroactive Public Goods Funding)</div>
+            <p class="prose" style="margin: 0;">
+              Optimism rewards projects that already delivered value to the ecosystem. Ship first, apply later.
+              Your staking MVP + open-source repo is a credible RetroPGF narrative if it helps other builders.
+            </p>
+          </div>
+          <div class="panel">
+            <div class="panel-title">OP Atlas &amp; grant programs</div>
+            <p class="prose" style="margin: 0;">
+              Track Superchain builders and apply to Optimism Foundation grants. Even small funding covers
+              audit prep or a paid RPC tier for demo day traffic.
+            </p>
+          </div>
+          <div class="panel">
+            <div class="panel-title">Superchain interop (future-facing)</div>
+            <p class="prose" style="margin: 0;">
+              OP Stack chains are converging on shared bridging and messaging standards. Building on OP Sepolia
+              today positions you for cross-chain UX (Base ↔ OP ↔ Mode) without rewriting contracts.
+            </p>
+          </div>
+          <div class="panel">
+            <div class="panel-title">Onchain Kit + Smart Wallet</div>
+            <p class="prose" style="margin: 0;">
+              Coinbase's Onchain Kit works across Superchain members. Passkey / email onboarding removes seed-phrase
+              friction — critical for Bandung consumer apps.
+            </p>
+          </div>
+        </div>
+
+        <div class="callout">
+          <div class="callout-label">Pitch slide tip — "Why OP Stack?"</div>
+          <p class="prose" style="margin: 0;">
+            Name three things: (1) Superchain Faucet removed onboarding friction for your cohort,
+            (2) EVM-equivalence meant Foundry tests shipped unchanged,
+            (3) portable config to Base/Mode when you need Coinbase distribution.
+          </p>
         </div>
       </section>
 

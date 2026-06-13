@@ -15,21 +15,41 @@
         <span>Bandung OP Builders</span>
       </a>
       <nav>
-        <a href="../index.html" class="btn btn-ghost btn-sm topbar-track-switch">← All tracks</a>
-        <a href="../../tracks/optimism/README.md" class="btn btn-ghost btn-sm">Repo track</a>
+        <div class="track-nav" data-track-nav aria-label="Switch L2 track">
+          <a href="../optimism/index.html" data-track-pill="optimism" title="OP Sepolia (default)">OP</a>
+          <a href="../base/index.html" data-track-pill="base" title="Base Sepolia">Base</a>
+          <a href="../arbitrum/index.html" data-track-pill="arbitrum" title="Arbitrum Sepolia">Arb</a>
+        </div>
+        <a href="../index.html?tracks=1" class="btn btn-ghost btn-sm">All tracks</a>
+        <a href="../../tracks/optimism/README.md" class="btn btn-ghost btn-sm">Repo</a>
       </nav>
     </div>
   </header>
 
   <main class="page-shell" style="grid-template-columns: 1fr;">
     <section class="hero" style="border: none; padding: 4rem 0 2rem;">
-      <span class="badge dot">OP Sepolia · chainId 11155420</span>
+      <span class="badge dot">Default cohort track · OP Sepolia · chainId 11155420</span>
       <h1>Ship a DeFi staking protocol on OP Stack in 4 weeks.</h1>
       <p class="lead">
-        8 sessions. One monorepo at <code>tracks/optimism/</code>. Deploy and verify on
-        <strong>OP Sepolia</strong> (Superchain), wire a Next.js dApp, and pitch on Demo Day.
+        This is the <strong>default learning path</strong> for Bandung Builders. Work from
+        <code>tracks/optimism/</code>, deploy on <strong>OP Sepolia</strong>, and learn the
+        OP Stack / Superchain stack that also powers Base, Mode, and Zora.
       </p>
-      <p class="muted tiny">Faucet: <a href="https://console.optimism.io/faucet" target="_blank" rel="noopener">Superchain Faucet</a> · Explorer: <a href="https://sepolia-optimism.etherscan.io" target="_blank" rel="noopener">sepolia-optimism.etherscan.io</a></p>
+      <p class="muted tiny">
+        Faucet: <a href="https://console.optimism.io/faucet" target="_blank" rel="noopener">Superchain Faucet</a> (GitHub)
+        · Explorer: <a href="https://sepolia-optimism.etherscan.io" target="_blank" rel="noopener">sepolia-optimism.etherscan.io</a>
+        · Docs: <a href="https://docs.optimism.io" target="_blank" rel="noopener">docs.optimism.io</a>
+      </p>
+
+      <div class="panel" style="margin-top: 1.5rem;">
+        <div class="panel-title">Why OP Sepolia is the cohort default</div>
+        <ul class="prose" style="margin: 0.5rem 0 0;">
+          <li><strong>Superchain Faucet</strong> — GitHub login, no mainnet ETH or Coinbase account required.</li>
+          <li><strong>OP Stack native</strong> — you learn the parent rollup framework, not just one branded instance.</li>
+          <li><strong>Portable skills</strong> — same Solidity, Foundry, Wagmi; switch to Base later with config-only changes.</li>
+          <li><strong>Superchain interop</strong> — bridging, shared security model, and ecosystem grants (RetroPGF, OP Atlas).</li>
+        </ul>
+      </div>
 
       <div class="panel" style="margin-top: 2rem;">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">

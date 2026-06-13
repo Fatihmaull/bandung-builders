@@ -7,7 +7,8 @@ Treat this file as a hard contract. When something below conflicts with a generi
 ## 1. Project identity
 
 - **Repo type:** Multi-track monorepo. Each track is self-contained under `tracks/<name>/` with `contracts/` (Foundry), `frontend/` (Next.js 15), and `docs/`.
-- **Tracks:** `base` (Base Sepolia), `optimism` (OP Sepolia), `arbitrum` (Arbitrum Sepolia).
+- **Tracks:** `base` (Base Sepolia), `optimism` (OP Sepolia, **default**), `arbitrum` (Arbitrum Sepolia).
+- **Default track:** `optimism` — new cohort members start in `tracks/optimism/` unless they explicitly choose another track.
 - **Never mix tracks:** addresses, env files, and RPC URLs from one track must not appear in another.
 - **Primary deliverable:** A staking dApp where users deposit `STK` ERC20, earn `RWD` ERC20 over time, and can withdraw or claim rewards.
 

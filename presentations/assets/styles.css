@@ -958,6 +958,46 @@ html[data-track="arbitrum"] { --accent: var(--arb-blue); }
   color: var(--fg-2);
 }
 
+.track-nav {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.15rem;
+  padding: 0.2rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--bg-2);
+}
+
+.track-nav a {
+  display: inline-block;
+  padding: 0.35rem 0.65rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--fg-2);
+  transition: background 0.12s, color 0.12s;
+}
+
+.track-nav a:hover {
+  color: var(--fg-0);
+  background: var(--bg-3);
+}
+
+.track-nav a.active {
+  color: #fff;
+  background: var(--accent);
+}
+
+.track-nav a[data-track-pill="optimism"].active { background: var(--op-red); }
+.track-nav a[data-track-pill="base"].active { background: var(--base-blue); }
+.track-nav a[data-track-pill="arbitrum"].active { background: var(--arb-blue); }
+
+.track-card-default {
+  border-color: color-mix(in srgb, var(--op-red) 45%, var(--border));
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--op-red) 20%, transparent);
+}
+
 /* Print */
 @media print {
   .topbar, .sidenav, .nav-toggle, .session-footer { display: none !important; }

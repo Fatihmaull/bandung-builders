@@ -1,6 +1,6 @@
-# Track: OP Sepolia (Optimism)
+# Track: OP Sepolia (Optimism) — **Default cohort track**
 
-Deploy the DeFi staking workshop on **OP Sepolia** (chainId `11155420`) — OP Stack / Superchain.
+Deploy the DeFi staking workshop on **OP Sepolia** (chainId `11155420`) — OP Stack / Superchain. This is the recommended path for Bandung Builders Cohort 01.
 
 ## Quick start
 
@@ -34,6 +34,8 @@ pnpm dev
 | Explorer | https://sepolia-optimism.etherscan.io |
 | Wagmi chain | `optimismSepolia` |
 
-## Curriculum
+## Presentations
 
-See [`docs/README.md`](docs/README.md) for the full 8-session index (network references updated for this track).
+Interactive slides: [`presentations/optimism/`](../presentations/optimism/)
+
+Entry point [`presentations/index.html`](../presentations/index.html) redirects to the Optimism track by default. Append `?tracks=1` to compare all tracks first.

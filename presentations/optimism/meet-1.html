@@ -17,7 +17,12 @@
       </a>
       <nav>
         <button class="nav-toggle" aria-label="Toggle sections">☰ Sections</button>
-        <a href="../index.html" class="btn btn-ghost btn-sm">Tracks</a>
+                <div class="track-nav" data-track-nav aria-label="Switch L2 track">
+          <a href="../optimism/index.html" data-track-pill="optimism" title="OP Sepolia (default)">OP</a>
+          <a href="../base/index.html" data-track-pill="base" title="Base Sepolia">Base</a>
+          <a href="../arbitrum/index.html" data-track-pill="arbitrum" title="Arbitrum Sepolia">Arb</a>
+        </div>
+        <a href="../index.html?tracks=1" class="btn btn-ghost btn-sm">All tracks</a>
         <a href="index.html" class="btn btn-ghost btn-sm">Home</a>
         <a href="meet-2.html" class="btn btn-primary btn-sm">Next: Meet 2 →</a>
       </nav>
@@ -33,6 +38,7 @@
     <a href="#evm-anatomy" class="depth-1">EVM anatomy</a>
     <a href="#cost-calc" class="depth-1">L1 vs OP Sepolia cost</a>
     <a href="#block-b">Block B — Rollup mechanics & OP Stack</a>
+    <a href="#superchain" class="depth-1">Superchain deep dive</a>
     <a href="#live-block" class="depth-1">Live block from OP Sepolia</a>
     <a href="#block-c">Block C — The Bandung vision</a>
     <a href="#rules">Rules of the Game</a>
@@ -51,6 +57,7 @@
       <a href="#evm-anatomy" class="depth-1">Anatomy</a>
       <a href="#cost-calc" class="depth-1">Cost calculator</a>
       <a href="#block-b">Block B — Rollups & OP Stack</a>
+      <a href="#superchain" class="depth-1">Superchain deep dive</a>
       <a href="#live-block" class="depth-1">Live block</a>
       <a href="#block-c">Block C — Bandung vision</a>
       <a href="#rules">Rules of the Game</a>
@@ -317,6 +324,69 @@ flowchart LR
               <tr><td>Bytecode parity</td><td>—</td><td>100% EVM-equivalent</td></tr>
             </tbody>
           </table>
+        </div>
+
+        <h3 id="superchain">Superchain deep dive — why Optimism, not just "another L2"</h3>
+        <div class="prose">
+          <p>
+            <strong>Optimism</strong> maintains the <strong>OP Stack</strong> — open-source software for launching
+            optimistic rollups. Chains that adopt it form the <strong>Superchain</strong>: a network of L2s that
+            share upgrades, security research, and (over time) interoperability standards.
+          </p>
+        </div>
+
+        <div class="mermaid">
+flowchart TB
+  subgraph superchain [Superchain members]
+    op["OP Mainnet / OP Sepolia"]
+    base["Base"]
+    mode["Mode"]
+    zora["Zora"]
+    world["World Chain"]
+  end
+  op --> stack["OP Stack codebase"]
+  base --> stack
+  mode --> stack
+  zora --> stack
+  world --> stack
+  stack --> eth["Ethereum L1 security"]
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr; gap: 1rem;" class="grid-2-md">
+          <div class="panel">
+            <div class="panel-title">OP Sepolia vs Base Sepolia</div>
+            <p class="prose" style="margin: 0;">
+              Both are OP Stack chains with identical EVM bytecode. <strong>Base</strong> is Coinbase's branded
+              deployment with distribution moat. <strong>OP Sepolia</strong> is the reference testnet for the
+              stack itself — best for learning how rollups work before picking a brand.
+            </p>
+          </div>
+          <div class="panel">
+            <div class="panel-title">Fault proofs &amp; the 7-day window</div>
+            <p class="prose" style="margin: 0;">
+              Optimistic rollups assume batches are valid unless challenged. A fault proof on L1 can revert a
+              bad batch. <em>Withdrawals</em> to L1 wait for this window; <em>deposits and L2 txs</em> do not.
+              Your staking dApp users never feel the 7-day delay unless they bridge out to L1.
+            </p>
+          </div>
+          <div class="panel">
+            <div class="panel-title">Superchain Faucet workflow</div>
+            <ol class="prose" style="margin: 0.3rem 0 0; padding-left: 1.1rem;">
+              <li>Open <a href="https://console.optimism.io/faucet" target="_blank" rel="noopener">console.optimism.io/faucet</a></li>
+              <li>Sign in with <strong>GitHub</strong> (no mainnet balance check)</li>
+              <li>Select <strong>OP Sepolia</strong>, paste wallet address, claim</li>
+              <li>Add network in MetaMask: chainId <code>11155420</code>, RPC <code>https://sepolia.optimism.io</code></li>
+            </ol>
+          </div>
+          <div class="panel">
+            <div class="panel-title">Key OP Stack contracts (conceptual)</div>
+            <ul class="prose" style="margin: 0.3rem 0 0;">
+              <li><strong>Portal</strong> — entry/exit point for ETH and messages L1 ↔ L2</li>
+              <li><strong>L1 Standard Bridge</strong> — canonical token bridge</li>
+              <li><strong>L2 Output Oracle</strong> — posts L2 state roots to L1</li>
+            </ul>
+            <p class="muted tiny" style="margin: 0.5rem 0 0;">You won't deploy these — Optimism runs them. But knowing they exist explains where security comes from.</p>
+          </div>
         </div>
 
         <!-- L1 vs OP Sepolia cost calculator -->

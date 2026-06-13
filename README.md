@@ -1,15 +1,28 @@
 # Bandung L2 — DeFi Staking Workshop Monorepo
 
-> **Multi-track monorepo** for a 1-month, 8-session intensive workshop in Bandung, Indonesia. Builders ship a hackathon-ready DeFi Staking Protocol on **one of three L2 testnets**.
+> **Multi-track monorepo** for a 1-month, 8-session intensive workshop in Bandung, Indonesia. The **default cohort track is OP Sepolia** (Optimism / Superchain). Base and Arbitrum tracks remain available for exploration.
 
 ---
 
-## Choose your track
+## Default track: OP Sepolia
+
+New builders start here:
+
+| | |
+|---|---|
+| **Code** | [`tracks/optimism/`](tracks/optimism/) |
+| **Presentations** | [`presentations/optimism/`](presentations/optimism/) (auto-opens from [`presentations/index.html`](presentations/index.html)) |
+| **Faucet** | [Superchain Faucet](https://console.optimism.io/faucet) (GitHub login) |
+| **Chain ID** | `11155420` |
+
+---
+
+## Other tracks (optional)
 
 | Track | Folder | Network | Chain ID |
 | ----- | ------ | ------- | -------- |
+| **Optimism** (default) | [`tracks/optimism/`](tracks/optimism/) | OP Sepolia | `11155420` |
 | **Base** | [`tracks/base/`](tracks/base/) | Base Sepolia | `84532` |
-| **Optimism** | [`tracks/optimism/`](tracks/optimism/) | OP Sepolia | `11155420` |
 | **Arbitrum** | [`tracks/arbitrum/`](tracks/arbitrum/) | Arbitrum Sepolia | `421614` |
 
 Each track contains its own `contracts/`, `frontend/`, and `docs/`. Solidity code is identical; only network config differs.
@@ -18,11 +31,11 @@ Full comparison and faucet links: [`tracks/README.md`](tracks/README.md).
 
 ---
 
-## Quick start (example: Base track)
+## Quick start (default: Optimism track)
 
 ```bash
 git clone <YOUR_FORK_URL> bandungbuildmaterial
-cd bandungbuildmaterial/tracks/base
+cd bandungbuildmaterial/tracks/optimism
 
 cp .env.example .env
 cp frontend/.env.local.example frontend/.env.local
@@ -31,13 +44,13 @@ cd contracts && forge install && forge build && forge test -vvv
 cd ../frontend && pnpm install && pnpm dev
 ```
 
-Swap `tracks/base` for `tracks/optimism` or `tracks/arbitrum` for other tracks.
+Presentations: open [`presentations/index.html`](presentations/index.html) — redirects to the OP Sepolia learning path by default. Use `?tracks=1` to compare all tracks first.
 
-From repo root you can also run:
+From repo root:
 
 ```bash
+pnpm dev:optimism   # default
 pnpm dev:base
-pnpm dev:optimism
 pnpm dev:arbitrum
 ```
 
@@ -52,7 +65,7 @@ bandungbuildmaterial/
 │   ├── base/                    Base Sepolia track
 │   ├── optimism/                OP Sepolia track
 │   └── arbitrum/                Arbitrum Sepolia track
-├── presentations/               Slide decks — open presentations/index.html to pick a track
+├── presentations/               Slide decks — default: presentations/optimism/ (index auto-redirects)
 └── docs/                        (moved into each track)
 ```
 

@@ -1,99 +1,121 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Bandung Builders — Choose Your L2 Track</title>
-  <meta name="description" content="Pick Base Sepolia, OP Sepolia, or Arbitrum Sepolia for the DeFi staking workshop." />
-  <link rel="stylesheet" href="assets/styles.css" />
-</head>
-<body>
-  <header class="topbar">
-    <div class="topbar-inner">
-      <a href="index.html" class="topbar-brand">
-        <span class="topbar-brand-mark">B³</span>
-        <span>Bandung Builders</span>
-      </a>
-      <nav>
-        <a href="../README.md" class="btn btn-ghost btn-sm">Monorepo</a>
-        <a href="https://github.com/Fatihmaull/bandung-builders" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">GitHub</a>
-      </nav>
-    </div>
-  </header>
-
-  <main class="page-shell" style="grid-template-columns: 1fr; max-width: 1100px;">
-    <section class="hero" style="border: none; padding: 4rem 0 1rem;">
-      <span class="badge dot">Cohort 01 · Bandung, Indonesia</span>
-      <h1>Choose your L2 track.</h1>
-      <p class="lead">
-        Same workshop. Same staking protocol. Same 8 sessions. Three testnets —
-        pick the chain you'll deploy on for the next 4 weeks. You can switch tracks
-        anytime, but <strong>stick to one during the cohort</strong> so your deploy
-        addresses and docs stay consistent.
-      </p>
-    </section>
-
-    <section style="padding: 1rem 0 4rem;">
-      <div class="track-grid">
-        <a href="base/index.html" class="track-card" data-track="base">
-          <div class="track-mark">Base</div>
-          <h3>Base Sepolia</h3>
-          <div class="track-meta">
-            <span class="badge">chainId 84532</span>
-            <span class="badge">OP Stack</span>
-          </div>
-          <p class="track-faucet">
-            Faucet: <strong>ethfaucet.com</strong> — no mainnet activity required.
-            Original cohort branding; Coinbase ecosystem path.
-          </p>
-          <span class="btn btn-primary btn-sm" style="align-self: flex-start;">Start Base track →</span>
-        </a>
-
-        <a href="optimism/index.html" class="track-card" data-track="optimism">
-          <div class="track-mark">OP</div>
-          <h3>OP Sepolia</h3>
-          <div class="track-meta">
-            <span class="badge">chainId 11155420</span>
-            <span class="badge">Superchain</span>
-          </div>
-          <p class="track-faucet">
-            Faucet: <strong>Superchain Faucet</strong> (GitHub login) —
-            recommended for beginners without mainnet ETH.
-          </p>
-          <span class="btn btn-primary btn-sm" style="align-self: flex-start;">Start Optimism track →</span>
-        </a>
-
-        <a href="arbitrum/index.html" class="track-card" data-track="arbitrum">
-          <div class="track-mark">Arb</div>
-          <h3>Arbitrum Sepolia</h3>
-          <div class="track-meta">
-            <span class="badge">chainId 421614</span>
-            <span class="badge">Nitro rollup</span>
-          </div>
-          <p class="track-faucet">
-            Faucet: <strong>ethfaucet.com</strong> — richest L2 docs and
-            community tutorials when you get stuck.
-          </p>
-          <span class="btn btn-primary btn-sm" style="align-self: flex-start;">Start Arbitrum track →</span>
-        </a>
-      </div>
-
-      <div class="panel" style="margin-top: 2.5rem;">
-        <div class="panel-title">What's the same across all tracks?</div>
-        <ul class="prose" style="margin: 0.5rem 0 0;">
-          <li>Identical <code>StakingProtocol.sol</code> and Foundry tests</li>
-          <li>Same Next.js + Wagmi + RainbowKit frontend boilerplate</li>
-          <li>Same 8-session curriculum structure (network references differ per track)</li>
-          <li>Repo code lives in <code>tracks/base/</code>, <code>tracks/optimism/</code>, or <code>tracks/arbitrum/</code></li>
-        </ul>
-      </div>
-    </section>
-  </main>
-
-  <footer style="border-top: 1px solid var(--border); padding: 2rem 1.5rem; text-align: center;">
-    <p class="muted tiny" style="margin:0;">
-      Bandung Builders · Cohort 01 · Materials MIT (code) / CC-BY-4.0 (docs)
-    </p>
-  </footer>
-</body>
-</html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bandung Builders — Choose Your L2 Track</title>
+  <meta name="description" content="Pick Base Sepolia, OP Sepolia, or Arbitrum Sepolia for the DeFi staking workshop." />
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a href="optimism/index.html" class="topbar-brand">
+        <span class="topbar-brand-mark">B³</span>
+        <span>Bandung OP Builders</span>
+      </a>
+      <nav>
+        <a href="optimism/index.html" class="btn btn-primary btn-sm">Default: OP Sepolia →</a>
+        <a href="../README.md" class="btn btn-ghost btn-sm">Monorepo</a>
+        <a href="https://github.com/Fatihmaull/bandung-builders" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-shell" style="grid-template-columns: 1fr; max-width: 1100px;">
+    <section class="hero" style="border: none; padding: 4rem 0 1rem;">
+      <span class="badge dot">Cohort 01 · Bandung, Indonesia</span>
+      <h1>Choose your L2 track.</h1>
+      <p class="lead">
+        The cohort default is <strong>OP Sepolia</strong> — OP Stack / Superchain, Superchain Faucet
+        (GitHub login, no mainnet ETH). Base and Arbitrum tracks remain available if you want to explore.
+      </p>
+      <p class="muted tiny" id="redirect-note">
+        Redirecting to OP Sepolia sessions…
+        <a href="optimism/index.html">Click here</a> if nothing happens, or
+        <a href="?tracks=1">stay on this page</a> to compare tracks first.
+      </p>
+    </section>
+
+    <section style="padding: 1rem 0 4rem;" id="track-picker">
+      <div class="track-grid">
+        <a href="optimism/index.html" class="track-card track-card-default" data-track="optimism">
+          <div style="display:flex; gap:0.5rem; align-items:center; flex-wrap:wrap;">
+            <div class="track-mark">OP</div>
+            <span class="badge" style="border-color: var(--op-red); color: var(--op-red);">Default cohort track</span>
+          </div>
+          <h3>OP Sepolia</h3>
+          <div class="track-meta">
+            <span class="badge">chainId 11155420</span>
+            <span class="badge">Superchain</span>
+          </div>
+          <p class="track-faucet">
+            Faucet: <strong>Superchain Faucet</strong> (GitHub login) —
+            recommended for beginners without mainnet ETH. Richest OP Stack narrative in this workshop.
+          </p>
+          <span class="btn btn-primary btn-sm" style="align-self: flex-start;">Start Optimism track →</span>
+        </a>
+
+        <a href="base/index.html" class="track-card" data-track="base">
+          <div class="track-mark">Base</div>
+          <h3>Base Sepolia</h3>
+          <div class="track-meta">
+            <span class="badge">chainId 84532</span>
+            <span class="badge">OP Stack</span>
+          </div>
+          <p class="track-faucet">
+            Faucet: <strong>ethfaucet.com</strong> — no mainnet activity required.
+            Coinbase ecosystem path; same OP Stack skills as Optimism.
+          </p>
+          <span class="btn btn-ghost btn-sm" style="align-self: flex-start;">Explore Base track →</span>
+        </a>
+
+        <a href="arbitrum/index.html" class="track-card" data-track="arbitrum">
+          <div class="track-mark">Arb</div>
+          <h3>Arbitrum Sepolia</h3>
+          <div class="track-meta">
+            <span class="badge">chainId 421614</span>
+            <span class="badge">Nitro rollup</span>
+          </div>
+          <p class="track-faucet">
+            Faucet: <strong>ethfaucet.com</strong> — alternative L2 with the deepest tutorial ecosystem.
+          </p>
+          <span class="btn btn-ghost btn-sm" style="align-self: flex-start;">Explore Arbitrum track →</span>
+        </a>
+      </div>
+
+      <div class="panel" style="margin-top: 2.5rem;">
+        <div class="panel-title">What's the same across all tracks?</div>
+        <ul class="prose" style="margin: 0.5rem 0 0;">
+          <li>Identical <code>StakingProtocol.sol</code> and Foundry tests</li>
+          <li>Same Next.js + Wagmi + RainbowKit frontend boilerplate</li>
+          <li>Same 8-session curriculum structure (network references differ per track)</li>
+          <li>Repo code: <code>tracks/optimism/</code> (default), <code>tracks/base/</code>, or <code>tracks/arbitrum/</code></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer style="border-top: 1px solid var(--border); padding: 2rem 1.5rem; text-align: center;">
+    <p class="muted tiny" style="margin:0;">
+      Bandung Builders · Cohort 01 · Default track: OP Sepolia
+    </p>
+  </footer>
+
+  <script>
+    (function () {
+      var params = new URLSearchParams(location.search);
+      var stay = params.has("tracks") || params.get("tracks") === "1";
+      var note = document.getElementById("redirect-note");
+      if (stay) {
+        if (note) note.hidden = true;
+        return;
+      }
+      setTimeout(function () {
+        location.replace("optimism/index.html");
+      }, 1200);
+    })();
+  </script>
+</body>
+</html>
+

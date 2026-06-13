@@ -15,7 +15,12 @@
         <span>Bandung Base Builders</span>
       </a>
       <nav>
-        <a href="../index.html" class="btn btn-ghost btn-sm topbar-track-switch">← All tracks</a>
+                <div class="track-nav" data-track-nav aria-label="Switch L2 track">
+          <a href="../optimism/index.html" data-track-pill="optimism" title="OP Sepolia (default)">OP</a>
+          <a href="../base/index.html" data-track-pill="base" title="Base Sepolia">Base</a>
+          <a href="../arbitrum/index.html" data-track-pill="arbitrum" title="Arbitrum Sepolia">Arb</a>
+        </div>
+        <a href="../index.html?tracks=1" class="btn btn-ghost btn-sm">All tracks</a>
         <a href="../../tracks/base/README.md" class="btn btn-ghost btn-sm">Repo track</a>
       </nav>
     </div>

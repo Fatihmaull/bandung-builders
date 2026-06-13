@@ -1,31 +1,27 @@
 # Workshop presentations
 
-Interactive scroll-presentation pages for the 8 Bandung Builders sessions — available in **three L2 tracks**.
+Interactive scroll-presentation pages for the 8 Bandung Builders sessions.
+
+**Default track:** [OP Sepolia (`optimism/`)](optimism/index.html) — opening [`index.html`](index.html) redirects here automatically. Use [`index.html?tracks=1`](index.html?tracks=1) to compare all tracks first.
 
 ## Structure
 
 ```
 presentations/
-├── index.html              Track selector (start here)
-├── base/                   Base Sepolia track
-│   ├── index.html          Session grid + progress
-│   └── meet-1.html … meet-8.html
-├── optimism/               OP Sepolia track
+├── index.html              Track picker (+ auto-redirect to optimism/)
+├── optimism/               OP Sepolia — DEFAULT cohort track
 │   ├── index.html
 │   └── meet-1.html … meet-8.html
-├── arbitrum/               Arbitrum Sepolia track
-│   ├── index.html
-│   └── meet-1.html … meet-8.html
+├── base/                   Base Sepolia (optional)
+├── arbitrum/               Arbitrum Sepolia (optional)
 └── assets/
-    ├── styles.css
-    └── main.js
 ```
 
 ## How to use
 
-1. Open **`presentations/index.html`** in a browser.
-2. Pick **Base**, **Optimism**, or **Arbitrum**.
-3. Work through Meet 1–8 inside that track folder.
+1. Open **`presentations/index.html`** — you'll land on **Optimism sessions** within ~1 second.
+2. Use the **OP | Base | Arb** navbar on any page to switch tracks.
+3. Click **All tracks** to return to the full comparison (`?tracks=1`).
 
 Progress (`Mark complete`, checklists) is stored **per track** in `localStorage` (`bbb.v1.base.*`, `bbb.v1.optimism.*`, etc.).
 

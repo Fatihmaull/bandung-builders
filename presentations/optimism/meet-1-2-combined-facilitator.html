@@ -1,0 +1,525 @@
+<!doctype html>
+<html lang="id" data-track="optimism">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Meet 1 + 2 Combined — Panduan Facilitator 2 Jam · Bandung OP Builders</title>
+  <meta name="description" content="Panduan lengkap sesi gabungan Meet 1 + Meet 2 dalam 120 menit: EVM, OP Sepolia, Foundry, cast, forge test." />
+  <link rel="stylesheet" href="../assets/styles.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a href="index.html" class="topbar-brand">
+        <span class="topbar-brand-mark">B³</span>
+        <span>Bandung OP Builders</span>
+      </a>
+      <nav>
+        <button class="nav-toggle" aria-label="Toggle sections">☰ Sections</button>
+        <div class="track-nav" data-track-nav aria-label="Switch L2 track">
+          <a href="../optimism/index.html" data-track-pill="optimism" title="OP Sepolia (default)">OP</a>
+          <a href="../base/index.html" data-track-pill="base" title="Base Sepolia">Base</a>
+          <a href="../arbitrum/index.html" data-track-pill="arbitrum" title="Arbitrum Sepolia">Arb</a>
+        </div>
+        <a href="meet-1.html" class="btn btn-ghost btn-sm">Meet 1 slides</a>
+        <a href="meet-2.html" class="btn btn-ghost btn-sm">Meet 2 slides</a>
+        <a href="index.html" class="btn btn-primary btn-sm">Home</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="mobile-nav" id="mobileNav">
+    <a href="#hero">Overview</a>
+    <a href="#prinsip">Prinsip desain</a>
+    <a href="#sukses">Definisi sukses</a>
+    <a href="#slides">Slide yang dipakai</a>
+    <a href="#outline">Outline 2 jam</a>
+    <a href="#blok-0">Blok 0 — Opening</a>
+    <a href="#blok-1">Blok 1 — Meet 1 essentials</a>
+    <a href="#blok-2">Blok 2 — Rules + Faucet</a>
+    <a href="#blok-3">Blok 3 — Foundry toolbox</a>
+    <a href="#blok-4">Blok 4 — cast field trip</a>
+    <a href="#blok-5">Blok 5 — Hands-on checkpoint</a>
+    <a href="#blok-6">Blok 6 — Close + homework</a>
+    <a href="#cheatsheet">Timing cheat sheet</a>
+    <a href="#tips">Tips facilitator</a>
+    <a href="#contingency">Kalau waktu meleset</a>
+  </div>
+
+  <div class="page-shell">
+    <aside class="sidenav">
+      <div class="sidenav-title">Facilitator guide</div>
+      <a href="#hero">Overview</a>
+      <a href="#prinsip">Prinsip desain</a>
+      <a href="#sukses">Definisi sukses</a>
+      <a href="#slides">Slide yang dipakai</a>
+      <a href="#outline">Outline 2 jam</a>
+      <a href="#blok-0">Blok 0 — Opening</a>
+      <a href="#blok-1">Blok 1 — Meet 1 essentials</a>
+      <a href="#blok-1a" class="depth-1">1a. EVM state machine</a>
+      <a href="#blok-1b" class="depth-1">1b. Kenapa OP Sepolia</a>
+      <a href="#blok-1c" class="depth-1">1c. Live block</a>
+      <a href="#blok-2">Blok 2 — Rules + Faucet</a>
+      <a href="#blok-3">Blok 3 — Foundry toolbox</a>
+      <a href="#blok-4">Blok 4 — cast field trip</a>
+      <a href="#blok-5">Blok 5 — Hands-on</a>
+      <a href="#blok-6">Blok 6 — Close + homework</a>
+      <a href="#cheatsheet">Timing cheat sheet</a>
+      <a href="#tips">Tips facilitator</a>
+      <a href="#contingency">Kalau waktu meleset</a>
+    </aside>
+
+    <main>
+      <!-- HERO -->
+      <section class="hero" id="hero">
+        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+          <span class="badge">Facilitator only</span>
+          <span class="badge">Week 1 · Meet 1 + 2 gabungan</span>
+          <span class="badge">Duration 2 jam (120 menit)</span>
+        </div>
+        <h1>Meet 1 + Meet 2 — Panduan Facilitator 2 Jam</h1>
+        <p class="lead">
+          Sesi gabungan untuk cohort yang sudah dapat overview Web3 minggu lalu. Hari ini fokus:
+          <strong>EVM sebagai state machine</strong>, <strong>OP Sepolia</strong>, dan
+          <strong>terminal Foundry</strong>. Target akhir: setiap peserta punya testnet ETH dan
+          <code>forge test -vvv</code> hijau di laptop sendiri.
+        </p>
+        <p class="muted tiny">
+          Repo: <code>tracks/optimism/</code> · Chain ID <code>11155420</code> ·
+          RPC <code>https://sepolia.optimism.io</code> ·
+          Faucet <a href="https://console.optimism.io/faucet" target="_blank" rel="noopener">console.optimism.io/faucet</a>
+        </p>
+      </section>
+
+      <!-- PRINSIP DESAIN -->
+      <section class="block" id="prinsip">
+        <div class="eyebrow">Prinsip desain sesi ini</div>
+        <h2>Apa yang dilakukan di ruangan vs ditunda ke rumah</h2>
+        <div class="prose">
+          <table>
+            <thead>
+              <tr><th>Lakukan (in-room)</th><th>Skip / defer ke rumah</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>EVM sebagai state machine (ringkas)</td><td>Skill mapping questionnaire di ruangan</td></tr>
+              <tr><td>OP Stack + OP Sepolia + Superchain Faucet</td><td>Superchain deep dive penuh, cost calculator interaktif</td></tr>
+              <tr><td>Rules of the Game (verbal, 5 menit)</td><td>Block C Bandung vision panjang</td></tr>
+              <tr><td><code>forge build</code> + <code>forge test</code> live</td><td>Anatomy <code>foundry.toml</code> baris-per-baris</td></tr>
+              <tr><td><code>cast</code> ke OP Sepolia (semua ikut)</td><td>Boilerplate walkthrough file-per-file</td></tr>
+              <tr><td>Semua peserta: faucet + <code>forge test</code> pass</td><td>Whiteboard opcode detail, Merkle trie</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- DEFINISI SUKSES -->
+      <section class="block" id="sukses">
+        <div class="eyebrow">North star</div>
+        <h2>Definisi sukses akhir sesi</h2>
+        <div class="callout ok">
+          <div class="callout-label">Setiap peserta bisa bilang:</div>
+          <ul class="prose" style="margin: 0.5rem 0 0;">
+            <li><strong>“EVM = state machine deterministik”</strong> — input sama → output sama di semua node.</li>
+            <li>Punya <strong>ETH di OP Sepolia</strong> (Superchain Faucet).</li>
+            <li><strong><code>forge test -vvv</code> hijau</strong> di laptop sendiri.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- SLIDES -->
+      <section class="block" id="slides">
+        <div class="eyebrow">Materi slide</div>
+        <h2>Slide yang dipakai di projector</h2>
+        <div class="prose">
+          <ol>
+            <li>
+              <strong><a href="meet-1.html">meet-1.html</a></strong> — Block A/B singkat + live block fetcher.
+              Section: <code>#block-a</code>, <code>#block-b</code>, <code>#live-block</code>.
+              <em>Skip:</em> <code>#superchain</code> detail, cost calculator, Block C panjang, skill mapping in-room.
+            </li>
+            <li>
+              <strong><a href="meet-2.html">meet-2.html</a></strong> — Foundry + cast.
+              Section: <code>#frame</code>, <code>#block-a</code>, <code>#block-b</code> (3 tab saja), <code>#block-c</code> + live cast button.
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- OUTLINE -->
+      <section class="block" id="outline">
+        <div class="eyebrow">Outline · 120 menit</div>
+        <h2>Alur 2 jam</h2>
+        <div class="prose">
+          <table>
+            <thead><tr><th>Waktu</th><th>Durasi</th><th>Topik</th></tr></thead>
+            <tbody>
+              <tr><td class="mono">0–20 min</td><td>20'</td><td>Meet 1 essentials</td></tr>
+              <tr><td class="mono">20–45 min</td><td>25'</td><td>Foundry + config</td></tr>
+              <tr><td class="mono">45–70 min</td><td>25'</td><td>cast on OP Sepolia</td></tr>
+              <tr><td class="mono">70–110 min</td><td>40'</td><td>Hands-on checkpoint</td></tr>
+              <tr><td class="mono">110–120 min</td><td>10'</td><td>Close + homework</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- BLOK 0 -->
+      <section class="block" id="blok-0">
+        <div class="eyebrow">Blok 0 · 0:00–0:05 · 5 menit</div>
+        <h2>Opening &amp; bridge</h2>
+        <p class="muted">Mode: Talk</p>
+
+        <div class="panel">
+          <div class="panel-title">Tujuan</div>
+          <p class="prose" style="margin: 0;">Set ekspektasi, tidak mengulang kemarin.</p>
+        </div>
+
+        <div class="callout">
+          <div class="callout-label">Script facilitator</div>
+          <blockquote class="prose" style="margin: 0.5rem 0 0; font-style: italic;">
+            “Kemarin kita sudah bahas gambaran besar Web3. Hari ini kita spesifik: EVM, OP Sepolia,
+            dan terminal Foundry. Di akhir 2 jam, wallet kamu punya testnet ETH dan
+            <code>forge test</code> kamu hijau.”
+          </blockquote>
+        </div>
+
+        <div class="prose">
+          <ul>
+            <li>Tidak perlu round-robin intro lagi (hemat 10–15 menit).</li>
+            <li>Tampilkan agenda 2 jam di whiteboard/slide.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- BLOK 1 -->
+      <section class="block" id="blok-1">
+        <div class="eyebrow">Blok 1 · 0:05–0:20 · 15 menit</div>
+        <h2>Meet 1 essentials — EVM + OP Stack</h2>
+        <p class="muted">Mode: Talk + 1 demo · Slide: <a href="meet-1.html#block-a">Meet 1 → #block-a</a> + <a href="meet-1.html#block-b">#block-b</a> + <a href="meet-1.html#live-block">#live-block</a></p>
+
+        <div id="blok-1a">
+          <h3>1a. EVM = state machine (7 menit)</h3>
+          <div class="prose">
+            <p><strong>Gambar di whiteboard:</strong></p>
+            <pre><code>Transactions → EVM (deterministic) → new state</code></pre>
+            <p><strong>3 kalimat wajib peserta hafal:</strong></p>
+            <ol>
+              <li><strong>EVM = mesin state deterministik</strong> — input sama → output sama di semua node.</li>
+              <li><strong>Gas = meteran compute</strong>; storage mahal, calldata murah.</li>
+              <li><strong>Account:</strong> EOA (private key) vs Contract (code + storage).</li>
+            </ol>
+            <p><em>Skip:</em> daftar opcode, Merkle trie detail — cukup sebut “Solidity compile jadi opcode, tiap baris = gas”.</p>
+          </div>
+        </div>
+
+        <div id="blok-1b" style="margin-top: 2rem;">
+          <h3>1b. Kenapa OP Sepolia? (5 menit)</h3>
+          <div class="prose">
+            <p><strong>Diagram rollup singkat:</strong></p>
+            <pre><code>User → Sequencer → eksekusi L2 → state root → L1 Ethereum</code></pre>
+            <p><strong>Poin cohort default:</strong></p>
+            <ul>
+              <li>OP Sepolia = testnet OP Stack (parent dari Base, Mode, Zora).</li>
+              <li>Faucet: <strong>Superchain Faucet</strong> — login GitHub, tanpa mainnet ETH.</li>
+              <li>Chain ID <code>11155420</code>, RPC <code>https://sepolia.optimism.io</code>.</li>
+            </ul>
+            <p><em>Skip:</em> perbandingan panjang Base vs OP — cukup 1 kalimat: “Base = branded OP Stack; kita belajar di induk stack-nya.”</p>
+          </div>
+        </div>
+
+        <div id="blok-1c" style="margin-top: 2rem;">
+          <h3>1c. Live block OP Sepolia (3 menit)</h3>
+          <div class="prose">
+            <p>Di slide Meet 1, klik <strong>Fetch block number</strong> — atau di terminal:</p>
+          </div>
+<pre><code class="language-bash">cast block-number --rpc-url https://sepolia.optimism.io</code></pre>
+          <div class="callout ok">
+            <div class="callout-label">Checkpoint verbal</div>
+            <p class="prose" style="margin: 0;">“Angka ini sama di seluruh dunia. Itu determinisme.”</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- BLOK 2 -->
+      <section class="block" id="blok-2">
+        <div class="eyebrow">Blok 2 · 0:20–0:30 · 10 menit</div>
+        <h2>Rules + setup wallet</h2>
+        <p class="muted">Mode: Talk + hands-on</p>
+
+        <h3>2a. Rules of the Game — speed run (5 menit)</h3>
+        <div class="prose">
+          <p>Baca 5 rules dari slide <a href="meet-1.html#rules">Meet 1 #rules</a> — jangan diskusi panjang:</p>
+          <ol>
+            <li><strong>Ship over polish</strong> (Week 1–3)</li>
+            <li>Setiap PR direview peer</li>
+            <li>Setiap contract change = <code>forge test</code></li>
+            <li>OP Sepolia only — no mainnet</li>
+            <li>AI co-pilot, bukan pilot</li>
+          </ol>
+          <p><strong>Tanda tangan Rules:</strong> kirim foto/scan async (WhatsApp group) — jangan habiskan 15 menit di ruangan.</p>
+        </div>
+
+        <h3 style="margin-top: 2rem;">2b. Superchain Faucet — live + parallel (5 menit)</h3>
+        <div class="prose">
+          <p>Facilitator demo di projector; peserta buka di laptop:</p>
+          <ol>
+            <li><a href="https://console.optimism.io/faucet" target="_blank" rel="noopener">console.optimism.io/faucet</a> → GitHub login</li>
+            <li>Pilih <strong>OP Sepolia</strong></li>
+            <li>Paste address MetaMask</li>
+            <li>MetaMask: network OP Sepolia (chainId <code>11155420</code>)</li>
+          </ol>
+          <p><strong>Buddy system:</strong> pasangkan yang sudah dapat ETH dengan yang stuck.</p>
+        </div>
+      </section>
+
+      <!-- BLOK 3 -->
+      <section class="block" id="blok-3">
+        <div class="eyebrow">Blok 3 · 0:30–0:45 · 15 menit</div>
+        <h2>Foundry toolbox</h2>
+        <p class="muted">Mode: Demo · Slide: <a href="meet-2.html#frame">Meet 2 → #frame</a> + <a href="meet-2.html#block-a">#block-a</a></p>
+
+        <h3>Pre-flight (3 menit)</h3>
+        <div class="prose">
+          <p>Semua ketik bersamaan — angkat tangan kalau error:</p>
+        </div>
+<pre><code class="language-bash">forge --version
+node --version
+pnpm --version</code></pre>
+        <p class="prose muted tiny">Tutor/helper standby untuk yang belum install — lihat <code>tracks/optimism/docs/00-prerequisites.md</code>.</p>
+
+        <h3 style="margin-top: 2rem;">forge / cast / anvil (5 menit)</h3>
+        <div class="prose">
+          <table>
+            <thead><tr><th>Tool</th><th>Satu kalimat</th></tr></thead>
+            <tbody>
+              <tr><td><code>forge</code></td><td>build, test, deploy</td></tr>
+              <tr><td><code>cast</code></td><td>RPC call dari terminal</td></tr>
+              <tr><td><code>anvil</code></td><td>local node / fork</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p class="prose"><strong>Demo singkat di projector:</strong></p>
+<pre><code class="language-bash">cd tracks/optimism/contracts
+forge build
+forge test -vvv</code></pre>
+        <div class="callout ok">
+          <div class="callout-label">Pesan kunci</div>
+          <p class="prose" style="margin: 0;">“Hijau = repo sehat. Kalau merah, kita fix bareng di Blok 5.”</p>
+        </div>
+
+        <h3 style="margin-top: 2rem;">foundry.toml — hanya 3 bagian (7 menit)</h3>
+        <p class="prose">Slide: <a href="meet-2.html#block-b">Meet 2 → #block-b</a> — tab profile, rpc, etherscan saja.</p>
+        <div class="prose">
+          <table>
+            <thead><tr><th>Block</th><th>Pesan</th></tr></thead>
+            <tbody>
+              <tr><td><code>solc_version = "0.8.24"</code></td><td>Pin compiler — jangan upgrade sembarangan</td></tr>
+              <tr><td><code>op_sepolia = "${OP_SEPOLIA_RPC_URL}"</code></td><td>Alias RPC dari <code>.env</code></td></tr>
+              <tr><td><code>[etherscan] chain = 11155420</code></td><td>Verify ke OP Sepolia Etherscan</td></tr>
+            </tbody>
+          </table>
+          <p><em>Skip:</em> <code>[fmt]</code>, remappings quiz — cukup sebut “OpenZeppelin ada di <code>lib/</code> via remapping”.</p>
+        </div>
+      </section>
+
+      <!-- BLOK 4 -->
+      <section class="block" id="blok-4">
+        <div class="eyebrow">Blok 4 · 0:45–1:10 · 25 menit</div>
+        <h2>cast field trip OP Sepolia</h2>
+        <p class="muted">Mode: Everyone types · Slide: <a href="meet-2.html#block-c">Meet 2 → #block-c</a> + live cast button</p>
+
+        <div class="callout">
+          <div class="callout-label">Format</div>
+          <p class="prose" style="margin: 0;">“Ikuti di terminal” — facilitator tunggu 80% sebelum lanjut.</p>
+        </div>
+
+<pre><code class="language-bash"># 1. Konfirmasi chain
+cast chain-id --rpc-url https://sepolia.optimism.io
+# expect: 11155420
+
+# 2. Block terbaru
+cast block-number --rpc-url https://sepolia.optimism.io
+
+# 3. Baca kontrak orang lain (WETH predeploy OP Stack)
+cast call 0x4200000000000000000000000000000000000006 \
+  "totalSupply()(uint256)" \
+  --rpc-url https://sepolia.optimism.io
+
+# 4. Balance sendiri
+cast balance ALAMAT_WALLET_KAMU --rpc-url https://sepolia.optimism.io</code></pre>
+
+        <div class="callout ok">
+          <div class="callout-label">Checkpoint verbal</div>
+          <p class="prose" style="margin: 0;">“Tanpa tulis Solidity, tanpa frontend — kamu sudah bicara ke kontrak di L2 nyata.”</p>
+        </div>
+
+        <p class="prose"><em>Opsional (5 menit sisa):</em> klik Call <code>totalSupply()</code> di slide Meet 2 live demo.</p>
+      </section>
+
+      <!-- BLOK 5 -->
+      <section class="block" id="blok-5">
+        <div class="eyebrow">Blok 5 · 1:10–1:50 · 40 menit</div>
+        <h2>Hands-on checkpoint</h2>
+        <p class="muted">Mode: Everyone types · Facilitator + 1–2 tutor keliling</p>
+
+        <div class="callout warn">
+          <div class="callout-label">Inti sesi</div>
+          <p class="prose" style="margin: 0;">Ini blok paling penting. Target: semua lihat <code>Suite result: ok</code> (atau jumlah test passed).</p>
+        </div>
+
+        <p class="prose"><strong>Langkah peserta (urutan wajib):</strong></p>
+<pre><code class="language-bash">cd bandungbuildmaterial/tracks/optimism
+cp .env.example .env
+cp frontend/.env.local.example frontend/.env.local
+cd contracts
+forge install
+forge build
+forge test -vvv</code></pre>
+
+        <h3 style="margin-top: 2rem;">Kalau stuck — triage cepat</h3>
+        <div class="prose">
+          <table>
+            <thead><tr><th>Gejala</th><th>Fix</th></tr></thead>
+            <tbody>
+              <tr><td><code>forge: command not found</code></td><td>Foundry belum install — pair dengan tutor</td></tr>
+              <tr><td><code>forge install</code> gagal</td><td>Git/SSH — <code>forge install OpenZeppelin/openzeppelin-contracts@v5.0.2 --no-commit</code></td></tr>
+              <tr><td>Test fail</td><td>Biasanya belum <code>forge install</code> — jangan debug deep, fix deps dulu</td></tr>
+              <tr><td>Faucet 0 balance</td><td>Network MetaMask salah / belum OP Sepolia</td></tr>
+            </tbody>
+          </table>
+          <p><em>Jangan bahas boilerplate frontend detail</em> — cukup sebut: “repo ada di <code>tracks/optimism/</code>, frontend Meet 6.”</p>
+        </div>
+
+        <div class="callout ok" style="margin-top: 1.5rem;">
+          <div class="callout-label">Checkpoint keras</div>
+          <p class="prose" style="margin: 0;">Akhir Blok 5: semua angkat tangan yang <code>forge test</code> pass — yang belum, tutor lanjut offline.</p>
+        </div>
+      </section>
+
+      <!-- BLOK 6 -->
+      <section class="block" id="blok-6">
+        <div class="eyebrow">Blok 6 · 1:50–2:00 · 10 menit</div>
+        <h2>Close + homework</h2>
+        <p class="muted">Mode: Talk</p>
+
+        <h3>Recap (4 bullet)</h3>
+        <ul class="prose">
+          <li>EVM = deterministic state machine + gas</li>
+          <li>OP Sepolia = default track cohort + Superchain Faucet</li>
+          <li><code>forge test</code> = safety net kamu</li>
+          <li><code>cast</code> = debugging surface tercepat</li>
+        </ul>
+
+        <h3 style="margin-top: 2rem;">Take-home (wajib sebelum Meet 3)</h3>
+        <div class="prose">
+          <table>
+            <thead><tr><th>Task</th><th>Referensi</th></tr></thead>
+            <tbody>
+              <tr>
+                <td>Baca Meet 1 <code>#superchain</code> + cost calculator sendiri</td>
+                <td><a href="meet-1.html#superchain">meet-1.html</a></td>
+              </tr>
+              <tr>
+                <td>Isi Skill Mapping</td>
+                <td><code>tracks/optimism/docs/week-1/meet-1-skill-mapping.md</code></td>
+              </tr>
+              <tr>
+                <td>Tanda tangan Rules of the Game</td>
+                <td><code>tracks/optimism/docs/week-1/meet-1-rules-of-the-game.md</code></td>
+              </tr>
+              <tr>
+                <td>Walkthrough repo</td>
+                <td><code>tracks/optimism/docs/week-1/meet-2-boilerplate-walkthrough.md</code></td>
+              </tr>
+              <tr>
+                <td>WalletConnect projectId di <code>.env.local</code></td>
+                <td><code>frontend/.env.local.example</code></td>
+              </tr>
+              <tr>
+                <td>Screenshot: <code>forge test</code> hijau + saldo OP Sepolia</td>
+                <td>kirim ke group</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="callout" style="margin-top: 1.5rem;">
+          <div class="callout-label">Preview Meet 3</div>
+          <p class="prose" style="margin: 0;">Design thinking — bawa 1 masalah Bandung yang mau diselesaikan on-chain.</p>
+        </div>
+      </section>
+
+      <!-- CHEAT SHEET -->
+      <section class="block" id="cheatsheet">
+        <div class="eyebrow">Print-friendly</div>
+        <h2>Timing cheat sheet (untuk facilitator)</h2>
+        <div class="prose">
+          <table>
+            <thead><tr><th>Waktu</th><th>Durasi</th><th>Blok</th><th>Mode</th></tr></thead>
+            <tbody>
+              <tr><td class="mono">0:00</td><td>5'</td><td>Opening + bridge</td><td>Talk</td></tr>
+              <tr><td class="mono">0:05</td><td>15'</td><td>EVM + OP Stack + live block</td><td>Talk + 1 demo</td></tr>
+              <tr><td class="mono">0:20</td><td>10'</td><td>Rules + Faucet</td><td>Talk + hands-on</td></tr>
+              <tr><td class="mono">0:30</td><td>15'</td><td>Foundry toolbox + foundry.toml</td><td>Demo</td></tr>
+              <tr><td class="mono">0:45</td><td>25'</td><td>cast field trip</td><td>Everyone types</td></tr>
+              <tr><td class="mono">1:10</td><td>40'</td><td>forge install + forge test</td><td>Everyone types</td></tr>
+              <tr><td class="mono">1:50</td><td>10'</td><td>Close + homework</td><td>Talk</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- TIPS -->
+      <section class="block" id="tips">
+        <div class="eyebrow">Facilitation</div>
+        <h2>Tips facilitator biar efektif</h2>
+        <ul class="prose">
+          <li><strong>Jangan ulang kemarin.</strong> Buka dengan “kemarin = Web3 overview; hari ini = builder setup.”</li>
+          <li><strong>Hands-on &gt; slide.</strong> Target 50+ menit keyboard aktif (cast + forge).</li>
+          <li><strong>Satu checkpoint keras:</strong> akhir Blok 5, semua angkat tangan yang <code>forge test</code> pass — yang belum, tutor lanjut offline.</li>
+          <li><strong>Defer dengan jelas.</strong> Bilang apa yang sengaja ditunda ke rumah (skill mapping, boilerplate walkthrough) supaya peserta tidak merasa “kecolongan”.</li>
+          <li><strong>Pair programming.</strong> Web2 kuat + Web3 baru = 1 pasang; percepat faucet &amp; install issues.</li>
+          <li><strong>Projector:</strong> terminal font besar, dark mode, zoom 150%+.</li>
+        </ul>
+      </section>
+
+      <!-- CONTINGENCY -->
+      <section class="block" id="contingency">
+        <div class="eyebrow">Contingency</div>
+        <h2>Kalau waktu meleset</h2>
+        <div class="prose">
+          <table>
+            <thead><tr><th>Kekurangan waktu</th><th>Potong ini dulu</th></tr></thead>
+            <tbody>
+              <tr><td>−10 menit</td><td>Live block fetcher + WETH cast call (cukup chain-id + balance)</td></tr>
+              <tr><td>−15 menit</td><td><code>foundry.toml</code> detail → kirim link docs saja</td></tr>
+              <tr><td>−20 menit</td><td>Rules verbal saja, tanda tangan 100% async</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="callout err" style="margin-top: 1.5rem;">
+          <div class="callout-label">Jangan potong</div>
+          <p class="prose" style="margin: 0;">
+            <strong>Superchain Faucet + forge test pass</strong> — tanpa ini Meet 4 (Solidity live) akan macet.
+          </p>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <p>Bandung OP Builders · Facilitator guide · Meet 1 + 2 combined · 120 min</p>
+        <p class="muted tiny">
+          Buka slide: <a href="meet-1.html">Meet 1</a> · <a href="meet-2.html">Meet 2</a> ·
+          Repo: <code>tracks/optimism/</code>
+        </p>
+      </footer>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-toml.min.js"></script>
+  <script src="../assets/main.js"></script>
+</body>
+</html>

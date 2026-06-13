@@ -1,36 +1,35 @@
 # Workshop tracks
 
-This monorepo ships **three parallel L2 tracks**. Each track is a self-contained workspace with its own `contracts/`, `frontend/`, and `docs/`.
+This monorepo ships **three parallel L2 tracks**. The **default cohort track is Optimism (OP Sepolia)**.
 
-| Track | Folder | Network | Chain ID | Best for |
-| ----- | ------ | ------- | -------- | -------- |
-| **Base** | [`base/`](base/) | Base Sepolia | `84532` | Original cohort branding; OP Stack via Coinbase |
-| **Optimism** | [`optimism/`](optimism/) | OP Sepolia | `11155420` | Superchain Faucet (GitHub); OP Stack narrative |
-| **Arbitrum** | [`arbitrum/`](arbitrum/) | Arbitrum Sepolia | `421614` | Richest L2 docs; ethfaucet.com |
+| Track | Folder | Network | Chain ID | Status |
+| ----- | ------ | ------- | -------- | ------ |
+| **Optimism** | [`optimism/`](optimism/) | OP Sepolia | `11155420` | **Default** — Superchain Faucet, OP Stack narrative |
+| **Base** | [`base/`](base/) | Base Sepolia | `84532` | Optional — Coinbase ecosystem |
+| **Arbitrum** | [`arbitrum/`](arbitrum/) | Arbitrum Sepolia | `421614` | Optional — deepest L2 docs |
 
-## Pick your track
+## Start here (default)
 
-1. Choose one folder under `tracks/`.
-2. Follow that track's [`README.md`](base/README.md).
-3. Work **only inside your track** during the workshop — do not mix addresses or env files across tracks.
+```bash
+cd tracks/optimism
+```
 
-## Shared assets
+Presentations: [`presentations/optimism/`](../presentations/optimism/) — [`presentations/index.html`](../presentations/index.html) redirects here automatically.
 
-- [`presentations/`](../presentations/) — slide decks (network-specific details may differ; follow your track's docs for RPC/faucet/explorer links)
-- Root [`README.md`](../README.md) — monorepo overview
+## Switch tracks
+
+Use the **OP | Base | Arb** navbar in any presentation page, or open [`presentations/index.html?tracks=1`](../presentations/index.html?tracks=1) to compare all three.
+
+Work **only inside one track** during the cohort — do not mix addresses or env files.
 
 ## Root scripts
 
-From the repo root:
-
 ```bash
-pnpm dev:base
-pnpm dev:optimism
-pnpm dev:arbitrum
-
-pnpm test:base
+pnpm dev:optimism    # default
 pnpm test:optimism
-pnpm test:arbitrum
+
+pnpm dev:base
+pnpm dev:arbitrum
 ```
 
-Solidity source code is identical across tracks. Only network configuration, env vars, and curriculum network references differ.
+Solidity source code is identical across tracks. Only network configuration differs.
