@@ -104,6 +104,8 @@ Index with rubrics and frameworks: `tracks/<your-track>/docs/README.md`.
 
 Load [`.cursorrules`](.cursorrules) in Cursor (automatic). For other agents, paste the matching track's `docs/system-prompt.md`.
 
+**Facilitators:** read [`guide.md`](guide.md) for pre-session checklist, live URLs, and agent setup on a new machine.
+
 ---
 
 ## License
