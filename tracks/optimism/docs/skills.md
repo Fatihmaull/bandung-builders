@@ -222,8 +222,10 @@ Do not: rewrite staking contract logic (Meet 4), add frontend hooks (Meet 6).
 | | |
 | --- | --- |
 | **Type** | Non-technical |
-| **Duration** | 2.5 hr |
+| **Duration** | ~2 hr 40 min |
 | **Slides** | [`presentations/optimism/meet-3.html`](../../../presentations/optimism/meet-3.html) |
+| **Presenter script** | [`week-2/meet-3-presenter-script.md`](./week-2/meet-3-presenter-script.md) |
+| **Sector reference** | [`week-2/meet-3-web3-sectors.md`](./week-2/meet-3-web3-sectors.md) |
 | **Prior sessions** | Meet 1 + Meet 2 complete |
 
 ### Prerequisites
@@ -241,13 +243,13 @@ Do not: rewrite staking contract logic (Meet 4), add frontend hooks (Meet 6).
 
 ### Deliverables after Meet 3
 
-- [ ] **One problem statement** (one paragraph) committed for Meet 4.
+- [ ] **One problem statement** (one paragraph) + **sector tag** committed for Meet 4.
 - [ ] EDIPT applied to a Web3 product (not just Web2 UX).
-- [ ] Answer: staking is a **primitive**, not the product — what is the noun?
+- [ ] Answer: staking is a **primitive**, not the product — what is the noun (sector wrapper)?
 
 ### Agent focus
 
-Help with: problem framing, EDIPT, Bandung use cases, product narrative, pitch angles.
+Help with: problem framing, EDIPT, **Web3 sectors** (DeFi, RWA, consumer, GameFi, SocialFi), Bandung use cases, product narrative, pitch angles.
 
 Do not: implement full staking contract during ideation session unless explicitly in homework.
 

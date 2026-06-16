@@ -262,7 +262,7 @@ forge test -vvv
 
 | Meet | Slide peserta | Docs facilitator |
 | ---- | ------------- | ---------------- |
-| 3 | `meet-3.html` | `docs/week-2/meet-3-design-thinking.md` |
+| 3 | [`meet-3.html`](presentations/optimism/meet-3.html) | [`meet-3-presenter-script.md`](tracks/optimism/docs/week-2/meet-3-presenter-script.md) · [`meet-3-design-thinking.md`](tracks/optimism/docs/week-2/meet-3-design-thinking.md) · [`meet-3-web3-sectors.md`](tracks/optimism/docs/week-2/meet-3-web3-sectors.md) |
 | 4 | `meet-4.html` | `docs/week-2/meet-4-solidity-staking.md` |
 | 5 | `meet-5.html` | `docs/week-3/meet-5-defi-tokenomics.md` |
 | 6 | `meet-6.html` | `docs/week-3/meet-6-frontend-integration.md` |
@@ -270,6 +270,64 @@ forge test -vvv
 | 8 | `meet-8.html` | `docs/week-4/meet-8-deployment-checklist.md` |
 
 Sebelum setiap sesi: update agent dengan section Meet yang sesuai di [`skills.md`](tracks/optimism/docs/skills.md).
+
+---
+
+## 9b. Meet 3 — Runbook facilitator (~160 menit)
+
+**Slide peserta:** https://presentations-pi-blue.vercel.app/optimism/meet-3.html  
+**Script menit-per-menit:** [`meet-3-presenter-script.md`](tracks/optimism/docs/week-2/meet-3-presenter-script.md)  
+**Sector deep reference:** [`meet-3-web3-sectors.md`](tracks/optimism/docs/week-2/meet-3-web3-sectors.md)
+
+### Definisi sukses
+
+- Setiap peserta submit **problem statement** + tag **SECTOR** (DeFi / Consumer / SocialFi / …).
+- Bisa jelaskan: *sector = noun, staking = verb*.
+- `forge test -vvv` masih hijau (cepat poll di opening).
+
+### Outline singkat
+
+| Menit | Blok | Slide anchor |
+| ----- | ---- | ------------ |
+| 0–9 | Opening + why | `#hero` `#why` |
+| 10–21 | **Web3 sector map (selipan)** | `#web3-sectors` `#sector-map` |
+| 22–47 | EDIPT | `#block-a` |
+| 48–77 | Empathize (grup 3) | `#block-b` |
+| 78–87 | Break | — |
+| 88–117 | 5 problems + trust builder | `#block-c` `#problems` `#trust-builder` |
+| 118–147 | Paper prototype + wallet walk | `#block-d` |
+| 148–161 | Commit + homework | `#commit` `#takehome` |
+
+### Selipan sector map — yang facilitator ucapkan
+
+1. Web3 = **8 sektor** (DeFi, RWA, Consumer, GameFi, SocialFi, NFT, Infra, AI×Web3) di rails yang sama.
+2. Cohort engine = **DeFi staking**; peserta pilih **wrapper sektor**.
+3. Tabel brief Bandung → sektor — jangan commit masalah dulu, hanya vocabulary.
+4. Push back: “kita build L2” (Infra, out of scope).
+
+### Contingency Meet 3
+
+| Kekurangan | Potong |
+| ---------- | ------ |
+| −10 menit | Sector map → 4 tab (DeFi, Consumer, SocialFi, Infra warning) |
+| −15 menit | Wallet walk → 1 demo volunteer |
+| −20 menit | Paper prototype 1 layar saja |
+
+**Jangan potong:** trust clause · problem statement commit.
+
+### Pesan template ke group (H-3 Meet 3)
+
+```
+Meet 3 — Ideasi & Design Thinking (~2 jam 40 menit):
+
+Slide: https://presentations-pi-blue.vercel.app/optimism/meet-3.html
+
+Baca (opsional): tracks/optimism/docs/week-2/meet-3-bandung-problems.md
+
+Bawa: 1 masalah Bandung + laptop + kertas/pena.
+Target akhir: problem statement + sektor (DeFi/Consumer/SocialFi/…) di group chat.
+forge test tetap harus hijau.
+```
 
 ---
 
@@ -359,7 +417,8 @@ Reference: guide.md and meet-1-2-combined-facilitator.html in repo.
 - **Slide peserta:** https://presentations-pi-blue.vercel.app/optimism/meet-1-2-combined.html
 - **Runbook kamu:** https://presentations-pi-blue.vercel.app/optimism/meet-1-2-combined-facilitator.html
 - **Kamus:** https://presentations-pi-blue.vercel.app/optimism/glossary.html
-- **Kurikulum index:** [`tracks/optimism/docs/README.md`](tracks/optimism/docs/README.md)
+- **Slide peserta Meet 3:** https://presentations-pi-blue.vercel.app/optimism/meet-3.html
+- **Script Meet 3:** [`tracks/optimism/docs/week-2/meet-3-presenter-script.md`](tracks/optimism/docs/week-2/meet-3-presenter-script.md)
 - **Vercel dashboard:** https://vercel.com/fatihmaulls-projects/presentations
 
 ---

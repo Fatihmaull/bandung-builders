@@ -1,8 +1,9 @@
 # Meet 3 — Ideasi Proyek & Design Thinking
 
 > **Track:** Non-Technical
-> **Duration:** 2.5 hours
+> **Duration:** ~2 hr 40 min
 > **Presenter script (menit-per-menit):** [`meet-3-presenter-script.md`](./meet-3-presenter-script.md)
+> **Web3 sector map:** [`meet-3-web3-sectors.md`](./meet-3-web3-sectors.md)
 > **Companion doc:** [`meet-3-bandung-problems.md`](./meet-3-bandung-problems.md) — five concrete problem briefs
 
 ## Learning objectives
@@ -13,6 +14,7 @@ By the end of this session, every attendee can:
 2. Apply EDIPT specifically to a *Web3 product* (where assumptions about identity, custody, and incentives change the design).
 3. Pick a Bandung-flavored problem from [`meet-3-bandung-problems.md`](./meet-3-bandung-problems.md) (or propose their own) and write a one-paragraph problem statement.
 4. Articulate why "staking" is a *primitive*, not a product — and how to wrap it in something humans care about.
+5. Name major Web3 **sectors** (DeFi, RWA, consumer, GameFi, SocialFi, etc.) and map their Bandung problem to one sector wrapper.
 
 ## Why this session exists (read aloud)
 
@@ -22,21 +24,36 @@ By the end of this session, every attendee can:
 >
 > Today we slow down and answer that question."
 
-## Agenda (150 minutes)
+## Agenda (~160 minutes)
 
 | Time      | Block                                                                    |
 | --------- | ------------------------------------------------------------------------ |
 | 00:00–00:10 | Recap Meet 2; open the question above                                  |
-| 00:10–00:40 | Block A — EDIPT, the Web3 dialect                                      |
-| 00:40–01:10 | Block B — Empathize: identifying a *real* Bandung user                 |
-| 01:10–01:20 | Stretch break                                                          |
-| 01:20–01:50 | Block C — Define + Ideate: 5 problems, 5 directions                    |
-| 01:50–02:20 | Block D — Prototype + Test (paper, then wallet)                        |
-| 02:20–02:30 | Each attendee commits to ONE problem statement for Meet 4              |
+| 00:10–00:22 | **Selipan** — Web3 sector map (DeFi, RWA, consumer, GameFi, SocialFi…) |
+| 00:22–00:48 | Block A — EDIPT, the Web3 dialect                                      |
+| 00:48–01:18 | Block B — Empathize: identifying a *real* Bandung user                 |
+| 01:18–01:28 | Stretch break                                                          |
+| 01:28–01:58 | Block C — Define + Ideate: 5 problems, 5 directions                    |
+| 01:58–02:28 | Block D — Prototype + Test (paper, then wallet)                        |
+| 02:28–02:40 | Each attendee commits to ONE problem statement (+ sector tag)          |
 
 ---
 
-## Block A — EDIPT, the Web3 dialect (30 min)
+## Block 0b — Web3 sector map (~12 min)
+
+Read [`meet-3-web3-sectors.md`](./meet-3-web3-sectors.md) for facilitator depth. In the room:
+
+1. Web3 is **sectors sharing rails**, not one industry.
+2. Walk the eight tabs on `#web3-sectors` in the slide — prioritize DeFi, RWA, Consumer, SocialFi; skim GameFi, NFT, Infra, AI.
+3. Show the **Bandung brief → sector** mapping table.
+4. Repeat-after-me: *"The sector is my noun; staking is my verb."*
+5. Quick poll: which sector is their instinct? (No commitment yet.)
+
+> Push back on "we're building an L2" (Infrastructure — wrong session) and "NFT marketplace for everything" (ask trust clause).
+
+---
+
+## Block A — EDIPT, the Web3 dialect (~26 min)
 
 Draw on the board:
 
@@ -156,6 +173,7 @@ Each attendee writes — on a sticky note or in the cohort chat — their commit
 - The user archetype.
 - The need.
 - The trust insight.
+- The **sector wrapper** (one word: DeFi, Consumer, SocialFi, RWA-adjacent, etc.).
 
 Format:
 
@@ -163,6 +181,7 @@ Format:
 USER:    <who>
 NEED:    <what>
 INSIGHT: <why a smart-contract solution is materially better>
+SECTOR:  <DeFi | Consumer | SocialFi | …>
 ```
 
 These are *not* permanent — they can refine. But they have to exist by the end of today, because Meet 4's staking contract is the *engine* underneath this product. You need to know what the product *is* before you tune the engine.
@@ -173,16 +192,18 @@ These are *not* permanent — they can refine. But they have to exist by the end
 
 1. **Meet 3 — Design Thinking, Web3 Edition**
 2. **Why this matters** — "Solidity is the easy part. The product is the hard part."
-3. **EDIPT diagram** — the 5 phases, looped
-4. **Empathize — the Web3 twist** — added friction layers, wallet/gas reality
-5. **Define — the trust clause** — *"and the trust assumption that makes Web3 better is…"*
-6. **Ideate — 4 mandatory questions** — gas, custody, on/off-chain, failure mode
-7. **Prototype — paper before Solidity** — counter-intuitive
-8. **Test — on Sepolia, with humans** — 3–5 testers minimum
-9. **Bandung users** — 5 archetypes
-10. **5 problem briefs (preview)** — see companion doc
-11. **Exercise: commit your problem statement** — sticky-note template
-12. **Homework before Meet 4** — read the staking contract once, write your problem statement once
+3. **Web3 sector map** — DeFi, RWA, consumer, GameFi, SocialFi, NFT, infra, AI × Web3
+4. **Brief → sector mapping** — five Bandung problems placed on the map
+5. **EDIPT diagram** — the 5 phases, looped
+6. **Empathize — the Web3 twist** — added friction layers, wallet/gas reality
+7. **Define — the trust clause** — *"and the trust assumption that makes Web3 better is…"*
+8. **Ideate — 4 mandatory questions** — gas, custody, on/off-chain, failure mode
+9. **Prototype — paper before Solidity** — counter-intuitive
+10. **Test — on Sepolia, with humans** — 3–5 testers minimum
+11. **Bandung users** — 5 archetypes
+12. **5 problem briefs (preview)** — see companion doc
+13. **Exercise: commit your problem statement** — sticky-note template (+ sector tag)
+14. **Homework before Meet 4** — read the staking contract once, write your problem statement once
 
 ## Take-home checklist
 
