@@ -2,6 +2,7 @@
 
 > **Track:** Non-Technical
 > **Duration:** 2.5 hours
+> **Presenter script (menit-per-menit):** [`meet-3-presenter-script.md`](./meet-3-presenter-script.md)
 > **Companion doc:** [`meet-3-bandung-problems.md`](./meet-3-bandung-problems.md) — five concrete problem briefs
 
 ## Learning objectives

@@ -35,6 +35,7 @@ A 4-week, 8-session intensive workshop teaching tech-savvy developers in Bandung
 | File                                                                                 | Type            | Purpose                                                  |
 | ------------------------------------------------------------------------------------ | --------------- | -------------------------------------------------------- |
 | [`week-2/meet-3-design-thinking.md`](./week-2/meet-3-design-thinking.md)             | Speaker script  | Web3 EDIPT framework (Empathize → Test)                  |
+| [`week-2/meet-3-presenter-script.md`](./week-2/meet-3-presenter-script.md)         | Presenter script | **Script menit-per-menit 150 min** Meet 3 ideation     |
 | [`week-2/meet-3-bandung-problems.md`](./week-2/meet-3-bandung-problems.md)           | Ideation prompt | 5 specific Bandung problems solvable on OP Stack L2          |
 | [`week-2/meet-4-solidity-staking.md`](./week-2/meet-4-solidity-staking.md)           | Live-coding doc | Walkthrough of `StakingProtocol.sol` + exercise + tests  |
 
