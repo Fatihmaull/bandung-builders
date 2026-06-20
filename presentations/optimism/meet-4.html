@@ -29,6 +29,7 @@
   <div class="mobile-nav">
     <a href="#hero">Overview</a>
     <a href="#agenda">Agenda</a>
+    <a href="#solidity-prep">Solidity Fast-Track</a>
     <a href="#frame">The mental model</a>
     <a href="#block-a">Block A — IStakingProtocol</a>
     <a href="#block-b">Block B — State & modifier</a>
@@ -45,6 +46,7 @@
       <div class="sidenav-title">Meet 4 · Sections</div>
       <a href="#hero">Overview</a>
       <a href="#agenda">Agenda</a>
+      <a href="#solidity-prep">Solidity Fast-Track</a>
       <a href="#frame">Mental model</a>
       <a href="#block-a">Block A — Interface</a>
       <a href="#block-b">Block B — State + modifier</a>
@@ -100,15 +102,55 @@
           <table>
             <thead><tr><th>Time</th><th>Block</th></tr></thead>
             <tbody>
-              <tr><td class="mono">00:00–00:10</td><td>Frame: the mental model of a continuous reward stream</td></tr>
-              <tr><td class="mono">00:10–00:35</td><td>Block A — read <code>IStakingProtocol.sol</code> together</td></tr>
-              <tr><td class="mono">00:35–01:05</td><td>Block B — state variables + <code>updateReward</code> modifier (LIVE-CODE)</td></tr>
-              <tr><td class="mono">01:05–01:15</td><td>Stretch break</td></tr>
-              <tr><td class="mono">01:15–01:55</td><td>Block C — <code>stake</code>, <code>withdraw</code>, <code>getReward</code> (LIVE-CODE)</td></tr>
-              <tr><td class="mono">01:55–02:25</td><td>Block D — write 4 Foundry tests; everyone goes green</td></tr>
+              <tr><td class="mono">00:00–00:20</td><td>Solidity Fast-Track: prep fundamental Solidity</td></tr>
+              <tr><td class="mono">00:20–00:30</td><td>Frame: the mental model of a continuous reward stream</td></tr>
+              <tr><td class="mono">00:30–01:00</td><td>Block A — read <code>IStakingProtocol.sol</code> together</td></tr>
+              <tr><td class="mono">01:00–02:00</td><td>Block B — live-code the exercise (TODO 1-7)</td></tr>
+              <tr><td class="mono">02:00–02:25</td><td>Block C — write & run tests</td></tr>
               <tr><td class="mono">02:25–02:30</td><td>Wrap-up + commit deliverable</td></tr>
             </tbody>
           </table>
+        </div>
+      </section>
+
+      <!-- SOLIDITY FAST-TRACK PREP -->
+      <section class="block" id="solidity-prep">
+        <div class="eyebrow">Solidity Fast-Track · 20 min</div>
+        <h2>Solidity Fast-Track Prep</h2>
+        <div class="prose">
+          <p>Sebelum memulai proyek staking DeFi yang kompleks, mari segarkan ingatan tentang sintaks dasar dan konsep penting Solidity:</p>
+          
+          <h3>1. Struktur Dasar</h3>
+          <p>Setiap file Solidity (<code>.sol</code>) wajib memiliki lisensi SPDX dan versi kompiler pragma.</p>
+          <pre><code class="language-solidity">// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.24;
+
+contract BelajarSolidity {
+    string public teks; // State Variable (disimpan di blockchain)
+
+    // Fungsi mengubah data (Menulis -> Membutuhkan Gas)
+    function setTeks(string memory _teksBaru) public {
+        teks = _teksBaru;
+    }
+
+    // Fungsi membaca data (Membaca -> view/pure gratis untuk pemanggilan eksternal)
+    function getTeks() public view returns (string memory) {
+        return teks;
+    }
+}</code></pre>
+
+          <h3>3. Tipe Data Kunci</h3>
+          <ul>
+            <li><code>uint256</code>: Bilangan bulat tak bertanda 256-bit (digunakan untuk saldo token dan timestamp).</li>
+            <li><code>address</code>: Menyimpan alamat dompet atau alamat smart contract lain.</li>
+            <li><code>mapping(key => value)</code>: Struktur data hash-map yang efisien secara gas untuk memetakan alamat user ke saldo mereka.</li>
+          </ul>
+
+          <h3>3. Visibility & Mutability</h3>
+          <ul>
+            <li><strong>Visibility:</strong> <code>public</code> (siapa saja), <code>external</code> (hanya luar), <code>internal</code> (kontrak & turunan), <code>private</code> (hanya internal kontrak).</li>
+            <li><strong>Mutability:</strong> <code>view</code> (hanya membaca state), <code>pure</code> (tidak membaca/menulis state).</li>
+          </ul>
         </div>
       </section>
 

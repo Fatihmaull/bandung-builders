@@ -31,6 +31,50 @@ By the end of this session, every attendee can:
 
 ---
 
+## 🚀 Solidity Fast-Track: Panduan Kilat
+
+Sebelum kita masuk ke proyek staking, mari kita segarkan ingatan kita tentang konsep dasar Solidity. Solidity adalah bahasa pemrograman berorientasi objek tingkat tinggi untuk menulis *smart contract* yang berjalan di EVM (Ethereum Virtual Machine).
+
+### 1. Struktur Dasar Smart Contract
+Setiap file Solidity (`.sol`) wajib memiliki lisensi SPDX dan versi kompiler (`pragma solidity`) agar kompilasinya bit-for-bit deterministik.
+
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.24;
+
+contract BelajarSolidity {
+    // State Variable: disimpan secara permanen di storage blockchain
+    string public teks;
+
+    // Fungsi untuk mengubah data (Menulis ke State -> Membutuhkan Gas)
+    function setTeks(string memory _teksBaru) public {
+        teks = _teksBaru;
+    }
+
+    // Fungsi untuk membaca data (Membaca State -> view/pure gratis jika dipanggil eksternal)
+    function getTeks() public view returns (string memory) {
+        return teks;
+    }
+}
+```
+
+### 2. Tipe Data Penting di Solidity
+- **`uint256`**: Bilangan bulat tak bertanda (unsigned integer) sebesar 256-bit. Sangat sering digunakan untuk mencatat saldo token dan timestamp/waktu.
+- **`address`**: Tipe data khusus 20-byte untuk menyimpan alamat dompet (externally owned account) atau alamat smart contract lainnya.
+- **`mapping(key => value)`**: Struktur data hash-table yang dipetakan langsung dan sangat hemat gas. Digunakan untuk memetakan alamat user ke saldo token mereka (misalnya `mapping(address => uint256) public balanceOf`).
+
+### 3. Visibility & State Mutability
+- **Visibility (Visibilitas):**
+  - `public`: Dapat dipanggil secara internal (dari dalam kontrak) maupun eksternal (dari luar/oleh user/kontrak lain).
+  - `external`: Hanya bisa dipanggil dari luar kontrak. Sangat efisien dalam gas jika menerima parameter array/struct berukuran besar.
+  - `internal`: Hanya bisa diakses oleh kontrak ini dan kontrak turunannya.
+  - `private`: Hanya bisa diakses oleh kontrak ini saja secara internal.
+- **State Mutability (Mutabilitas State):**
+  - `view`: Menandai fungsi yang hanya membaca state dari blockchain tanpa memodifikasinya.
+  - `pure`: Menandai fungsi yang tidak membaca maupun memodifikasi state (misalnya perhitungan matematika statis).
+
+---
+
 ## Frame (10 min)
 
 ### The math, in one paragraph
