@@ -115,45 +115,226 @@
 
       <!-- SOLIDITY FAST-TRACK PREP -->
       <section class="block" id="solidity-prep">
-        <div class="eyebrow">Solidity Fast-Track · 20 min</div>
-        <h2>Solidity Fast-Track Prep</h2>
+        <div class="eyebrow">Solidity Fast-Track · 45 min</div>
+        <h2>🚀 Solidity Fast-Track: Panduan Kilat 1 Malam</h2>
         <div class="prose">
-          <p>Sebelum memulai proyek staking DeFi yang kompleks, mari segarkan ingatan tentang sintaks dasar dan konsep penting Solidity:</p>
+          <p>Selamat datang di modul akselerasi Solidity. Panduan ini dirancang khusus untuk memahami konsep inti pengembangan <em>smart contract</em> Ethereum secara instan, aman, dan siap praktik menggunakan <strong>Remix IDE</strong>.</p>
           
-          <h3>1. Struktur Dasar</h3>
-          <p>Setiap file Solidity (<code>.sol</code>) wajib memiliki lisensi SPDX dan versi kompiler pragma.</p>
+          <hr />
+
+          <h3>1. Struktur Dasar Smart Contract</h3>
+          <p>Setiap file Solidity (<code>.sol</code>) wajib memiliki lisensi SPDX dan penentu versi kompiler agar dapat dieksekusi dengan benar oleh EVM.</p>
           <pre><code class="language-solidity">// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.24;
+pragma solidity ^0.8.20;
 
-contract BelajarSolidity {
-    string public teks; // State Variable (disimpan di blockchain)
+contract BelajarKilat {
+    // State Variable (Disimpan secara permanen di blockchain)
+    string public teks;
 
-    // Fungsi mengubah data (Menulis -> Membutuhkan Gas)
+    // Fungsi untuk mengubah data (Memerlukan Gas Fee)
     function setTeks(string memory _teksBaru) public {
         teks = _teksBaru;
     }
 
-    // Fungsi membaca data (Membaca -> view/pure gratis untuk pemanggilan eksternal)
+    // Fungsi untuk membaca data (Gratis / Tanpa Gas Fee jika dipanggil eksternal)
     function getTeks() public view returns (string memory) {
         return teks;
     }
 }</code></pre>
 
-          <h3>3. Tipe Data Kunci</h3>
+          <h3>2. Tipe Data Inti</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Tipe Data</th>
+                <th>Deskripsi</th>
+                <th>Contoh Penggunaan</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>uint256</code></td>
+                <td>Angka bulat positif (unsigned integer 256-bit)</td>
+                <td>Menyimpan jumlah saldo, total suplai</td>
+              </tr>
+              <tr>
+                <td><code>address</code></td>
+                <td>Menyimpan alamat dompet (wallet) atau alamat contract lain</td>
+                <td>Menyimpan alamat owner atau deployer</td>
+              </tr>
+              <tr>
+                <td><code>bool</code></td>
+                <td>Nilai kebenaran logika (true atau false)</td>
+                <td>Status aktif/nonaktif fitur tertentu</td>
+              </tr>
+              <tr>
+                <td><code>mapping</code></td>
+                <td>Struktur data key-value (seperti hashmap/dictionary)</td>
+                <td>Memetakan alamat dompet ke saldo masing-masing</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <pre><code class="language-solidity">address public owner = 0x5B38Da6a701c568545dCfcB03FcB875f56beddC4;
+mapping(address => uint256) public saldo;</code></pre>
+
+          <h3>3. Fungsi, Visibilitas, dan Modifiers</h3>
+          <h4>Visibilitas Fungsi</h4>
           <ul>
-            <li><code>uint256</code>: Bilangan bulat tak bertanda 256-bit (digunakan untuk saldo token dan timestamp).</li>
-            <li><code>address</code>: Menyimpan alamat dompet atau alamat smart contract lain.</li>
-            <li><code>mapping(key => value)</code>: Struktur data hash-map yang efisien secara gas untuk memetakan alamat user ke saldo mereka.</li>
+            <li><strong>public:</strong> Dapat dipanggil oleh siapa saja (dari luar maupun dari dalam contract itu sendiri).</li>
+            <li><strong>private:</strong> Hanya dapat dipanggil oleh fungsi lain yang berada di dalam contract yang sama.</li>
+            <li><strong>external:</strong> Hanya bisa dipanggil dari luar contract (lebih hemat gas untuk input data besar).</li>
+            <li><strong>internal:</strong> Hanya bisa dipanggil dari dalam contract atau contract turunannya (inheritance).</li>
           </ul>
 
-          <h3>3. Visibility & Mutability</h3>
+          <h4>State Mutability</h4>
           <ul>
-            <li><strong>Visibility:</strong> <code>public</code> (siapa saja), <code>external</code> (hanya luar), <code>internal</code> (kontrak & turunan), <code>private</code> (hanya internal kontrak).</li>
-            <li><strong>Mutability:</strong> <code>view</code> (hanya membaca state), <code>pure</code> (tidak membaca/menulis state).</li>
+            <li><strong>view:</strong> Fungsi hanya membaca data dari blockchain tanpa mengubah state.</li>
+            <li><strong>pure:</strong> Fungsi tidak membaca maupun mengubah data blockchain (misal: kalkulasi matematika murni).</li>
           </ul>
+
+          <h4>Constructor &amp; Modifier</h4>
+          <p><code>constructor</code> adalah fungsi khusus yang dijalankan hanya satu kali saat contract pertama kali di-deploy. <code>modifier</code> digunakan untuk mengubah atau membatasi perilaku fungsi secara efisien.</p>
+          <pre><code class="language-solidity">contract Kepemilikan {
+    address public owner;
+
+    constructor() {
+        owner = msg.sender; // msg.sender adalah alamat yang men-deploy contract
+    }
+
+    modifier hanyaOwner() {
+        require(msg.sender == owner, "Error: Bukan pemilik contract!");
+        _; // Menjalankan sisa kode fungsi yang menggunakan modifier ini
+    }
+
+    // Fungsi ini dilindungi oleh modifier hanyaOwner
+    function gantiOwner(address _ownerBaru) public hanyaOwner {
+        owner = _ownerBaru;
+    }
+}</code></pre>
+
+          <h3>4. Lokasi Penyimpanan Data (Data Locations)</h3>
+          <p>Solidity membagi penyimpanan data berdasarkan sifat permanen dan efisiensi biaya gas:</p>
+          <ul>
+            <li><strong>storage:</strong> Data disimpan permanen di blockchain (seperti hard disk). Biaya gas sangat mahal. Variabel global otomatis bertipe storage.</li>
+            <li><strong>memory:</strong> Data disimpan sementara selama fungsi dieksekusi (seperti RAM). Biaya gas jauh lebih murah. Wajib digunakan untuk tipe data dinamis (seperti string, array, struct) di dalam fungsi.</li>
+            <li><strong>calldata:</strong> Tempat penyimpanan sementara khusus yang bersifat read-only (tidak bisa dimodifikasi). Sangat disarankan untuk argumen fungsi berjenis external karena paling hemat biaya gas.</li>
+          </ul>
+
+          <h3>5. Aliran Dana (Ether &amp; Payable)</h3>
+          <p>Agar smart contract dapat menerima dan mengirim aset Ether (ETH), keyword <code>payable</code> wajib disematkan pada fungsi atau tipe data alamat.</p>
+          <pre><code class="language-solidity">contract Dompet {
+    // Fungsi menerima Ether murni
+    function isiSaldo() public payable {}
+
+    // Mengecek saldo total yang dimiliki oleh contract ini
+    function getSaldoContract() public view returns (uint256) {
+        return address(this).balance;
+    }
+
+    // Mengirim seluruh Ether keluar dari contract ke alamat tujuan
+    function tarikSemuaDana(address payable _keMana) public {
+        uint256 jumlah = address(this).balance;
+        (bool sukses, ) = _keMana.call{value: jumlah}("");
+        require(sukses, "Transfer gagal");
+    }
+}</code></pre>
+
+          <h4>Fungsi Spesial: fallback() and receive()</h4>
+          <p>Dua fungsi ini tidak memiliki nama, tidak menerima argumen, dan tidak mengembalikan apa pun. Mereka otomatis dipanggil ketika ada interaksi tanpa data:</p>
+          <ul>
+            <li><strong>receive() external payable:</strong> Dipanggil jika contract menerima Ether murni tanpa instruksi data apa pun.</li>
+            <li><strong>fallback() external payable:</strong> Dipanggil jika fungsi yang diakses oleh pengirim tidak ditemukan di dalam contract, atau jika contract menerima Ether tetapi fungsi <code>receive()</code> tidak didefinisikan.</li>
+          </ul>
+
+          <h3>6. Validasi, Error Handling, &amp; Keamanan Dasar</h3>
+          <h4>Penanganan Error (Modern vs Klasik)</h4>
+          <ul>
+            <li><strong>require(kondisi, "pesan"):</strong> Memvalidasi input atau kondisi eksternal. Jika gagal, transaksi dibatalkan (revert) dan sisa gas dikembalikan ke user.</li>
+            <li><strong>assert(kondisi):</strong> Digunakan untuk memeriksa invariant internal (kondisi yang seharusnya tidak pernah salah). Jika gagal, seluruh sisa gas akan hangus.</li>
+            <li><strong>revert CustomError() (Rekomendasi Modern):</strong> Jauh lebih hemat biaya gas dibanding <code>require</code> dengan string teks.</li>
+          </ul>
+
+          <pre><code class="language-solidity">error SaldoKurang(uint256 tersedia, uint256 diminta);
+
+contract ContohError {
+    uint256 public totalSaldo = 100;
+
+    function ambilDana(uint256 _jumlah) public view {
+        if (_jumlah > totalSaldo) {
+            revert SaldoKurang(totalSaldo, _jumlah);
+        }
+    }
+}</code></pre>
+
+          <h4>Gas Optimization: Slot Packing</h4>
+          <p>EVM menyimpan data dalam slot-slot berukuran 32 byte. Menyusun variabel berukuran kecil secara berurutan dapat menggabungkannya ke dalam satu slot yang sama, sehingga menghemat biaya transaksi secara signifikan.</p>
+          <pre><code class="language-solidity">// BOROS GAS (Menggunakan 3 slot penyimpanan)
+uint128 nilaiA;
+uint256 nilaiB;
+uint128 nilaiC;
+
+// HEMAT GAS (Menggunakan 2 slot karena nilaiA dan nilaiC dikemas bersama)
+uint128 nilaiA;
+uint128 nilaiC;
+uint256 nilaiB;</code></pre>
+
+          <h4>Keamanan: Reentrancy Attack</h4>
+          <p>Kerentanan fatal di mana contract luar memanggil kembali fungsi penarikan sebelum status saldo internal diperbarui.</p>
+          <p><strong>Solusi Pola Checks-Effects-Interactions:</strong> Selalu lakukan pengecekan (validasi), perbarui status (ubah saldo internal), baru kemudian lakukan interaksi (kirim Ether eksternal).</p>
+          <p><strong>Integer Overflow/Underflow:</strong> Angka melewati batas maksimum atau minimum. Sejak Solidity versi 0.8.0, hal ini sudah otomatis ditangani (akan langsung revert jika terjadi overflow).</p>
+
+          <h3>7. Standar Token Industri (EIP / ERC)</h3>
+          <p>Pengembangan aplikasi web3 memanfaatkan standar token modular yang diawasi oleh OpenZeppelin:</p>
+          <ul>
+            <li><strong>ERC-20:</strong> Standar untuk Fungible Token (Token yang dapat dipertukarkan dengan nilai setara, contoh: USDT, koin kripto biasa).</li>
+            <li><strong>ERC-721:</strong> Standar untuk Non-Fungible Token (NFT, setiap token bersifat unik dan tidak dapat dipertukarkan satu sama lain).</li>
+            <li><strong>ERC-1155:</strong> Standar Multi-Token (Dapat mengelola ERC-20 dan ERC-721 sekaligus dalam satu contract tunggal demi efisiensi tinggi).</li>
+          </ul>
+
+          <h3>8. Proyek Praktik Malam Ini: Pembuatan Token Sederhana</h3>
+          <p>Salin kode final di bawah ini ke Remix IDE, kompilasi, dan lakukan simulasi deployment di Remix VM untuk mematangkan pemahaman Anda malam ini.</p>
+          <pre><code class="language-solidity">// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+
+contract KoinSimpel {
+    string public nama = "Koin Malam";
+    string public simbol = "KLM";
+    uint256 public totalSuplai;
+    address public pembuat;
+
+    mapping(address => uint256) public saldo;
+
+    // Event untuk melacak aktivitas transaksi di blockchain log
+    event Transfer(address indexed dari, address indexed ke, uint256 jumlah);
+
+    constructor(uint256 _suplaiAwal) {
+        pembuat = msg.sender;
+        totalSuplai = _suplaiAwal;
+        saldo[msg.sender] = _suplaiAwal; // Alokasi awal diberikan penuh kepada pembuat contract
+    }
+
+    function kirimKoin(address _penerima, uint256 _jumlah) public {
+        require(saldo[msg.sender] >= _jumlah, "Error: Saldo Anda tidak mencukupi");
+        
+        saldo[msg.sender] -= _jumlah;
+        saldo[_penerima] += _jumlah;
+        
+        emit Transfer(msg.sender, _penerima, _jumlah);
+    }
+}</code></pre>
+
+          <h4>🛠️ Langkah Eksperimen di Remix IDE</h4>
+          <ol>
+            <li>Buka browser Anda dan akses <a href="https://remix.ethereum.org" target="_blank">Remix Project</a>.</li>
+            <li>Buat file baru di dalam folder contracts, beri nama <code>BelajarSolidity.sol</code>.</li>
+            <li>Salin dan tempel kode <code>KoinSimpel</code> di atas ke dalam file tersebut.</li>
+            <li>Buka tab <strong>Solidity Compiler</strong> di sisi kiri, pilih versi kompiler yang sesuai (0.8.20), lalu klik tombol <strong>Compile</strong>.</li>
+            <li>Pindah ke tab <strong>Deploy & Run Transactions</strong>, pastikan Environment diatur ke <strong>Remix VM</strong>, masukkan angka suplai awal pada kolom input di samping tombol Deploy, lalu klik <strong>Deploy</strong>.</li>
+            <li>Ekspand menu contract di bagian bawah untuk menguji fungsi interaktif yang telah berhasil Anda buat!</li>
+          </ol>
         </div>
       </section>
-
       <!-- FRAME -->
       <section class="block" id="frame">
         <div class="eyebrow">Frame · 10 min</div>
