@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en" data-track="optimism">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -7,14 +8,16 @@
   <link rel="stylesheet" href="../assets/styles.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" />
 </head>
+
 <body>
   <header class="topbar">
     <div class="topbar-inner">
-      <a href="index.html" class="topbar-brand"><span class="topbar-brand-mark">B³</span><span>Bandung OP Builders</span></a>
+      <a href="index.html" class="topbar-brand"><span class="topbar-brand-mark">B³</span><span>Bandung OP
+          Builders</span></a>
       <nav>
         <button class="nav-toggle">☰</button>
         <a href="meet-3.html" class="btn btn-ghost btn-sm">← Meet 3</a>
-                <div class="track-nav" data-track-nav aria-label="Switch L2 track">
+        <div class="track-nav" data-track-nav aria-label="Switch L2 track">
           <a href="../optimism/index.html" data-track-pill="optimism" title="OP Sepolia (default)">OP</a>
           <a href="../base/index.html" data-track-pill="base" title="Base Sepolia">Base</a>
           <a href="../arbitrum/index.html" data-track-pill="arbitrum" title="Arbitrum Sepolia">Arb</a>
@@ -29,6 +32,7 @@
   <div class="mobile-nav">
     <a href="#hero">Overview</a>
     <a href="#agenda">Agenda</a>
+    <a href="#solidity-prep">Solidity Fast-Track</a>
     <a href="#frame">The mental model</a>
     <a href="#block-a">Block A — IStakingProtocol</a>
     <a href="#block-b">Block B — State & modifier</a>
@@ -45,6 +49,7 @@
       <div class="sidenav-title">Meet 4 · Sections</div>
       <a href="#hero">Overview</a>
       <a href="#agenda">Agenda</a>
+      <a href="#solidity-prep">Solidity Fast-Track</a>
       <a href="#frame">Mental model</a>
       <a href="#block-a">Block A — Interface</a>
       <a href="#block-b">Block B — State + modifier</a>
@@ -75,9 +80,11 @@
             <div class="panel-title">Learning objectives</div>
             <ol class="prose" style="margin: 0;">
               <li>Explain the Synthetix-style "reward accumulator" pattern out loud.</li>
-              <li>Implement <code>stake</code>, <code>withdraw</code>, <code>getReward</code>, <code>updateReward</code>.</li>
+              <li>Implement <code>stake</code>, <code>withdraw</code>, <code>getReward</code>,
+                <code>updateReward</code>.</li>
               <li>Defend the order of operations inside <code>updateReward</code>.</li>
-              <li>Write a Foundry test using <code>vm.prank</code> + <code>vm.warp</code> + <code>vm.expectRevert</code>.</li>
+              <li>Write a Foundry test using <code>vm.prank</code> + <code>vm.warp</code> +
+                <code>vm.expectRevert</code>.</li>
             </ol>
           </div>
           <div class="panel">
@@ -86,7 +93,9 @@
               <li><a href="../contracts/src/StakingProtocol.sol">contracts/src/StakingProtocol.sol</a></li>
               <li><a href="../contracts/src/StakingProtocol.exercise.sol">…/StakingProtocol.exercise.sol</a></li>
               <li><a href="../contracts/test/StakingProtocol.t.sol">…/test/StakingProtocol.t.sol</a></li>
-              <li><a href="../../tracks/optimism/docs/week-2/meet-4-solidity-staking.md">…/docs/week-2/meet-4-solidity-staking.md</a></li>
+              <li><a
+                  href="../../tracks/optimism/docs/week-2/meet-4-solidity-staking.md">…/docs/week-2/meet-4-solidity-staking.md</a>
+              </li>
             </ul>
           </div>
         </div>
@@ -98,37 +107,323 @@
         <h2>How the 2.5 hours unfold</h2>
         <div class="prose">
           <table>
-            <thead><tr><th>Time</th><th>Block</th></tr></thead>
+            <thead>
+              <tr>
+                <th>Time</th>
+                <th>Block</th>
+              </tr>
+            </thead>
             <tbody>
-              <tr><td class="mono">00:00–00:10</td><td>Frame: the mental model of a continuous reward stream</td></tr>
-              <tr><td class="mono">00:10–00:35</td><td>Block A — read <code>IStakingProtocol.sol</code> together</td></tr>
-              <tr><td class="mono">00:35–01:05</td><td>Block B — state variables + <code>updateReward</code> modifier (LIVE-CODE)</td></tr>
-              <tr><td class="mono">01:05–01:15</td><td>Stretch break</td></tr>
-              <tr><td class="mono">01:15–01:55</td><td>Block C — <code>stake</code>, <code>withdraw</code>, <code>getReward</code> (LIVE-CODE)</td></tr>
-              <tr><td class="mono">01:55–02:25</td><td>Block D — write 4 Foundry tests; everyone goes green</td></tr>
-              <tr><td class="mono">02:25–02:30</td><td>Wrap-up + commit deliverable</td></tr>
+              <tr>
+                <td class="mono">00:00–00:20</td>
+                <td>Solidity Fast-Track: prep fundamental Solidity</td>
+              </tr>
+              <tr>
+                <td class="mono">00:20–00:30</td>
+                <td>Frame: the mental model of a continuous reward stream</td>
+              </tr>
+              <tr>
+                <td class="mono">00:30–01:00</td>
+                <td>Block A — read <code>IStakingProtocol.sol</code> together</td>
+              </tr>
+              <tr>
+                <td class="mono">01:00–02:00</td>
+                <td>Block B — live-code the exercise (TODO 1-7)</td>
+              </tr>
+              <tr>
+                <td class="mono">02:00–02:25</td>
+                <td>Block C — write & run tests</td>
+              </tr>
+              <tr>
+                <td class="mono">02:25–02:30</td>
+                <td>Wrap-up + commit deliverable</td>
+              </tr>
             </tbody>
           </table>
         </div>
       </section>
 
+      <!-- SOLIDITY FAST-TRACK PREP -->
+      <section class="block" id="solidity-prep">
+        <div class="eyebrow">Solidity Fast-Track · 45 min</div>
+        <h2>Intro to Solidity</h2>
+        <div class="prose">
+          <p>Selamat datang di modul akselerasi Solidity. Panduan ini dirancang khusus untuk memahami konsep inti
+            pengembangan <em>smart contract</em> Ethereum secara instan, aman, dan siap praktik menggunakan
+            <strong>Remix IDE</strong>.</p>
+
+          <hr />
+
+          <h3>1. Struktur Dasar Smart Contract</h3>
+          <p>Setiap file Solidity (<code>.sol</code>) wajib memiliki lisensi SPDX dan penentu versi kompiler agar dapat
+            dieksekusi dengan benar oleh EVM.</p>
+          <pre><code class="language-solidity">// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+
+contract BelajarKilat {
+    // State Variable (Disimpan secara permanen di blockchain)
+    string public teks;
+
+    // Fungsi untuk mengubah data (Memerlukan Gas Fee)
+    function setTeks(string memory _teksBaru) public {
+        teks = _teksBaru;
+    }
+
+    // Fungsi untuk membaca data (Gratis / Tanpa Gas Fee jika dipanggil eksternal)
+    function getTeks() public view returns (string memory) {
+        return teks;
+    }
+}</code></pre>
+
+          <h3>2. Tipe Data Inti</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Tipe Data</th>
+                <th>Deskripsi</th>
+                <th>Contoh Penggunaan</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>uint256</code></td>
+                <td>Angka bulat positif (unsigned integer 256-bit)</td>
+                <td>Menyimpan jumlah saldo, total suplai</td>
+              </tr>
+              <tr>
+                <td><code>address</code></td>
+                <td>Menyimpan alamat dompet (wallet) atau alamat contract lain</td>
+                <td>Menyimpan alamat owner atau deployer</td>
+              </tr>
+              <tr>
+                <td><code>bool</code></td>
+                <td>Nilai kebenaran logika (true atau false)</td>
+                <td>Status aktif/nonaktif fitur tertentu</td>
+              </tr>
+              <tr>
+                <td><code>mapping</code></td>
+                <td>Struktur data key-value (seperti hashmap/dictionary)</td>
+                <td>Memetakan alamat dompet ke saldo masing-masing</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <pre><code class="language-solidity">address public owner = 0x5B38Da6a701c568545dCfcB03FcB875f56beddC4;
+mapping(address => uint256) public saldo;</code></pre>
+
+          <h3>3. Fungsi, Visibilitas, dan Modifiers</h3>
+          <h4>Visibilitas Fungsi</h4>
+          <ul>
+            <li><strong>public:</strong> Dapat dipanggil oleh siapa saja (dari luar maupun dari dalam contract itu
+              sendiri).</li>
+            <li><strong>private:</strong> Hanya dapat dipanggil oleh fungsi lain yang berada di dalam contract yang
+              sama.</li>
+            <li><strong>external:</strong> Hanya bisa dipanggil dari luar contract (lebih hemat gas untuk input data
+              besar).</li>
+            <li><strong>internal:</strong> Hanya bisa dipanggil dari dalam contract atau contract turunannya
+              (inheritance).</li>
+          </ul>
+
+          <h4>State Mutability</h4>
+          <ul>
+            <li><strong>view:</strong> Fungsi hanya membaca data dari blockchain tanpa mengubah state.</li>
+            <li><strong>pure:</strong> Fungsi tidak membaca maupun mengubah data blockchain (misal: kalkulasi matematika
+              murni).</li>
+          </ul>
+
+          <h4>Constructor &amp; Modifier</h4>
+          <p><code>constructor</code> adalah fungsi khusus yang dijalankan hanya satu kali saat contract pertama kali
+            di-deploy. <code>modifier</code> digunakan untuk mengubah atau membatasi perilaku fungsi secara efisien.</p>
+          <pre><code class="language-solidity">contract Kepemilikan {
+    address public owner;
+
+    constructor() {
+        owner = msg.sender; // msg.sender adalah alamat yang men-deploy contract
+    }
+
+    modifier hanyaOwner() {
+        require(msg.sender == owner, "Error: Bukan pemilik contract!");
+        _; // Menjalankan sisa kode fungsi yang menggunakan modifier ini
+    }
+
+    // Fungsi ini dilindungi oleh modifier hanyaOwner
+    function gantiOwner(address _ownerBaru) public hanyaOwner {
+        owner = _ownerBaru;
+    }
+}</code></pre>
+
+          <h3>4. Lokasi Penyimpanan Data (Data Locations)</h3>
+          <p>Solidity membagi penyimpanan data berdasarkan sifat permanen dan efisiensi biaya gas:</p>
+          <ul>
+            <li><strong>storage:</strong> Data disimpan permanen di blockchain (seperti hard disk). Biaya gas sangat
+              mahal. Variabel global otomatis bertipe storage.</li>
+            <li><strong>memory:</strong> Data disimpan sementara selama fungsi dieksekusi (seperti RAM). Biaya gas jauh
+              lebih murah. Wajib digunakan untuk tipe data dinamis (seperti string, array, struct) di dalam fungsi.</li>
+            <li><strong>calldata:</strong> Tempat penyimpanan sementara khusus yang bersifat read-only (tidak bisa
+              dimodifikasi). Sangat disarankan untuk argumen fungsi berjenis external karena paling hemat biaya gas.
+            </li>
+          </ul>
+
+          <h3>5. Aliran Dana (Ether &amp; Payable)</h3>
+          <p>Agar smart contract dapat menerima dan mengirim aset Ether (ETH), keyword <code>payable</code> wajib
+            disematkan pada fungsi atau tipe data alamat.</p>
+          <pre><code class="language-solidity">contract Dompet {
+    // Fungsi menerima Ether murni
+    function isiSaldo() public payable {}
+
+    // Mengecek saldo total yang dimiliki oleh contract ini
+    function getSaldoContract() public view returns (uint256) {
+        return address(this).balance;
+    }
+
+    // Mengirim seluruh Ether keluar dari contract ke alamat tujuan
+    function tarikSemuaDana(address payable _keMana) public {
+        uint256 jumlah = address(this).balance;
+        (bool sukses, ) = _keMana.call{value: jumlah}("");
+        require(sukses, "Transfer gagal");
+    }
+}</code></pre>
+
+          <h4>Fungsi Spesial: fallback() and receive()</h4>
+          <p>Dua fungsi ini tidak memiliki nama, tidak menerima argumen, dan tidak mengembalikan apa pun. Mereka
+            otomatis dipanggil ketika ada interaksi tanpa data:</p>
+          <ul>
+            <li><strong>receive() external payable:</strong> Dipanggil jika contract menerima Ether murni tanpa
+              instruksi data apa pun.</li>
+            <li><strong>fallback() external payable:</strong> Dipanggil jika fungsi yang diakses oleh pengirim tidak
+              ditemukan di dalam contract, atau jika contract menerima Ether tetapi fungsi <code>receive()</code> tidak
+              didefinisikan.</li>
+          </ul>
+
+          <h3>6. Validasi, Error Handling, &amp; Keamanan Dasar</h3>
+          <h4>Penanganan Error (Modern vs Klasik)</h4>
+          <ul>
+            <li><strong>require(kondisi, "pesan"):</strong> Memvalidasi input atau kondisi eksternal. Jika gagal,
+              transaksi dibatalkan (revert) dan sisa gas dikembalikan ke user.</li>
+            <li><strong>assert(kondisi):</strong> Digunakan untuk memeriksa invariant internal (kondisi yang seharusnya
+              tidak pernah salah). Jika gagal, seluruh sisa gas akan hangus.</li>
+            <li><strong>revert CustomError() (Rekomendasi Modern):</strong> Jauh lebih hemat biaya gas dibanding
+              <code>require</code> dengan string teks.</li>
+          </ul>
+
+          <pre><code class="language-solidity">error SaldoKurang(uint256 tersedia, uint256 diminta);
+
+contract ContohError {
+    uint256 public totalSaldo = 100;
+
+    function ambilDana(uint256 _jumlah) public view {
+        if (_jumlah > totalSaldo) {
+            revert SaldoKurang(totalSaldo, _jumlah);
+        }
+    }
+}</code></pre>
+
+          <h4>Gas Optimization: Slot Packing</h4>
+          <p>EVM menyimpan data dalam slot-slot berukuran 32 byte. Menyusun variabel berukuran kecil secara berurutan
+            dapat menggabungkannya ke dalam satu slot yang sama, sehingga menghemat biaya transaksi secara signifikan.
+          </p>
+          <pre><code class="language-solidity">// BOROS GAS (Menggunakan 3 slot penyimpanan)
+uint128 nilaiA;
+uint256 nilaiB;
+uint128 nilaiC;
+
+// HEMAT GAS (Menggunakan 2 slot karena nilaiA dan nilaiC dikemas bersama)
+uint128 nilaiA;
+uint128 nilaiC;
+uint256 nilaiB;</code></pre>
+
+          <h4>Keamanan: Reentrancy Attack</h4>
+          <p>Kerentanan fatal di mana contract luar memanggil kembali fungsi penarikan sebelum status saldo internal
+            diperbarui.</p>
+          <p><strong>Solusi Pola Checks-Effects-Interactions:</strong> Selalu lakukan pengecekan (validasi), perbarui
+            status (ubah saldo internal), baru kemudian lakukan interaksi (kirim Ether eksternal).</p>
+          <p><strong>Integer Overflow/Underflow:</strong> Angka melewati batas maksimum atau minimum. Sejak Solidity
+            versi 0.8.0, hal ini sudah otomatis ditangani (akan langsung revert jika terjadi overflow).</p>
+
+          <h3>7. Standar Token Industri (EIP / ERC)</h3>
+          <p>Pengembangan aplikasi web3 memanfaatkan standar token modular yang diawasi oleh OpenZeppelin:</p>
+          <ul>
+            <li><strong>ERC-20:</strong> Standar untuk Fungible Token (Token yang dapat dipertukarkan dengan nilai
+              setara, contoh: USDT, koin kripto biasa).</li>
+            <li><strong>ERC-721:</strong> Standar untuk Non-Fungible Token (NFT, setiap token bersifat unik dan tidak
+              dapat dipertukarkan satu sama lain).</li>
+            <li><strong>ERC-1155:</strong> Standar Multi-Token (Dapat mengelola ERC-20 dan ERC-721 sekaligus dalam satu
+              contract tunggal demi efisiensi tinggi).</li>
+          </ul>
+
+          <h3>8. Proyek Praktik Malam Ini: Pembuatan Token Sederhana</h3>
+          <p>Salin kode final di bawah ini ke Remix IDE, kompilasi, dan lakukan simulasi deployment di Remix VM untuk
+            mematangkan pemahaman Anda malam ini.</p>
+          <pre><code class="language-solidity">// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+
+contract KoinSimpel {
+    string public nama = "Koin Malam";
+    string public simbol = "KLM";
+    uint256 public totalSuplai;
+    address public pembuat;
+
+    mapping(address => uint256) public saldo;
+
+    // Event untuk melacak aktivitas transaksi di blockchain log
+    event Transfer(address indexed dari, address indexed ke, uint256 jumlah);
+
+    constructor(uint256 _suplaiAwal) {
+        pembuat = msg.sender;
+        totalSuplai = _suplaiAwal;
+        saldo[msg.sender] = _suplaiAwal; // Alokasi awal diberikan penuh kepada pembuat contract
+    }
+
+    function kirimKoin(address _penerima, uint256 _jumlah) public {
+        require(saldo[msg.sender] >= _jumlah, "Error: Saldo Anda tidak mencukupi");
+        
+        saldo[msg.sender] -= _jumlah;
+        saldo[_penerima] += _jumlah;
+        
+        emit Transfer(msg.sender, _penerima, _jumlah);
+    }
+}</code></pre>
+
+          <h4>Langkah Eksperimen di Remix IDE</h4>
+          <ol>
+            <li>Buka browser Anda dan akses <a href="https://remix.ethereum.org" target="_blank">Remix Project</a>.</li>
+            <li>Buat file baru di dalam folder contracts, beri nama <code>BelajarSolidity.sol</code>.</li>
+            <li>Salin dan tempel kode <code>KoinSimpel</code> di atas ke dalam file tersebut.</li>
+            <li>Buka tab <strong>Solidity Compiler</strong> di sisi kiri, pilih versi kompiler yang sesuai (0.8.20),
+              lalu klik tombol <strong>Compile</strong>.</li>
+            <li>Pindah ke tab <strong>Deploy & Run Transactions</strong>, pastikan Environment diatur ke <strong>Remix
+                VM</strong>, masukkan angka suplai awal pada kolom input di samping tombol Deploy, lalu klik
+              <strong>Deploy</strong>.</li>
+            <li>Ekspand menu contract di bagian bawah untuk menguji fungsi interaktif yang telah berhasil Anda buat!
+            </li>
+          </ol>
+        </div>
+      </section>
+
+
       <!-- FRAME -->
       <section class="block" id="frame">
         <div class="eyebrow">Frame · 10 min</div>
-        <h2>The mental model</h2>
+        <h2>Try it yourself: DeFI Staking Protocol with Solidity</h2>
         <div class="prose">
-          <p>Imagine a tap dripping reward tokens into a pool at <code>rewardRate</code> tokens per second. Everyone with stake in the pool owns a <em>share</em> of the drip proportional to their stake. Naive implementation: iterate over every staker on every second to credit their share. That is <strong>O(n)</strong> and would gas-implode the chain.</p>
-          <p>The Synthetix accumulator solves this with a single global counter — <code>rewardPerTokenStored</code> — measured in "reward-tokens per staked-token, scaled by 1e18". Whenever <em>anyone</em> interacts, two things happen:</p>
+          <p>Imagine a tap dripping reward tokens into a pool at <code>rewardRate</code> tokens per second. Everyone
+            with stake in the pool owns a <em>share</em> of the drip proportional to their stake. Naive implementation:
+            iterate over every staker on every second to credit their share. That is <strong>O(n)</strong> and would
+            gas-implode the chain.</p>
+          <p>The Synthetix accumulator solves this with a single global counter — <code>rewardPerTokenStored</code> —
+            measured in "reward-tokens per staked-token, scaled by 1e18". Whenever <em>anyone</em> interacts, two things
+            happen:</p>
           <ol>
             <li>Advance the global counter by elapsed-time × rate / totalStaked.</li>
             <li>Snapshot the current counter for that one user (<code>userRewardPerTokenPaid</code>).</li>
           </ol>
-          <p>Now <code>earned(user) = balanceOf(user) × (current − userSnapshot)</code>. <strong>O(1) per interaction.</strong> Beautiful.</p>
+          <p>Now <code>earned(user) = balanceOf(user) × (current − userSnapshot)</code>. <strong>O(1) per
+              interaction.</strong> Beautiful.</p>
         </div>
 
         <div class="callout">
           <div class="callout-label">Math we encode</div>
-<pre style="background: transparent; border: none; padding: 0; color: inherit;">rewardPerToken() = rewardPerTokenStored
+          <pre style="background: transparent; border: none; padding: 0; color: inherit;">rewardPerToken() = rewardPerTokenStored
                  + (now − lastUpdateTime) × rewardRate × 1e18 / totalStaked
 
 earned(user)     = balanceOf[user] × (rewardPerToken() − userRewardPerTokenPaid[user]) / 1e18
@@ -141,10 +436,11 @@ earned(user)     = balanceOf[user] × (rewardPerToken() − userRewardPerTokenPa
         <div class="eyebrow">Block A · 25 min</div>
         <h2>Read the interface together</h2>
         <div class="prose">
-          <p>Open <a href="../contracts/src/interfaces/IStakingProtocol.sol">IStakingProtocol.sol</a> on the projector. The interface is the contract you owe the world.</p>
+          <p>Open <a href="../contracts/src/interfaces/IStakingProtocol.sol">IStakingProtocol.sol</a> on the projector.
+            The interface is the contract you owe the world.</p>
         </div>
 
-<pre><code class="language-solidity">interface IStakingProtocol {
+        <pre><code class="language-solidity">interface IStakingProtocol {
     // ---- events ----
     event Staked(address indexed user, uint256 amount);
     event Withdrawn(address indexed user, uint256 amount);
@@ -188,7 +484,7 @@ earned(user)     = balanceOf[user] × (rewardPerToken() − userRewardPerTokenPa
         <h2>State variables &amp; the <code>updateReward</code> modifier</h2>
 
         <h3>State layout (writing live)</h3>
-<pre><code class="language-solidity">contract StakingProtocol is IStakingProtocol, ReentrancyGuard, Ownable {
+        <pre><code class="language-solidity">contract StakingProtocol is IStakingProtocol, ReentrancyGuard, Ownable {
     using SafeERC20 for IERC20;
 
     uint256 private constant PRECISION = 1e18;
@@ -208,7 +504,7 @@ earned(user)     = balanceOf[user] × (rewardPerToken() − userRewardPerTokenPa
 }</code></pre>
 
         <h3>The modifier — write it first, then explain</h3>
-<pre><code class="language-solidity">modifier updateReward(address account) {
+        <pre><code class="language-solidity">modifier updateReward(address account) {
     rewardPerTokenStored = rewardPerToken();
     lastUpdateTime = block.timestamp;
 
@@ -229,7 +525,7 @@ earned(user)     = balanceOf[user] × (rewardPerToken() − userRewardPerTokenPa
         </div>
 
         <h3>The views</h3>
-<pre><code class="language-solidity">function rewardPerToken() public view returns (uint256) {
+        <pre><code class="language-solidity">function rewardPerToken() public view returns (uint256) {
     if (totalStaked == 0) {
         return rewardPerTokenStored;
     }
@@ -303,7 +599,7 @@ function earned(address account) public view returns (uint256) {
         </p>
 
         <h3>stake()</h3>
-<pre><code class="language-solidity">function stake(uint256 amount) external nonReentrant updateReward(msg.sender) {
+        <pre><code class="language-solidity">function stake(uint256 amount) external nonReentrant updateReward(msg.sender) {
     if (amount == 0) revert ZeroAmount();
 
     totalStaked += amount;
@@ -323,7 +619,7 @@ function earned(address account) public view returns (uint256) {
         </div>
 
         <h3>withdraw()</h3>
-<pre><code class="language-solidity">function withdraw(uint256 amount) public nonReentrant updateReward(msg.sender) {
+        <pre><code class="language-solidity">function withdraw(uint256 amount) public nonReentrant updateReward(msg.sender) {
     if (amount == 0) revert ZeroAmount();
     if (balanceOf[msg.sender] < amount) revert InsufficientBalance();
 
@@ -335,7 +631,7 @@ function earned(address account) public view returns (uint256) {
 }</code></pre>
 
         <h3>getReward()</h3>
-<pre><code class="language-solidity">function getReward() public nonReentrant updateReward(msg.sender) {
+        <pre><code class="language-solidity">function getReward() public nonReentrant updateReward(msg.sender) {
     uint256 reward = rewards[msg.sender];
     if (reward == 0) return;
 
@@ -354,10 +650,13 @@ function earned(address account) public view returns (uint256) {
           <ol class="prose" style="margin: 0;">
             <li>Attacker stakes <code>X</code>.</li>
             <li>Attacker waits to accrue rewards.</li>
-            <li>Attacker calls <code>getReward()</code> from a malicious ERC20 reward token (or a malicious receiver).</li>
-            <li>The malicious token's <code>transfer()</code> hook calls back into <code>getReward()</code> <em>before</em> <code>rewards[attacker] = 0</code>.</li>
+            <li>Attacker calls <code>getReward()</code> from a malicious ERC20 reward token (or a malicious receiver).
+            </li>
+            <li>The malicious token's <code>transfer()</code> hook calls back into <code>getReward()</code>
+              <em>before</em> <code>rewards[attacker] = 0</code>.</li>
             <li>Without <code>nonReentrant</code>: attacker drains rewards repeatedly.</li>
-            <li>With <code>nonReentrant</code>: re-entry reverts immediately with <code>ReentrancyGuardReentrantCall</code>.</li>
+            <li>With <code>nonReentrant</code>: re-entry reverts immediately with
+              <code>ReentrancyGuardReentrantCall</code>.</li>
           </ol>
           <p class="muted tiny" style="margin-top: 0.6rem;">
             <strong>Why not <em>only</em> CEI?</strong> Because reward token is configurable — a future
@@ -367,7 +666,7 @@ function earned(address account) public view returns (uint256) {
         </div>
 
         <h3>exit() — convenience</h3>
-<pre><code class="language-solidity">function exit() external {
+        <pre><code class="language-solidity">function exit() external {
     uint256 staked = balanceOf[msg.sender];
     if (staked > 0) {
         withdraw(staked);
@@ -376,7 +675,7 @@ function earned(address account) public view returns (uint256) {
 }</code></pre>
 
         <h3>Owner: setRewardRate &amp; fundRewards</h3>
-<pre><code class="language-solidity">function setRewardRate(uint256 newRate) external onlyOwner updateReward(address(0)) {
+        <pre><code class="language-solidity">function setRewardRate(uint256 newRate) external onlyOwner updateReward(address(0)) {
     rewardRate = newRate;
     emit RewardRateUpdated(newRate);
 }
@@ -403,11 +702,12 @@ function fundRewards(uint256 amount) external onlyOwner {
         <h2>Forge tests with <code>vm.prank</code> + <code>vm.warp</code></h2>
 
         <div class="prose">
-          <p>Open <a href="../contracts/test/StakingProtocol.t.sol">contracts/test/StakingProtocol.t.sol</a>. Walk through each test.</p>
+          <p>Open <a href="../contracts/test/StakingProtocol.t.sol">contracts/test/StakingProtocol.t.sol</a>. Walk
+            through each test.</p>
         </div>
 
         <h3>Sample: time-based reward accrual</h3>
-<pre><code class="language-solidity">function test_RewardAccrualOverTime() public {
+        <pre><code class="language-solidity">function test_RewardAccrualOverTime() public {
     // Alice and Bob stake 100 each
     vm.prank(alice);
     staking.stake(100e18);
@@ -424,7 +724,7 @@ function fundRewards(uint256 amount) external onlyOwner {
 }</code></pre>
 
         <h3>Sample: reentrancy guard</h3>
-<pre><code class="language-solidity">function test_RevertsWhen_ReentrantClaim() public {
+        <pre><code class="language-solidity">function test_RevertsWhen_ReentrantClaim() public {
     // ReentrantToken's transfer() hook tries to call getReward() again.
     vm.prank(attacker);
     vm.expectRevert(); // ReentrancyGuardReentrantCall
@@ -434,28 +734,29 @@ function fundRewards(uint256 amount) external onlyOwner {
         <!-- TEST OUTPUT MOCK -->
         <h3 id="test-output">What "green" looks like</h3>
         <div class="term">
-<span class="prompt">forge test -vvv</span>
-<span class="out">[⠊] Compiling...</span>
-<span class="out">[⠒] Compiling 2 files with 0.8.24</span>
-<span class="out">[⠆] Solc 0.8.24 finished in 1.42s</span>
-<span class="out">Compiler run successful!</span>
+          <span class="prompt">forge test -vvv</span>
+          <span class="out">[⠊] Compiling...</span>
+          <span class="out">[⠒] Compiling 2 files with 0.8.24</span>
+          <span class="out">[⠆] Solc 0.8.24 finished in 1.42s</span>
+          <span class="out">Compiler run successful!</span>
 
-<span class="out">Ran 12 tests for test/StakingProtocol.t.sol:StakingProtocolTest</span>
-<span class="ok">[PASS] test_Constructor() (gas: 18,232)</span>
-<span class="ok">[PASS] test_Stake_HappyPath() (gas: 145,891)</span>
-<span class="ok">[PASS] test_Stake_RevertsZeroAmount() (gas: 32,107)</span>
-<span class="ok">[PASS] test_Withdraw_HappyPath() (gas: 158,234)</span>
-<span class="ok">[PASS] test_Withdraw_RevertsInsufficient() (gas: 35,801)</span>
-<span class="ok">[PASS] test_GetReward_HappyPath() (gas: 192,440)</span>
-<span class="ok">[PASS] test_RewardAccrualOverTime() (gas: 287,604)</span>
-<span class="ok">[PASS] test_RewardSplit_ProRata() (gas: 412,890)</span>
-<span class="ok">[PASS] test_SetRewardRate_OnlyOwner() (gas: 28,917)</span>
-<span class="ok">[PASS] test_SetRewardRate_SettlesAtOldRate() (gas: 318,742)</span>
-<span class="ok">[PASS] test_Exit_WithdrawsAndClaims() (gas: 245,109)</span>
-<span class="ok">[PASS] test_RevertsWhen_ReentrantClaim() (gas: 188,210)</span>
+          <span class="out">Ran 12 tests for test/StakingProtocol.t.sol:StakingProtocolTest</span>
+          <span class="ok">[PASS] test_Constructor() (gas: 18,232)</span>
+          <span class="ok">[PASS] test_Stake_HappyPath() (gas: 145,891)</span>
+          <span class="ok">[PASS] test_Stake_RevertsZeroAmount() (gas: 32,107)</span>
+          <span class="ok">[PASS] test_Withdraw_HappyPath() (gas: 158,234)</span>
+          <span class="ok">[PASS] test_Withdraw_RevertsInsufficient() (gas: 35,801)</span>
+          <span class="ok">[PASS] test_GetReward_HappyPath() (gas: 192,440)</span>
+          <span class="ok">[PASS] test_RewardAccrualOverTime() (gas: 287,604)</span>
+          <span class="ok">[PASS] test_RewardSplit_ProRata() (gas: 412,890)</span>
+          <span class="ok">[PASS] test_SetRewardRate_OnlyOwner() (gas: 28,917)</span>
+          <span class="ok">[PASS] test_SetRewardRate_SettlesAtOldRate() (gas: 318,742)</span>
+          <span class="ok">[PASS] test_Exit_WithdrawsAndClaims() (gas: 245,109)</span>
+          <span class="ok">[PASS] test_RevertsWhen_ReentrantClaim() (gas: 188,210)</span>
 
-<span class="dim">Suite result:</span> <span class="ok">ok.</span> <span class="dim">12 passed; 0 failed; finished in 4.21ms (8.42ms CPU time)</span>
-<span class="prompt blink"> </span>
+          <span class="dim">Suite result:</span> <span class="ok">ok.</span> <span class="dim">12 passed; 0 failed;
+            finished in 4.21ms (8.42ms CPU time)</span>
+          <span class="prompt blink"> </span>
         </div>
       </section>
 
@@ -464,16 +765,19 @@ function fundRewards(uint256 amount) external onlyOwner {
         <div class="eyebrow">Take-home</div>
         <h2>Before Meet 5</h2>
 
-        <div style="display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 0.5rem;">
+        <div
+          style="display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 0.5rem;">
           <div class="muted tiny">Your progress</div>
           <div class="mono tiny progress-label">0 / 5</div>
         </div>
-        <div class="progress" data-checklist-progress="meet-4-take-home" style="margin-bottom: 1rem;"><span style="width:0%"></span></div>
+        <div class="progress" data-checklist-progress="meet-4-take-home" style="margin-bottom: 1rem;"><span
+            style="width:0%"></span></div>
 
         <div class="panel">
           <label class="check">
             <input type="checkbox" data-checklist="meet-4-take-home" data-key="green" />
-            <span class="check-text">Your fork of <code>StakingProtocol.exercise.sol</code> compiles and tests pass.</span>
+            <span class="check-text">Your fork of <code>StakingProtocol.exercise.sol</code> compiles and tests
+              pass.</span>
           </label>
           <label class="check">
             <input type="checkbox" data-checklist="meet-4-take-home" data-key="pr" />
@@ -489,16 +793,22 @@ function fundRewards(uint256 amount) external onlyOwner {
           </label>
           <label class="check">
             <input type="checkbox" data-checklist="meet-4-take-home" data-key="economics" />
-            <span class="check-text">Read <a href="../../tracks/optimism/docs/week-3/meet-5-defi-tokenomics.md">meet-5-defi-tokenomics.md</a> intro (next session).</span>
+            <span class="check-text">Read <a
+                href="../../tracks/optimism/docs/week-3/meet-5-defi-tokenomics.md">meet-5-defi-tokenomics.md</a> intro
+              (next session).</span>
           </label>
         </div>
 
         <div class="callout warn" style="margin-top: 1.5rem;">
           <div class="callout-label">Common gotchas</div>
           <ul class="prose" style="margin: 0.4rem 0 0;">
-            <li><strong>Division before multiplication</strong> — <code>(elapsed * rewardRate * PRECISION) / totalStaked</code>, not the other order. Otherwise you truncate to zero.</li>
-            <li><strong>Forgot <code>updateReward</code></strong> on <code>setRewardRate</code> — historical accrual leaks at the new rate. Audit finding.</li>
-            <li><strong>Reentrancy on reward token</strong> — only an issue if the reward token has hooks. We assume it doesn't, but <code>nonReentrant</code> protects us anyway.</li>
+            <li><strong>Division before multiplication</strong> —
+              <code>(elapsed * rewardRate * PRECISION) / totalStaked</code>, not the other order. Otherwise you truncate
+              to zero.</li>
+            <li><strong>Forgot <code>updateReward</code></strong> on <code>setRewardRate</code> — historical accrual
+              leaks at the new rate. Audit finding.</li>
+            <li><strong>Reentrancy on reward token</strong> — only an issue if the reward token has hooks. We assume it
+              doesn't, but <code>nonReentrant</code> protects us anyway.</li>
         </div>
       </section>
 
@@ -507,20 +817,57 @@ function fundRewards(uint256 amount) external onlyOwner {
         <h2>Istilah baru di halaman ini</h2>
         <p class="prose muted tiny">Istilah Solidity &amp; Foundry staking — belum muncul di sesi sebelumnya.</p>
         <dl class="glossary-list">
-          <div class="glossary-item"><dt>Synthetix-style accumulator</dt><dd>Pattern reward O(1) via global <code>rewardPerTokenStored</code>.</dd></div>
-          <div class="glossary-item"><dt>rewardPerTokenStored</dt><dd>Index global reward per 1 token staked sejak genesis.</dd></div>
-          <div class="glossary-item"><dt>userRewardPerTokenPaid</dt><dd>Checkpoint user terakhir update ke global index.</dd></div>
-          <div class="glossary-item"><dt>updateReward modifier</dt><dd>Finalizes accrual sebelum mutasi balance/rewards.</dd></div>
-          <div class="glossary-item"><dt>earned(account)</dt><dd>View unclaimed rewards dari delta index × balance.</dd></div>
-          <div class="glossary-item"><dt>1e18 / PRECISION</dt><dd>Faktor presisi wajib; jangan dihilangkan.</dd></div>
-          <div class="glossary-item"><dt>SafeERC20</dt><dd>OZ wrapper transfer ERC20 aman.</dd></div>
-          <div class="glossary-item"><dt>ReentrancyGuard</dt><dd><code>nonReentrant</code> pada fungsi mutasi balance.</dd></div>
-          <div class="glossary-item"><dt>vm.warp</dt><dd>Cheatcode lompat waktu block untuk test accrual.</dd></div>
-          <div class="glossary-item"><dt>vm.prank</dt><dd>Cheatcode impersonate caller address.</dd></div>
-          <div class="glossary-item"><dt>vm.expectRevert</dt><dd>Assert tx harus revert dengan error tertentu.</dd></div>
-          <div class="glossary-item"><dt>Custom errors</dt><dd><code>ZeroAmount()</code>, <code>InsufficientBalance()</code> — gas lebih murah dari string.</dd></div>
+          <div class="glossary-item">
+            <dt>Synthetix-style accumulator</dt>
+            <dd>Pattern reward O(1) via global <code>rewardPerTokenStored</code>.</dd>
+          </div>
+          <div class="glossary-item">
+            <dt>rewardPerTokenStored</dt>
+            <dd>Index global reward per 1 token staked sejak genesis.</dd>
+          </div>
+          <div class="glossary-item">
+            <dt>userRewardPerTokenPaid</dt>
+            <dd>Checkpoint user terakhir update ke global index.</dd>
+          </div>
+          <div class="glossary-item">
+            <dt>updateReward modifier</dt>
+            <dd>Finalizes accrual sebelum mutasi balance/rewards.</dd>
+          </div>
+          <div class="glossary-item">
+            <dt>earned(account)</dt>
+            <dd>View unclaimed rewards dari delta index × balance.</dd>
+          </div>
+          <div class="glossary-item">
+            <dt>1e18 / PRECISION</dt>
+            <dd>Faktor presisi wajib; jangan dihilangkan.</dd>
+          </div>
+          <div class="glossary-item">
+            <dt>SafeERC20</dt>
+            <dd>OZ wrapper transfer ERC20 aman.</dd>
+          </div>
+          <div class="glossary-item">
+            <dt>ReentrancyGuard</dt>
+            <dd><code>nonReentrant</code> pada fungsi mutasi balance.</dd>
+          </div>
+          <div class="glossary-item">
+            <dt>vm.warp</dt>
+            <dd>Cheatcode lompat waktu block untuk test accrual.</dd>
+          </div>
+          <div class="glossary-item">
+            <dt>vm.prank</dt>
+            <dd>Cheatcode impersonate caller address.</dd>
+          </div>
+          <div class="glossary-item">
+            <dt>vm.expectRevert</dt>
+            <dd>Assert tx harus revert dengan error tertentu.</dd>
+          </div>
+          <div class="glossary-item">
+            <dt>Custom errors</dt>
+            <dd><code>ZeroAmount()</code>, <code>InsufficientBalance()</code> — gas lebih murah dari string.</dd>
+          </div>
         </dl>
-        <p class="muted tiny" style="margin-top: 1rem;"><a href="glossary.html">Buka kamus lengkap seluruh workshop →</a></p>
+        <p class="muted tiny" style="margin-top: 1rem;"><a href="glossary.html">Buka kamus lengkap seluruh workshop
+            →</a></p>
       </section>
 
       <footer class="session-footer">
@@ -568,8 +915,11 @@ function fundRewards(uint256 amount) external onlyOwner {
 
   <style>
     @media (min-width: 768px) {
-      .grid-2-md { grid-template-columns: repeat(2, 1fr) !important; }
+      .grid-2-md {
+        grid-template-columns: repeat(2, 1fr) !important;
+      }
     }
   </style>
 </body>
+
 </html>
