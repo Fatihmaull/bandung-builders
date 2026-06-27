@@ -191,7 +191,9 @@
               <input type="number" id="rptMid" value="2000" step="100" min="1" />
             </label>
           </div>
-          <canvas id="rptChart" height="240"></canvas>
+          <div style="position: relative; height: 240px;">
+            <canvas id="rptChart"></canvas>
+          </div>
           <p class="muted tiny" style="margin-top: 0.5rem;">
             More stake → reward dilutes per token. The same protocol pays a totally
             different APR at TVL=$10k vs TVL=$10M.
@@ -233,7 +235,9 @@
               <input type="number" id="emHalfP" value="6" step="1" min="1" />
             </label>
           </div>
-          <canvas id="emChart" height="240"></canvas>
+          <div style="position: relative; height: 240px;">
+            <canvas id="emChart"></canvas>
+          </div>
           <div class="kpi-grid" style="margin-top: 1rem; grid-template-columns: repeat(3, 1fr);">
             <div class="kpi">
               <div class="kpi-label">Total flat</div>
